@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { setDrawer } from "../features/drawerSlice";
 
-import { AppBar, Toolbar, Button, Drawer, Box, Divider, CssBaseline } from "@mui/material";
+import { AppBar, Toolbar, Button, Drawer, Box, Divider, CssBaseline, Typography } from "@mui/material";
 import styled from '@emotion/styled'
 import { useMediaQuery } from '@mui/material';
 
@@ -85,29 +85,35 @@ const Header = () => {
                                                         justifyContent:"space-around"
                                                     }}
                                                 >
-                                                    <Box 
+                                                    <MenuClose 
                                                         onClick={toggleDrawer}
-                                                        sx={{
-                                                            alignSelf:"flex-end",
-                                                            cursor:"pointer",
-                                                        }}
                                                     >
                                                         <img src={Close} alt="close drawer" />
-                                                    </Box>
+                                                    </MenuClose>
+                                                    <Divider />
                                                     <HeaderLink >
-                                                        <Button variant="text" sx={{color:"black"}} onClick={test}>BLOG</Button>
+                                                        <HeaderMenuItem>
+                                                            <Button variant="text" sx={{color:"var(--black)"}} onClick={test}>BLOG</Button>
+                                                        </HeaderMenuItem>
                                                     </HeaderLink>
                                                     <Divider />
                                                     <HeaderLink >
-                                                        <Button variant="text" sx={{color:"black"}} onClick={test}>CONNEXION</Button>
+                                                        <HeaderMenuItem>
+                                                            <Button variant="text" sx={{color:"var(--black)"}} onClick={test}>CONNEXION</Button>
+                                                        </HeaderMenuItem>
                                                     </HeaderLink>
                                                     <Divider />
                                                     <HeaderLink >
-                                                        <img src={User1} alt="user"/>
-                                                    </HeaderLink>
+                                                        <HeaderMenuItem>
+                                                            <img src={User1} alt="user"/>
+                                                            <Typography sx={{marginLeft:"2rem", color:"var(--black)"}}>Votre profil</Typography>
+                                                        </HeaderMenuItem>                                                                                                           </HeaderLink>
                                                     <Divider />
                                                     <HeaderLink >
-                                                        <img src={ShoppingBskt} alt="panier"/>
+                                                        <HeaderMenuItem>
+                                                            <img src={ShoppingBskt} alt="panier"/>
+                                                            <Typography sx={{marginLeft:"2rem", color:"var(--black)"}}>Votre panier</Typography>
+                                                        </HeaderMenuItem>                                                   
                                                     </HeaderLink>
                                                     <Divider />
                                                 </Box>
@@ -140,7 +146,7 @@ const Header = () => {
 };
 
 const HeaderLink = styled(Link)`
-
+    text-decoration: none;
 `;
 
 const HeaderTitle = styled.h1`
@@ -163,4 +169,20 @@ const HeaderMenu = styled.div`
     }
 `;
 
+const HeaderMenuItem = styled.nav`
+    display: flex;
+    transition: .5s;
+    &:hover{
+        transform: translate(1rem);
+    };
+`;
+
+const MenuClose = styled.div`
+    align-self: flex-end;
+    cursor: pointer;
+    transition: .5s;
+    &:hover{
+        transform: scale(1.3);
+    }
+`;
 export default Header;

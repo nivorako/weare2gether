@@ -1,6 +1,11 @@
+:root{
+    --primary: #cf3201;
+    --secondary: #FF7F37;
+    --black: #3b3b3b;
+}
 body {
         margin: 0;
-        font-family: "Roboto";
+        font-family: "Roboto", sans-serif;
         /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif; */
