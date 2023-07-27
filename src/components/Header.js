@@ -43,7 +43,7 @@ const Header = () => {
             <AppBar 
                 position="static" 
                 sx={{
-                    backgroundColor:"#cf3201",
+                    backgroundColor:"var(--primary)",
                     height:"400px",
                     display:"flex",
                     flexDirection:"column",
@@ -57,15 +57,20 @@ const Header = () => {
                         justifyContent:"space-between"
                     }}
                 >
-                    <HeaderLink >
-                        <img src={Logo} alt="logo" />
+                    <HeaderLink to="/">
+                        <LogoBox>
+                            <img src={Logo} alt="logo" />
+                        </LogoBox>
                     </HeaderLink> 
                     {
                         isMobile ?  (   <>
                                             <HeaderMenu onClick={toggleDrawer}>
-                                                <img src={Menu} alt="menu" /> 
+                                                <MenuIcon>
+                                                    <img src={Menu} alt="menu" /> 
+                                                </MenuIcon>
                                             </HeaderMenu>
-                                            <Drawer 
+                                            <Drawer
+                                                onClick={toggleDrawer} 
                                                 open={drawer.drawer}  
                                                 anchor="right"
                                                 PaperProps={{
@@ -86,29 +91,34 @@ const Header = () => {
                                                     }}
                                                 >
                                                     <MenuClose 
-                                                        onClick={toggleDrawer}
+                                                        
                                                     >
                                                         <img src={Close} alt="close drawer" />
                                                     </MenuClose>
                                                     <Divider />
-                                                    <HeaderLink >
+
+                                                    <HeaderLink to="/Blog">
                                                         <HeaderMenuItem>
                                                             <Button variant="text" sx={{color:"var(--black)"}} onClick={test}>BLOG</Button>
                                                         </HeaderMenuItem>
                                                     </HeaderLink>
                                                     <Divider />
-                                                    <HeaderLink >
+
+                                                    <HeaderLink to="/Connexion">
                                                         <HeaderMenuItem>
                                                             <Button variant="text" sx={{color:"var(--black)"}} onClick={test}>CONNEXION</Button>
                                                         </HeaderMenuItem>
                                                     </HeaderLink>
                                                     <Divider />
+
                                                     <HeaderLink >
                                                         <HeaderMenuItem>
                                                             <img src={User1} alt="user"/>
                                                             <Typography sx={{marginLeft:"2rem", color:"var(--black)"}}>Votre profil</Typography>
-                                                        </HeaderMenuItem>                                                                                                           </HeaderLink>
+                                                        </HeaderMenuItem> 
+                                                    </HeaderLink>
                                                     <Divider />
+
                                                     <HeaderLink >
                                                         <HeaderMenuItem>
                                                             <img src={ShoppingBskt} alt="panier"/>
@@ -116,24 +126,33 @@ const Header = () => {
                                                         </HeaderMenuItem>                                                   
                                                     </HeaderLink>
                                                     <Divider />
+
                                                 </Box>
                                             </Drawer>
                                         </>
                                     ) 
                                 :
-                    ( <HeaderNav >
-                        <HeaderLink >
-                            <Button variant="text" sx={{color:"white"}}>BLOG</Button>
-                        </HeaderLink>
-                        <HeaderLink >
-                            <Button variant="text" sx={{color:"white"}}>CONNEXION</Button>
-                        </HeaderLink>
-                        <HeaderLink >
-                            <img src={User} alt="user"/>
-                        </HeaderLink>
-                        <HeaderLink >
-                            <img src={ShopBskt} alt="user"/>
-                        </HeaderLink>
+                    (   <HeaderNav >
+                            <HeaderLink to="/Blog">
+                                <HeaderNavItem>
+                                    <Button variant="text" sx={{color:"white"}}>BLOG</Button>
+                                </HeaderNavItem>
+                            </HeaderLink>
+                            <HeaderLink to="/Connexion">
+                                <HeaderNavItem>
+                                    <Button variant="text" sx={{color:"white"}}>CONNEXION</Button>
+                                </HeaderNavItem>
+                            </HeaderLink>
+                            <HeaderLink >
+                                <HeaderNavItem>
+                                    <img src={User} alt="user" color="red"/>
+                                </HeaderNavItem>
+                            </HeaderLink>
+                            <HeaderLink >
+                                <HeaderNavItem>
+                                    <img src={ShopBskt} alt="user"/>
+                                </HeaderNavItem>
+                            </HeaderLink>
                         </HeaderNav>)
                     }
                 </Toolbar>
@@ -170,11 +189,49 @@ const HeaderMenu = styled.div`
 `;
 
 const HeaderMenuItem = styled.nav`
+    opacity:0.8;
     display: flex;
     transition: .5s;
     &:hover{
         transform: translate(1rem);
     };
+`;
+
+const HeaderNavItem = styled.nav`
+    position: relative;
+    opacity:0.8;
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: -3px; /* Ajustez cette valeur pour définir la hauteur du soulignement */
+        left: 0;
+        width: 100%;
+        height: 2px; /* Ajustez cette valeur pour définir l'épaisseur du soulignement */
+        background-color: white; /* Utilisez la couleur souhaitée pour le soulignement */
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+    &:hover::after{
+        opacity:1
+    }
+    &:hover{
+        opacity:1;
+    }
+`;
+
+const LogoBox = styled.div`
+    opacity:0.8;
+    transition: .5s;
+    &:hover{
+        opacity:1;
+    }
+`;
+
+const MenuIcon = styled.div`
+    transition: .5s;
+    &:hover{
+        transform: scale(1.3);
+    }
 `;
 
 const MenuClose = styled.div`
