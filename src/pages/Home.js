@@ -24,6 +24,7 @@ const Home = () => {
                             flexDirection:"column",
                             justifyContent:"space-evenly",
                             alignItems:"center",
+                            textAlign: "center"
                         }}
                     >
                         <Box>
@@ -39,21 +40,18 @@ const Home = () => {
                         
                     </Box>
                 </HomeTitle>
-                {/* <HomeEvents>
-                    <HomeEvent>
-                        <Event />
-                    </HomeEvent>
-                    <HomeEvent>
-                        <Event />
-                    </HomeEvent>
-                </HomeEvents> */}
+                <HomeEvents>
+                    <Event/>
+                    <Event/>
+                    <Event/>
+                </HomeEvents>
             </HomeBox>
         </HomeContainer>
     </>
   )
 };
 
-const HomeContainer = styled.div`
+const HomeContainer = styled.main`
     width:100%;
     background-color:var(--secondary);
 `;
@@ -72,7 +70,6 @@ const HomeBox = styled.div`
 const HomeTitle = styled.section`
     position: relative;
     width:100%
-    
 `;
 
 const Title = styled.h1`
@@ -81,6 +78,9 @@ const Title = styled.h1`
     font-size: 48px;
     font-weight:bold;
     font-family:Lora;
+    @media (max-width: 450px) {
+        margin: 0 1rem 0 1rem;
+      }
 `;
 
 const Desc = styled.h1`
@@ -89,11 +89,16 @@ const Desc = styled.h1`
     font-size: 32px;
     font-weight:bold;
     font-family:Lora;
+    @media (max-width: 450px) {
+        margin: 0 1rem 0 1rem;
+      }
 `;
 
 const HomeEvents = styled.section`
     width:100%;
-    margin-top: 5rem;
+    height: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 `;
 
 const HomeEvent = styled.div`

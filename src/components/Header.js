@@ -23,6 +23,8 @@ import Menu from "../assets/menuWhite.svg";
 
 const Header = () => {
 
+    const activePage = useSelector(state => state.page.activePage);
+
     const dispatch = useDispatch();
 
     const isMobile = useMediaQuery("(max-width:768px)",  {noSsr: true}); 
@@ -40,129 +42,137 @@ const Header = () => {
     return (
         <>
             <CssBaseline />
-            <AppBar 
-                position="static" 
-                sx={{
-                    backgroundColor:"var(--primary)",
-                    height:"400px",
-                    display:"flex",
-                    flexDirection:"column",
-                    justifyContent: "space-between"
-                }}
-            >
-                <Toolbar 
+            <HeaderContainer>
+                <AppBar 
+                    position="static" 
                     sx={{
-                        marginTop:"1rem",
+                        backgroundColor:"var(--primary)",
+                        height:"400px",
                         display:"flex",
-                        justifyContent:"space-between"
+                        flexDirection:"column",
+                        justifyContent: "space-between"
                     }}
                 >
-                    <HeaderLink to="/">
-                        <LogoBox>
-                            <img src={Logo} alt="logo" />
-                        </LogoBox>
-                    </HeaderLink> 
-                    {
-                        isMobile ?  (   <>
-                                            <HeaderMenu onClick={toggleDrawer}>
-                                                <MenuIcon>
-                                                    <img src={Menu} alt="menu" /> 
-                                                </MenuIcon>
-                                            </HeaderMenu>
-                                            <Drawer
-                                                onClick={toggleDrawer} 
-                                                open={drawer.drawer}  
-                                                anchor="right"
-                                                PaperProps={{
-                                                    sx: {
-                                                      width: "100%",  // Définir la largeur du drawer à 100%
-                                                      zIndex: "10", // Placer le drawer au-dessus du reste du contenu
-                                                    }
-                                                  }}
-                                            >
-                                                <Box 
-                                                    sx={{                                                      
-                                                        width:"100%",
-                                                        height:"100%",
-                                                        padding:"3rem",
-                                                        display:"flex",
-                                                        flexDirection:"column",
-                                                        justifyContent:"space-around"
+                    <Toolbar 
+                        sx={{
+                            marginTop:"1rem",
+                            display:"flex",
+                            justifyContent:"space-between"
+                        }}
+                    >
+                        <HeaderLink to="/">
+                            <LogoBox>
+                                <img src={Logo} alt="logo" />
+                            </LogoBox>
+                        </HeaderLink> 
+                        {
+                            isMobile ?  (   <>
+                                                <HeaderMenu onClick={toggleDrawer}>
+                                                    <MenuIcon>
+                                                        <img src={Menu} alt="menu" /> 
+                                                    </MenuIcon>
+                                                </HeaderMenu>
+                                                <Drawer
+                                                    onClick={toggleDrawer} 
+                                                    open={drawer.drawer}  
+                                                    anchor="right"
+                                                    PaperProps={{
+                                                        sx: {
+                                                        width: "100%",  // Définir la largeur du drawer à 100%
+                                                        zIndex: "10", // Placer le drawer au-dessus du reste du contenu
+                                                        }
                                                     }}
                                                 >
-                                                    <MenuClose 
-                                                        
+                                                    <Box 
+                                                        sx={{                                                      
+                                                            width:"100%",
+                                                            height:"100%",
+                                                            padding:"3rem",
+                                                            display:"flex",
+                                                            flexDirection:"column",
+                                                            justifyContent:"space-around"
+                                                        }}
                                                     >
-                                                        <img src={Close} alt="close drawer" />
-                                                    </MenuClose>
-                                                    <Divider />
+                                                        <MenuClose 
+                                                            
+                                                        >
+                                                            <img src={Close} alt="close drawer" />
+                                                        </MenuClose>
+                                                        <Divider />
 
-                                                    <HeaderLink to="/Blog">
-                                                        <HeaderMenuItem>
-                                                            <Button variant="text" sx={{color:"var(--black)"}} onClick={test}>BLOG</Button>
-                                                        </HeaderMenuItem>
-                                                    </HeaderLink>
-                                                    <Divider />
+                                                        <HeaderLink to="/Blog">
+                                                            <HeaderMenuItem>
+                                                                <Button variant="text" sx={{color:"var(--black)"}} onClick={test}>BLOG</Button>
+                                                            </HeaderMenuItem>
+                                                        </HeaderLink>
+                                                        <Divider />
 
-                                                    <HeaderLink to="/Connexion">
-                                                        <HeaderMenuItem>
-                                                            <Button variant="text" sx={{color:"var(--black)"}} onClick={test}>CONNEXION</Button>
-                                                        </HeaderMenuItem>
-                                                    </HeaderLink>
-                                                    <Divider />
+                                                        <HeaderLink to="/Connexion">
+                                                            <HeaderMenuItem>
+                                                                <Button variant="text" sx={{color:"var(--black)"}} onClick={test}>CONNEXION</Button>
+                                                            </HeaderMenuItem>
+                                                        </HeaderLink>
+                                                        <Divider />
 
-                                                    <HeaderLink >
-                                                        <HeaderMenuItem>
-                                                            <img src={User1} alt="user"/>
-                                                            <Typography sx={{marginLeft:"2rem", color:"var(--black)"}}>Votre profil</Typography>
-                                                        </HeaderMenuItem> 
-                                                    </HeaderLink>
-                                                    <Divider />
+                                                        <HeaderLink >
+                                                            <HeaderMenuItem>
+                                                                <img src={User1} alt="user"/>
+                                                                <Typography sx={{marginLeft:"2rem", color:"var(--black)"}}>Votre profil</Typography>
+                                                            </HeaderMenuItem> 
+                                                        </HeaderLink>
+                                                        <Divider />
 
-                                                    <HeaderLink >
-                                                        <HeaderMenuItem>
-                                                            <img src={ShoppingBskt} alt="panier"/>
-                                                            <Typography sx={{marginLeft:"2rem", color:"var(--black)"}}>Votre panier</Typography>
-                                                        </HeaderMenuItem>                                                   
-                                                    </HeaderLink>
-                                                    <Divider />
+                                                        <HeaderLink >
+                                                            <HeaderMenuItem>
+                                                                <img src={ShoppingBskt} alt="panier"/>
+                                                                <Typography sx={{marginLeft:"2rem", color:"var(--black)"}}>Votre panier</Typography>
+                                                            </HeaderMenuItem>                                                   
+                                                        </HeaderLink>
+                                                        <Divider />
 
-                                                </Box>
-                                            </Drawer>
-                                        </>
-                                    ) 
-                                :
-                    (   <HeaderNav >
-                            <HeaderLink to="/Blog">
-                                <HeaderNavItem>
-                                    <Button variant="text" sx={{color:"white"}}>BLOG</Button>
-                                </HeaderNavItem>
-                            </HeaderLink>
-                            <HeaderLink to="/Connexion">
-                                <HeaderNavItem>
-                                    <Button variant="text" sx={{color:"white"}}>CONNEXION</Button>
-                                </HeaderNavItem>
-                            </HeaderLink>
-                            <HeaderLink >
-                                <HeaderNavItem>
-                                    <img src={User} alt="user" color="red"/>
-                                </HeaderNavItem>
-                            </HeaderLink>
-                            <HeaderLink >
-                                <HeaderNavItem>
-                                    <img src={ShopBskt} alt="user"/>
-                                </HeaderNavItem>
-                            </HeaderLink>
-                        </HeaderNav>)
-                    }
-                </Toolbar>
-                <HeaderTitle>
-                    salsa
-                </HeaderTitle>
-            </AppBar>
+                                                    </Box>
+                                                </Drawer>
+                                            </>
+                                        ) 
+                                    :
+                        (   <HeaderNav >
+                                <HeaderLink to="/Blog">
+                                    <HeaderNavItem>
+                                        <Button variant="text" sx={{color:"white"}}>BLOG</Button>
+                                    </HeaderNavItem>
+                                </HeaderLink>
+                                <HeaderLink to="/Connexion">
+                                    <HeaderNavItem>
+                                        <Button variant="text" sx={{color:"white"}}>CONNEXION</Button>
+                                    </HeaderNavItem>
+                                </HeaderLink>
+                                <HeaderLink >
+                                    <HeaderNavItem>
+                                        <img src={User} alt="user" color="red"/>
+                                    </HeaderNavItem>
+                                </HeaderLink>
+                                <HeaderLink >
+                                    <HeaderNavItem>
+                                        <img src={ShopBskt} alt="user"/>
+                                    </HeaderNavItem>
+                                </HeaderLink>
+                            </HeaderNav>)
+                        }
+                    </Toolbar>
+                    <HeaderTitle>
+                        { activePage === "Connexion" ? "Connexion" :
+                            (activePage === "Blog" ? "Blog" : "Home")}
+                    </HeaderTitle>
+                </AppBar>
+            </HeaderContainer>
         </>
     )
 };
+
+const HeaderContainer = styled.header`
+    width:100%;
+    height: auto;
+`;
 
 const HeaderLink = styled(Link)`
     text-decoration: none;
