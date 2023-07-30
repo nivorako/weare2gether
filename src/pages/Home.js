@@ -11,40 +11,43 @@ const Home = () => {
     <>
         <HomeContainer >
             <HomeBox>
-                <HomeTitle>
-                    <img src={ImgTitle} alt="titre" style={{width:"100%", height:"100vh", objectFit:"cover", borderRadius:"0"}} />
-                    <Box
-                        sx={{
-                            position: "absolute",
-                            top:"0",
-                            left:"0",
-                            width: "100%",
-                            height: "100%",
-                            display:"flex",
-                            flexDirection:"column",
-                            justifyContent:"space-evenly",
-                            alignItems:"center",
-                            textAlign: "center"
-                        }}
-                    >
-                        <Box>
-                            <Title> 
-                                Weare2gether,
-                            </Title>
-                            <Desc> 
-                                c'est plus que de la musique
-                            </Desc>
+                <HomeArticle>
+                    <HomeTitle>
+                        <img src={ImgTitle} alt="titre" style={{width:"100%", height:"80vh", objectFit:"cover", borderRadius:"0"}} />
+                        <Box
+                            sx={{
+                                position: "absolute",
+                                top:"0",
+                                left:"0",
+                                width: "100%",
+                                height: "100%",
+                                display:"flex",
+                                flexDirection:"column",
+                                justifyContent:"space-evenly",
+                                alignItems:"center",
+                                textAlign: "center"
+                            }}
+                        >
+                            <Box>
+                                <Title> 
+                                    Weare2gether,
+                                </Title>
+                                <Desc> 
+                                    c'est plus que de la musique
+                                </Desc>
+                            </Box>
+                            
+                            <Btn>Photos / Videos</Btn>
+                            
                         </Box>
-                        
-                        <Btn>Photos / Videos</Btn>
-                        
-                    </Box>
-                </HomeTitle>
-                <HomeEvents>
-                    <Event/>
-                    <Event/>
-                    <Event/>
-                </HomeEvents>
+                    </HomeTitle>
+                    <HomeEventsTitle>Les soirées à venir</HomeEventsTitle>
+                    <HomeEvents>
+                        <Event/>
+                        <Event/>
+                        <Event/>
+                    </HomeEvents>
+                </HomeArticle>
             </HomeBox>
         </HomeContainer>
     </>
@@ -56,9 +59,13 @@ const HomeContainer = styled.main`
     background-color:var(--secondary);
 `;
 
+const HomeArticle = styled.article`
+    width: 100%;
+    height: 100%;
+`;
 const HomeBox = styled.div`
-    width:80%;
-    margin: -300px auto 0 auto;
+    width:70%;
+    margin: -250px auto 0 auto;
     border-radius: 1rem 1rem 0 0;
     background-color: var(--secondary);
     z-Index: 10;
@@ -96,14 +103,17 @@ const Desc = styled.h1`
 
 const HomeEvents = styled.section`
     width:100%;
-    height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
     margin-top: 2rem;
     margin-bottom: 2rem;
 `;
 
-const HomeEvent = styled.div`
-    width: 100%;
-    height: 200px;
+const HomeEventsTitle = styled.h2`
+   text-align: center;
+   font-family:Lora;
+   font-size: 32px;
+   color: white;
 `;
 
 const Btn = styled(Button)({

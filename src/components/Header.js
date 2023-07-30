@@ -55,7 +55,8 @@ const Header = () => {
                 >
                     <Toolbar 
                         sx={{
-                            marginTop:"1rem",
+                            width:"70%",
+                            margin:"2rem auto 0 auto",
                             display:"flex",
                             justifyContent:"space-between"
                         }}
@@ -178,16 +179,16 @@ const HeaderLink = styled(Link)`
     text-decoration: none;
 `;
 
-const HeaderTitle = styled.h1`
+const HeaderTitle = styled.title`
     height: 10rem;
     display: flex;
     justify-content: center; 
 `;
 
 const HeaderNav = styled.nav`
-    width: 75%;
+    width: 60%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 `;
 
@@ -213,11 +214,11 @@ const HeaderNavItem = styled.nav`
     &::after{
         content: '';
         position: absolute;
-        bottom: -3px; /* Ajustez cette valeur pour définir la hauteur du soulignement */
+        bottom: -3px; /* la hauteur du soulignement */
         left: 0;
         width: 100%;
-        height: 2px; /* Ajustez cette valeur pour définir l'épaisseur du soulignement */
-        background-color: white; /* Utilisez la couleur souhaitée pour le soulignement */
+        height: 2px; /* épaisseur du soulignement */
+        background-color: white; /* couleur soulignement */
         opacity: 0;
         transition: opacity 0.2s ease-in-out;
     }
