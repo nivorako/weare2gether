@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button } from '@mui/material';
+import { Button, Paper } from '@mui/material';
 import styled from '@emotion/styled';
 import EventImg from "../assets/salsaGuinguette 1.png";
 
@@ -27,7 +27,8 @@ const Event = () => {
     )
 };
 
-const EventContainer = styled.div`
+const EventContainer = styled(Paper)`
+    elevation: 16;
     witdh:100%; 
     display:flex;
     justify-content: space-between;
