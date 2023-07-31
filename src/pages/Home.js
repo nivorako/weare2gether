@@ -1,69 +1,74 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import styled from '@emotion/styled';
 
 import ImgTitle from "../assets/imgTitle.png";
 import Event from '../components/Event';
+import About from '../components/About';
 
 const Home = () => {
-  return (
-    <>
-        <HomeContainer >
-            <HomeBox>
-                <HomeArticle>
-                    <HomeTitle>
-                        <img src={ImgTitle} alt="titre" style={{width:"100%", height:"80vh", objectFit:"cover", borderRadius:"0"}} />
-                        <Box
-                            sx={{
-                                position: "absolute",
-                                top:"0",
-                                left:"0",
-                                width: "100%",
-                                height: "100%",
-                                display:"flex",
-                                flexDirection:"column",
-                                justifyContent:"space-evenly",
-                                alignItems:"center",
-                                textAlign: "center"
-                            }}
-                        >
-                            <Box>
-                                <Title> 
-                                    Weare2gether,
-                                </Title>
-                                <Desc> 
-                                    c'est plus que de la musique
-                                </Desc>
+
+    return (
+        <>
+            <HomeContainer>
+                <EventContainer>   
+                    <EventBox>
+                        
+                        <EventTitle>
+                            <img src={ImgTitle} alt="titre" style={{width:"100%", height:"80vh", objectFit:"cover", borderRadius:"0"}} />
+                            <Box
+                                sx={{
+                                    position: "absolute",
+                                    top:"0",
+                                    left:"0",
+                                    width: "100%",
+                                    height: "100%",
+                                    display:"flex",
+                                    flexDirection:"column",
+                                    justifyContent:"space-evenly",
+                                    alignItems:"center",
+                                    textAlign: "center"
+                                }}
+                            >
+                                <Box>
+                                    <Title> 
+                                        Weare2gether,
+                                    </Title>
+                                    <Desc> 
+                                        c'est plus que de la musique
+                                    </Desc>
+                                </Box>
+                                
+                                <Btn>Photos / Videos</Btn>
+                                
                             </Box>
-                            
-                            <Btn>Photos / Videos</Btn>
-                            
-                        </Box>
-                    </HomeTitle>
-                    <HomeEventsTitle>Les soirées à venir</HomeEventsTitle>
-                    <HomeEvents>
-                        <Event/>
-                        <Event/>
-                        <Event/>
-                    </HomeEvents>
-                </HomeArticle>
-            </HomeBox>
-        </HomeContainer>
-    </>
-  )
+                        </EventTitle>
+                        <EventsAd>Les soirées à venir</EventsAd>
+                        <Events>
+                            <Event/>
+                            <Event/>
+                            <Event/>
+                        </Events>
+                        
+                    </EventBox>   
+                </EventContainer>
+                <About />
+            </HomeContainer>
+        </>
+    )
 };
 
 const HomeContainer = styled.main`
     width:100%;
-    background-color:var(--secondary);
 `;
 
-const HomeArticle = styled.article`
-    width: 100%;
-    height: 100%;
+const EventContainer = styled.div`
+    width:100%;
+    background-color: var(--secondary);
 `;
-const HomeBox = styled.div`
+
+const EventBox = styled.div`
     width:70%;
     margin: -250px auto 0 auto;
     border-radius: 1rem 1rem 0 0;
@@ -74,7 +79,7 @@ const HomeBox = styled.div`
       }
 `;
 
-const HomeTitle = styled.section`
+const EventTitle = styled.div`
     position: relative;
     width:100%
 `;
@@ -101,7 +106,7 @@ const Desc = styled.h1`
       }
 `;
 
-const HomeEvents = styled.section`
+const Events = styled.section`
     width:100%;
     max-height: 100vh;
     overflow-y: auto;
@@ -109,7 +114,7 @@ const HomeEvents = styled.section`
     margin-bottom: 2rem;
 `;
 
-const HomeEventsTitle = styled.h2`
+const EventsAd = styled.h2`
    text-align: center;
    font-family:Lora;
    font-size: 32px;

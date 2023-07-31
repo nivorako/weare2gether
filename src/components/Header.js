@@ -5,7 +5,7 @@ import Headroom from "react-headroom";
 
 import { setDrawer } from "../features/drawerSlice";
 
-import { AppBar, Toolbar, Button, Drawer, Box, Divider, CssBaseline, Typography,  Slide } from "@mui/material";
+import { AppBar, Toolbar, Button, Drawer, Box, Divider, CssBaseline, Typography } from "@mui/material";
 import styled from '@emotion/styled'
 import { useMediaQuery } from '@mui/material';
 
@@ -16,19 +16,6 @@ import User1 from "../assets/user3.svg"
 import ShopBskt from "../assets/shopBskt.svg";
 import ShoppingBskt from "../assets/shoppingBskt.svg"
 import Menu from "../assets/menuWhite.svg";
-
-// function HideOnScroll(props){
-//     const {windows, children } = props;
-//     const trigger = useScrollTrigger({
-//         target: windows ? windows() : undefined
-//     })
-//     return(
-//         <Slide appear={false} direction="down" in={!trigger}>
-//             {children}
-//         </Slide>
-//     )
-// }
-
 
 /**
  * 
@@ -282,12 +269,4 @@ const PushDown = styled.div`
     height: 400px;
 `;
 
-// HideOnScroll.propTypes = {
-//     children: PropTypes.element.isRequired,
-//     /**
-//      * Injected by the documentation to work in an iframe.
-//      * You won't need it on your project.
-//      */
-//     window: PropTypes.func,
-//   };
 export default Header;
