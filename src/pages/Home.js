@@ -47,10 +47,10 @@ const Home = () => {
                         </EventTitle>
                         <EventsAd>Les soirées à venir</EventsAd>
                         <Events>
-                            <Box sx={{marginBottom:"2rem"}}>
+                            <Box >
                                 <Event/>
                             </Box>
-                            <Box sx={{marginBottom:"2rem"}}>
+                            <Box >
                                 <Event/>
                             </Box>
                             <Box>
@@ -120,6 +120,12 @@ const Events = styled.section`
     width:100%;
     max-height: 100vh;
     overflow-y: auto;
+    & > * {
+        margin-bottom: 2rem;
+        &:last-child {
+            margin-bottom: 0; /* Supprimer la marge inférieure pour le dernier élément */
+        }
+    }
 `;
 
 const EventsAd = styled.h2`

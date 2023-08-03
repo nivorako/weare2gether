@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import {Paper} from '@mui/material';
+import {Paper, Avatar} from '@mui/material';
 
 const Guest = () => {
     return (
@@ -18,12 +18,15 @@ const Guest = () => {
                 </GuestHead>
                 <GuestItems>
                     <GuestItem>
+                        <Avatar />
                         Guest item heheh
                     </GuestItem>
                     <GuestItem>
+                        <Avatar />
                         Guest item heheh
                     </GuestItem>
                     <GuestItem>
+                        <Avatar />
                         Guest item heheh
                     </GuestItem>
                 </GuestItems>
@@ -62,11 +65,16 @@ const GuestNotif = styled.span`
 `;
 
 const GuestItems = styled.div`
-    background-color: white;
+    max-height: 100vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--secondary);
 `;
 
 const GuestItem = styled(Paper)`
-
+    background-color: white;
 `;
 
 export default Guest
