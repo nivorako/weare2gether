@@ -19,15 +19,59 @@ const Guest = () => {
                 <GuestItems>
                     <GuestItem>
                         <Avatar />
-                        Guest item heheh
+                        <GuestMsg>
+                            <GuestMsgTitle>
+                                Nom de l'auteur
+                            </GuestMsgTitle>
+                            <GuestMsgBody>
+                                Nous avons apprécié la soirée
+                            </GuestMsgBody>
+                            <GuestMsgNotif>
+                                Icones
+                            </GuestMsgNotif>
+                        </GuestMsg>
                     </GuestItem>
                     <GuestItem>
                         <Avatar />
-                        Guest item heheh
+                        <GuestMsg>
+                            <GuestMsgTitle>
+                                Nom de l'auteur
+                            </GuestMsgTitle>
+                            <GuestMsgBody>
+                                Nous avons apprécié la soirée
+                            </GuestMsgBody>
+                            <GuestMsgNotif>
+                                Icones
+                            </GuestMsgNotif>
+                        </GuestMsg>
                     </GuestItem>
                     <GuestItem>
                         <Avatar />
-                        Guest item heheh
+                        <GuestMsg>
+                            <GuestMsgTitle>
+                                Nom de l'auteur
+                            </GuestMsgTitle>
+                            <GuestMsgBody>
+                                Nous avons apprécié la soirée
+                            </GuestMsgBody>
+                            <GuestMsgNotif>
+                                Icones
+                            </GuestMsgNotif>
+                        </GuestMsg>
+                    </GuestItem>
+                    <GuestItem>
+                        <Avatar />
+                        <GuestMsg>
+                            <GuestMsgTitle>
+                                Nom de l'auteur
+                            </GuestMsgTitle>
+                            <GuestMsgBody>
+                                Nous avons apprécié la soirée
+                            </GuestMsgBody>
+                            <GuestMsgNotif>
+                                Icones
+                            </GuestMsgNotif>
+                        </GuestMsg>
                     </GuestItem>
                 </GuestItems>
             </GuestBox>
@@ -65,16 +109,52 @@ const GuestNotif = styled.span`
 `;
 
 const GuestItems = styled.div`
+    width: 100%;
     max-height: 100vh;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--secondary);
+    & > * {
+        margin-bottom: 1rem;
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
 `;
 
 const GuestItem = styled(Paper)`
+    width: 100%;
     background-color: white;
+    display: flex;
+    padding: 1rem;
+`;
+
+const GuestMsg = styled.div`
+    width: 100%;
+    margin: 1rem 2rem;
+`;
+
+const GuestMsgTitle = styled.div`
+    width: 100%;
+    padding: .5rem;
+    margin-bottom: 1rem;
+    color: var(--black);
+`;
+
+const GuestMsgBody = styled.div`
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+    color: var(--black);
+`;
+
+const GuestMsgNotif = styled.div`
+    width: 100%;
+    padding: 1rem;
+    color: var(--black);
 `;
 
 export default Guest
