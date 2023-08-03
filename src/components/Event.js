@@ -32,7 +32,6 @@ const EventContainer = styled(Paper)`
     witdh:100%; 
     display:flex;
     justify-content: space-between;
-    margin-bottom: 4rem;
     background-color: white;
     @media(max-width: 764px){
         flex-direction: column;

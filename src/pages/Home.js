@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import { Box, Button } from '@mui/material';
 import styled from '@emotion/styled';
@@ -6,9 +6,10 @@ import styled from '@emotion/styled';
 import ImgTitle from "../assets/imgTitle.png";
 import Event from '../components/Event';
 import About from '../components/About';
+import Guest from '../components/Guest';
 
 const Home = () => {
-
+   
     return (
         <>
             <HomeContainer>
@@ -46,14 +47,21 @@ const Home = () => {
                         </EventTitle>
                         <EventsAd>Les soirées à venir</EventsAd>
                         <Events>
-                            <Event/>
-                            <Event/>
-                            <Event/>
+                            <Box sx={{marginBottom:"2rem"}}>
+                                <Event/>
+                            </Box>
+                            <Box sx={{marginBottom:"2rem"}}>
+                                <Event/>
+                            </Box>
+                            <Box>
+                                <Event/>
+                            </Box>
                         </Events>
                         
                     </EventBox>   
                 </EventContainer>
                 <About />
+                <Guest />
             </HomeContainer>
         </>
     )
@@ -64,13 +72,15 @@ const HomeContainer = styled.main`
 `;
 
 const EventContainer = styled.div`
+    position: relative;
     width:100%;
     background-color: var(--secondary);
+    padding-bottom: 5rem
 `;
 
 const EventBox = styled.div`
     width:70%;
-    margin: -250px auto 0 auto;
+    margin: 0px auto 0 auto;
     border-radius: 1rem 1rem 0 0;
     background-color: var(--secondary);
     z-Index: 10;
@@ -81,7 +91,7 @@ const EventBox = styled.div`
 
 const EventTitle = styled.div`
     position: relative;
-    width:100%
+    width:100%;
 `;
 
 const Title = styled.h1`
@@ -110,8 +120,6 @@ const Events = styled.section`
     width:100%;
     max-height: 100vh;
     overflow-y: auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
 `;
 
 const EventsAd = styled.h2`
