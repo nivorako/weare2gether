@@ -2,11 +2,11 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 
-import {Paper, Avatar} from '@mui/material';
+import {Paper, Avatar, Button} from '@mui/material';
 
 const Guest = () => {
     return (
-        <GuestContainer>
+        <GuestContainer id="guest">
             <GuestBox>
                 <GuestHead>
                     <GuestTitle>
@@ -74,6 +74,10 @@ const Guest = () => {
                         </GuestMsg>
                     </GuestItem>
                 </GuestItems>
+                <GuestSubmit>
+                    <GuestBtn>Laissez votre temoignage</GuestBtn>
+                </GuestSubmit>
+                
             </GuestBox>
         </GuestContainer>
     )
@@ -81,14 +85,18 @@ const Guest = () => {
 
 const GuestContainer = styled.article`
     width: 100%;
+    height: 140vh;
     background-color: var(--secondary);
-    padding-bottom: 2rem;
+    
 `;
 
 const GuestBox = styled.div`
     width: 70%;
     height: auto;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `;
 
 const GuestHead = styled.div`
@@ -153,8 +161,36 @@ const GuestMsgBody = styled.div`
 
 const GuestMsgNotif = styled.div`
     width: 100%;
-    padding: 1rem;
+    padding: 2rem 1rem 1rem 1rem;
     color: var(--black);
+`;
+
+const GuestSubmit = styled.div`
+    position: relative;
+    margin-top: 4rem;
+    opacity: .8;
+    &::after{
+        content: '';
+        position: absolute;
+        bottom: -3px; /* la hauteur du soulignement */
+        left: 0;
+        width: 100%;
+        height: 2px; /* épaisseur du soulignement */
+        background-color: white; /* couleur soulignement */
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+    &:hover::after{
+        opacity:1
+    }
+    &:hover{
+        opacity: 1;
+    }
+`;
+
+const GuestBtn = styled(Button)`
+    color: white;
+    font-size: 40px;
 `;
 
 export default Guest

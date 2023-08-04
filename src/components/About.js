@@ -87,7 +87,7 @@ const About = () => {
 
 const AboutContainer = styled.article`
     width: 70%;
-    margin: 2rem auto;
+    margin: 4rem auto;
     
 `;
 

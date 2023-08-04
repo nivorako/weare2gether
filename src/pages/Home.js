@@ -7,6 +7,7 @@ import ImgTitle from "../assets/imgTitle.png";
 import Event from '../components/Event';
 import About from '../components/About';
 import Guest from '../components/Guest';
+import Contact from '../components/Contact';
 
 const Home = () => {
    
@@ -62,6 +63,7 @@ const Home = () => {
                 </EventContainer>
                 <About />
                 <Guest />
+                <Contact />
             </HomeContainer>
         </>
     )

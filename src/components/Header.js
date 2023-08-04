@@ -56,7 +56,8 @@ const Header = () => {
 
 
     const handleScroll = () => {
-        const aboutSection = document.getElementById('about'); 
+        const aboutSection = document.getElementById('about');
+        const guestSection = document.getElementById('guest'); 
     
         if (aboutSection) {
             const aboutSectionOffset = aboutSection.offsetTop;
@@ -78,8 +79,20 @@ const Header = () => {
               dispatch(changeMenu(MenuWhite));
               dispatch(changeBoxShadow("var(--primary)"));
             }
-      };
-    }
+        }
+        if(guestSection){
+            const guestSectionOffset = guestSection.offsetTop;
+            const scrollY = window.scrollY;
+            if(scrollY >= guestSectionOffset){
+                dispatch(changeToolbarColor("var(--primary)"));
+                dispatch(changeColor("white"));
+                dispatch(changeShopBskt(ShopBskt));
+                dispatch(changeUser(User));
+                dispatch(changeMenu(MenuWhite));
+                dispatch(changeBoxShadow("var(--primary)"));
+            }
+        }
+    };
     
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
