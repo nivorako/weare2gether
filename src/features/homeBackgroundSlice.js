@@ -7,11 +7,11 @@ const initialState = {
 export const homeBackgroundSlice = createSlice({
     name: "homeBackground",
     initialState,
-    reducers:{
+    reducers: {
         changeColor: (state, action) => {
             state.color = action.payload;
         },
-    }
+    },
 });
 
 export const { changeColor } = homeBackgroundSlice.actions;

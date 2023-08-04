@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Connexion from "./pages/Connexion";
 import Blog from "./pages/Blog";
+import Caroussel from "./pages/Caroussel";
 
 import "./App.css";
 
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/Connexion" element={<Connexion />} />
                 <Route path="/Blog" element={<Blog />} />
+                <Route path="/Caroussel" element={<Caroussel />} />
             </Routes>
             <Footer />
         </div>

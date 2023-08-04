@@ -10,6 +10,6 @@ export const store = configureStore({
         drawer: DrawerReducer,
         page: pageReducer,
         background: backgroundReducer,
-        toolbar : toolbarReducer,
+        toolbar: toolbarReducer,
     },
-})
+});

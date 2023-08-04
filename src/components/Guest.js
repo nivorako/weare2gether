@@ -1,93 +1,71 @@
-import React from 'react';
+import React from "react";
 
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
-import {Paper, Avatar, Button} from '@mui/material';
+import { Paper, Avatar, Button } from "@mui/material";
 
 const Guest = () => {
     return (
         <GuestContainer id="guest">
             <GuestBox>
                 <GuestHead>
-                    <GuestTitle>
-                        Laisser votre témoignages par ici :
-                    </GuestTitle>
-                    <GuestNotif>
-                        (3) Messages
-                    </GuestNotif>
+                    <GuestTitle>Laisser votre témoignages par ici :</GuestTitle>
+                    <GuestNotif>(3) Messages</GuestNotif>
                 </GuestHead>
                 <GuestItems>
                     <GuestItem>
                         <Avatar />
                         <GuestMsg>
-                            <GuestMsgTitle>
-                                Nom de l'auteur
-                            </GuestMsgTitle>
+                            <GuestMsgTitle>Nom de l'auteur</GuestMsgTitle>
                             <GuestMsgBody>
                                 Nous avons apprécié la soirée
                             </GuestMsgBody>
-                            <GuestMsgNotif>
-                                Icones
-                            </GuestMsgNotif>
+                            <GuestMsgNotif>Icones</GuestMsgNotif>
                         </GuestMsg>
                     </GuestItem>
                     <GuestItem>
                         <Avatar />
                         <GuestMsg>
-                            <GuestMsgTitle>
-                                Nom de l'auteur
-                            </GuestMsgTitle>
+                            <GuestMsgTitle>Nom de l'auteur</GuestMsgTitle>
                             <GuestMsgBody>
                                 Nous avons apprécié la soirée
                             </GuestMsgBody>
-                            <GuestMsgNotif>
-                                Icones
-                            </GuestMsgNotif>
+                            <GuestMsgNotif>Icones</GuestMsgNotif>
                         </GuestMsg>
                     </GuestItem>
                     <GuestItem>
                         <Avatar />
                         <GuestMsg>
-                            <GuestMsgTitle>
-                                Nom de l'auteur
-                            </GuestMsgTitle>
+                            <GuestMsgTitle>Nom de l'auteur</GuestMsgTitle>
                             <GuestMsgBody>
                                 Nous avons apprécié la soirée
                             </GuestMsgBody>
-                            <GuestMsgNotif>
-                                Icones
-                            </GuestMsgNotif>
+                            <GuestMsgNotif>Icones</GuestMsgNotif>
                         </GuestMsg>
                     </GuestItem>
                     <GuestItem>
                         <Avatar />
                         <GuestMsg>
-                            <GuestMsgTitle>
-                                Nom de l'auteur
-                            </GuestMsgTitle>
+                            <GuestMsgTitle>Nom de l'auteur</GuestMsgTitle>
                             <GuestMsgBody>
                                 Nous avons apprécié la soirée
                             </GuestMsgBody>
-                            <GuestMsgNotif>
-                                Icones
-                            </GuestMsgNotif>
+                            <GuestMsgNotif>Icones</GuestMsgNotif>
                         </GuestMsg>
                     </GuestItem>
                 </GuestItems>
                 <GuestSubmit>
                     <GuestBtn>Laissez votre temoignage</GuestBtn>
                 </GuestSubmit>
-                
             </GuestBox>
         </GuestContainer>
-    )
+    );
 };
 
 const GuestContainer = styled.article`
     width: 100%;
     height: 140vh;
     background-color: var(--secondary);
-    
 `;
 
 const GuestBox = styled.div`
@@ -108,13 +86,9 @@ const GuestHead = styled.div`
     align-items: center;
 `;
 
-const GuestTitle = styled.h2`
-    
-`;
+const GuestTitle = styled.h2``;
 
-const GuestNotif = styled.span`
-    
-`;
+const GuestNotif = styled.span``;
 
 const GuestItems = styled.div`
     width: 100%;
@@ -126,7 +100,7 @@ const GuestItems = styled.div`
     background-color: var(--secondary);
     & > * {
         margin-bottom: 1rem;
-        &:last-child{
+        &:last-child {
             margin-bottom: 0;
         }
     }
@@ -146,7 +120,7 @@ const GuestMsg = styled.div`
 
 const GuestMsgTitle = styled.div`
     width: 100%;
-    padding: .5rem;
+    padding: 0.5rem;
     margin-bottom: 1rem;
     color: var(--black);
 `;
@@ -168,9 +142,9 @@ const GuestMsgNotif = styled.div`
 const GuestSubmit = styled.div`
     position: relative;
     margin-top: 4rem;
-    opacity: .8;
-    &::after{
-        content: '';
+    opacity: 0.8;
+    &::after {
+        content: "";
         position: absolute;
         bottom: -3px; /* la hauteur du soulignement */
         left: 0;
@@ -180,10 +154,10 @@ const GuestSubmit = styled.div`
         opacity: 0;
         transition: opacity 0.2s ease-in-out;
     }
-    &:hover::after{
-        opacity:1
+    &:hover::after {
+        opacity: 1;
     }
-    &:hover{
+    &:hover {
         opacity: 1;
     }
 `;
@@ -193,4 +167,4 @@ const GuestBtn = styled(Button)`
     font-size: 40px;
 `;
 
-export default Guest
+export default Guest;

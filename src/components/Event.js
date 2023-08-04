@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
-import { Button, Paper } from '@mui/material';
-import styled from '@emotion/styled';
+import { Button, Paper } from "@mui/material";
+import styled from "@emotion/styled";
 import EventImg from "../assets/salsaGuinguette 1.png";
 
 /**
  * Représente un évènement
- * @returns {JSX element}  
+ * @returns {JSX element}
  */
 const Event = () => {
     return (
-        <EventContainer>  
+        <EventContainer>
             <EventElt>
                 <img src={EventImg} alt="" width="100%" height="100%"></img>
             </EventElt>
@@ -24,16 +24,16 @@ const Event = () => {
                 <EventBtn>Participer</EventBtn>
             </EventElt>
         </EventContainer>
-    )
+    );
 };
 
 const EventContainer = styled(Paper)`
     elevation: 16;
-    witdh:100%; 
-    display:flex;
+    witdh: 100%;
+    display: flex;
     justify-content: space-between;
     background-color: white;
-    @media(max-width: 764px){
+    @media (max-width: 764px) {
         flex-direction: column;
         align-items: center;
     }
@@ -46,18 +46,16 @@ const EventElt = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @media(max-width: 764px){
+    @media (max-width: 764px) {
         width: 100%;
     }
 `;
 
 const EventDate = styled.span`
-    font-size : 32px;
+    font-size: 32px;
 `;
 
-const EventTitle = styled.h2`
-
-`;
+const EventTitle = styled.h2``;
 
 const EventAdress = styled.div`
     display: flex;
@@ -70,9 +68,9 @@ const EventBtn = styled(Button)`
     width: 50%;
     background-color: var(--black);
     color: white;
-    &:hover{
+    &:hover {
         background-color: var(--secondary);
     }
 `;
 
-export default Event
+export default Event;
