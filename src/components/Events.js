@@ -38,7 +38,7 @@ const Events = () => {
                             <Title>Weare2gether,</Title>
                             <Desc>c'est plus que de la musique</Desc>
                         </Box>
-                        <Link to="/Caroussel" sx={{ textDecoration: "none" }}>
+                        <Link to="/Media" sx={{ textDecoration: "none" }}>
                             <Btn>Photos / Videos</Btn>
                         </Link>
                     </Box>

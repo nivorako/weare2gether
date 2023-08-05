@@ -334,8 +334,8 @@ const Header = () => {
                             ? "Connexion"
                             : activePage === "Blog"
                             ? "Blog"
-                            : activePage === "Caroussel"
-                            ? "Caroussel"
+                            : activePage === "Media"
+                            ? "Media"
                             : "Home"}
                     </HeaderTitle>
                 </AppBar>
