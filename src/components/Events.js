@@ -7,9 +7,9 @@ import ImgTitle from "../assets/imgTitle.png";
 
 const Events = () => {
     return (
-        <EventContainer>
-            <EventBox>
-                <EventTitle>
+        <EventsContainer id="events">
+            <EventsBox>
+                <EventsTitle>
                     <img
                         src={ImgTitle}
                         alt="titre"
@@ -42,9 +42,9 @@ const Events = () => {
                             <Btn>Photos / Videos</Btn>
                         </Link>
                     </Box>
-                </EventTitle>
+                </EventsTitle>
                 <EventsAd>Les soirées à venir</EventsAd>
-                <EventItems>
+                <EventsItems>
                     <Box>
                         <Event />
                     </Box>
@@ -54,35 +54,35 @@ const Events = () => {
                     <Box>
                         <Event />
                     </Box>
-                </EventItems>
-            </EventBox>
-        </EventContainer>
+                </EventsItems>
+            </EventsBox>
+        </EventsContainer>
     );
 };
 
-const EventContainer = styled.div`
+const EventsContainer = styled.div`
     width: 100%;
     background-color: var(--secondary);
     padding-bottom: 5rem;
 `;
 
-const EventBox = styled.div`
+const EventsBox = styled.div`
     width: 70%;
-    margin: -250px auto 0 auto;
+    margin: -460px auto 0 auto;
     border-radius: 1rem 1rem 0 0;
     background-color: var(--secondary);
-    z-index: 10;
+    z-index: 100;
     @media (max-width: 764px) {
         width: 100%;
     }
 `;
 
-const EventTitle = styled.div`
+const EventsTitle = styled.div`
     position: relative;
     width: 100%;
 `;
 
-const EventItems = styled.section`
+const EventsItems = styled.section`
     width: 100%;
     max-height: 100vh;
     overflow-y: auto;

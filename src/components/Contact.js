@@ -163,6 +163,7 @@ const ContactBox = styled.div`
     }
     @media (max-width: 764px){
         width: 100%;
+        padding-bottom: 0;
     }
     `;
 

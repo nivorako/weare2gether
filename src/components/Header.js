@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Headroom from "react-headroom";
 
+import img from "../assets/imgTitle.png";
+
 import { setDrawer } from "../features/drawerSlice";
 import {
     changeColor,
@@ -48,7 +50,7 @@ const Header = () => {
     );
 
     const toolbarColor = useSelector((state) => state.toolbar.color);
-console.log("toolbar color: ", toolbarColor)
+
     const userColor = useSelector((state) => state.toolbar.user);
 
     const shopBsktColor = useSelector((state) => state.toolbar.shopBskt);
@@ -117,14 +119,16 @@ console.log("toolbar color: ", toolbarColor)
         <>
             <CssBaseline />
             <HeaderContainer>
+                 
                 <AppBar
                     sx={{
                         position: "static",
                         backgroundColor: "var(--primary)",
-                        height: "400px",
+                        height: "600px",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "space-between",
+                        
                     }}
                 >
                     <Headroom>
@@ -304,9 +308,10 @@ console.log("toolbar color: ", toolbarColor)
 };
 
 const HeaderContainer = styled.header`
+    position: relative;
     width: 100%;
-    height: auto;
-    background-color: var(--primary);
+    height: 600px;
+    background-image: url(${img});
 `;
 
 const HeaderLink = styled(Link)`
@@ -391,5 +396,7 @@ const MenuClose = styled.div`
         transform: scale(1.3);
     }
 `;
+
+
 
 export default Header;
