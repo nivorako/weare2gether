@@ -9,7 +9,7 @@ const Events = () => {
     return (
         <EventsContainer id="events">
             <EventsBox>
-                <EventsTitle>
+                <EventsTitle id="eventsTitle">
                     <img
                         src={ImgTitle}
                         alt="titre"
@@ -71,7 +71,7 @@ const EventsBox = styled.div`
     margin: -460px auto 0 auto;
     border-radius: 1rem 1rem 0 0;
     background-color: var(--secondary);
-    z-index: 100;
+    z-index: 10;
     @media (max-width: 764px) {
         width: 100%;
     }

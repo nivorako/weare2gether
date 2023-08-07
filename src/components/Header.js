@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Headroom from "react-headroom";
 
-import img from "../assets/imgTitle.png";
-
 import { setDrawer } from "../features/drawerSlice";
 import {
     changeColor,
@@ -28,6 +26,7 @@ import {
 import styled from "@emotion/styled";
 import { useMediaQuery } from "@mui/material";
 
+import img from "../assets/imgTitle.png";
 import Close from "../assets/closeBlack.svg";
 import Logo from "../assets/Logo.png";
 import User from "../assets/user4.svg";
@@ -60,40 +59,53 @@ const Header = () => {
     const boxShadowColor = useSelector((state) => state.toolbar.boxShadow);
 
     const dispatch = useDispatch();
-
+    
     const isMobile = useMediaQuery("(max-width:768px)", { noSsr: true });
 
     const drawer = useSelector((state) => state.drawer);
 
     const handleScroll = () => {
+    
         const aboutSection = document.getElementById('about');
         const guestSection = document.getElementById('guest');
-
+        const connexSection = document.getElementById('connexion');
+        const scrollY = window.scrollY;
+      
         if (aboutSection) {
-            const aboutSectionOffset = aboutSection.offsetTop;
-            const scrollY = window.scrollY;
-            if (scrollY >= aboutSectionOffset) {
-              // Déclencher l'action pour changer la couleur de la Toolbar
-              dispatch(changeToolbarColor("white"));
-              dispatch(changeColor("black"));
-              dispatch(changeShopBskt(ShoppingBskt));
-              dispatch(changeUser(User1));
-              dispatch(changeMenu(Menu));
-              dispatch(changeBoxShadow("lightgrey"));
-            } else {
-              // Réinitialiser la couleur de la Toolbar si nécessaire
-              dispatch(changeToolbarColor("var(--primary)"));
-              dispatch(changeColor("white"));
-              dispatch(changeShopBskt(ShopBskt));
-              dispatch(changeUser(User));
-              dispatch(changeMenu(MenuWhite));
-              dispatch(changeBoxShadow("var(--primary)"));
-            }
+          const aboutSectionOffset = aboutSection.offsetTop;
+          if (scrollY >= aboutSectionOffset) {
+            dispatch(changeToolbarColor("white"));
+            dispatch(changeColor("black"));
+            dispatch(changeShopBskt(ShoppingBskt));
+            dispatch(changeUser(User1));
+            dispatch(changeMenu(Menu));
+            dispatch(changeBoxShadow("lightgrey"));
+          } else {
+            dispatch(changeToolbarColor("var(--primary)"));
+            dispatch(changeColor("white"));
+            dispatch(changeShopBskt(ShopBskt));
+            dispatch(changeUser(User));
+            dispatch(changeMenu(MenuWhite));
+            dispatch(changeBoxShadow("var(--primary)"));
+          }
         }
-        if(guestSection){
-            const guestSectionOffset = guestSection.offsetTop;
-            const scrollY = window.scrollY;
-            if(scrollY >= guestSectionOffset){
+        
+        if (guestSection) {
+          const guestSectionOffset = guestSection.offsetTop;
+          if (scrollY >= guestSectionOffset) {
+            dispatch(changeToolbarColor("var(--primary)"));
+            dispatch(changeColor("white"));
+            dispatch(changeShopBskt(ShopBskt));
+            dispatch(changeUser(User));
+            dispatch(changeMenu(MenuWhite));
+            dispatch(changeBoxShadow("var(--primary)"));
+          }
+        }
+
+        if (connexSection) {
+            const connexSectionOffset = connexSection.offsetTop;
+            if (scrollY >= connexSectionOffset) {
+                console.log('connexion !!')
                 dispatch(changeToolbarColor("var(--primary)"));
                 dispatch(changeColor("white"));
                 dispatch(changeShopBskt(ShopBskt));
@@ -101,16 +113,18 @@ const Header = () => {
                 dispatch(changeMenu(MenuWhite));
                 dispatch(changeBoxShadow("var(--primary)"));
             }
-        }
+          }
     };
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
+        const scrollEventListener = () => handleScroll()
+        window.addEventListener("scroll", scrollEventListener);
         return () => {
-            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("scroll", scrollEventListener);
         };
     }, []);
 
+        
     const toggleDrawer = () => {
         dispatch(setDrawer());
     };
@@ -127,8 +141,8 @@ const Header = () => {
                         height: "600px",
                         display: "flex",
                         flexDirection: "column",
-                        justifyContent: "space-between",
-                        
+                        justifyContent: "start",
+                        opacity: ".95"
                     }}
                 >
                     <Headroom>
@@ -141,6 +155,7 @@ const Header = () => {
                                 justifyContent: "center",
                                 boxShadow: `0 .5px .5px ${boxShadowColor}`,
                                 backgroundColor: toolbarBGColor,
+                                zIndex: "100",
                                 "@media(max-width: 764px)": {
                                     justifyContent: "space-between",
                                 },
@@ -322,6 +337,8 @@ const HeaderTitle = styled.title`
     height: 10rem;
     display: flex;
     justify-content: center;
+    margin-top: 4rem;
+    font-size: 24px;
 `;
 
 const HeaderNav = styled.nav`
