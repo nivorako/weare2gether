@@ -72,6 +72,7 @@ const Caroussel = () => {
                                         left: "5%",
                                         transform: "scale(3)",
                                         transition: ".5s",
+                                        cursor: "pointer",
                                         "&:hover": {
                                             transform: "scale(3.3)"
                                         }
@@ -87,6 +88,7 @@ const Caroussel = () => {
                                         right: "5%",
                                         transform: "scale(3)",
                                         transition: ".5s",
+                                        cursor: "pointer",
                                         "&:hover": {
                                             transform: "scale(3.3)"
                                         }
@@ -115,13 +117,16 @@ const CarousselBox = styled.article`
 
 const CarousselItems = styled.ul`
 position: relative;
-    width: 50%;
+    width: 70%;
     height: 100%;
     margin: 0 auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-left: 0;
+    padding-left: 0; 
+    @media (max-width: 764px){
+        width: 90%;
+    }
 `;
 
 const CarousselItem = styled.li`

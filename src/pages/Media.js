@@ -71,6 +71,9 @@ const MediaContainer = styled.main`
 const MediaBox = styled.article`
     width: 70%;
     margin: 0 auto;
+    @media (max-width: 1440px){
+        width: 90%;
+    }
 `;
 
 const MediaItems = styled.ul`
@@ -79,6 +82,7 @@ const MediaItems = styled.ul`
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    padding-left: 0;
 `;
 
 const MediaItem = styled.li`
@@ -87,6 +91,12 @@ const MediaItem = styled.li`
     height: 320px;
     margin: 1rem 1rem 2rem 1rem;
     transition: .5s;
+    @media (max-width: 1200px){
+        width: 45%;
+    }
+    @media (max-width: 764px){
+        width: 100%;
+    }
     &:hover{
         transform: scale(1.02);
     }

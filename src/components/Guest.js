@@ -75,6 +75,9 @@ const GuestBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    @media (max-width: 764px){
+        width: 90%;
+    }
 `;
 
 const GuestHead = styled.div`
@@ -84,6 +87,9 @@ const GuestHead = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 764px){
+        flex-direction: column;
+    }
 `;
 
 const GuestTitle = styled.h2``;
@@ -111,10 +117,13 @@ const GuestItem = styled(Paper)`
     background-color: white;
     display: flex;
     padding: 1rem;
+    @media (max-width: 764px){
+        flex-direction: column;
+    }
 `;
 
 const GuestMsg = styled.div`
-    width: 100%;
+    width: 90%;
     margin: 1rem 2rem;
 `;
 

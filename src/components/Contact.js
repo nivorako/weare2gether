@@ -27,9 +27,13 @@ const Contact = () => {
                 <ContactBody>
                     <Box
                         sx={{
+                            width: "100%",
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
+                            "@media (max-width: 1024px)" : {
+                                flexDirection: "column"
+                            }
                         }}
                     >
                         <ContactInput>
@@ -154,6 +158,21 @@ const ContactBox = styled.div`
     margin: 0 auto;
     color: white;
     padding-bottom: 2rem;
+    @media (max-width: 1440px){
+        width: 70%;
+    }
+    @media (max-width: 764px){
+        width: 100%;
+    }
+    `;
+
+const ContactBody = styled.form`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: var(--primary);
 `;
 
 const ContactHead = styled.div`
@@ -169,15 +188,6 @@ const H3 = styled.h3`
 
 const H2 = styled.h2``;
 
-const ContactBody = styled.form`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    background-color: var(--primary);
-`;
-
 const ContactInput = styled.div`
     width: 70%;
     padding: 0.5rem;
@@ -190,6 +200,9 @@ const ContactLinkItems = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    @media (max-width: 1024px){
+        height: 200px
+    }
 `;
 
 const ContactLinkItem = styled.div``;

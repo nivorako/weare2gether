@@ -64,8 +64,7 @@ const About = () => {
 };
 
 const AboutContainer = styled.article`
-    width: 70%;
-    margin: 4rem auto;
+    width: 100%; 
 `;
 
 const AboutTitle = styled.h2`
@@ -75,29 +74,47 @@ const AboutTitle = styled.h2`
 `;
 
 const AboutContent = styled.div`
-    width: 100%;
+    width: 70%;
+    margin: 4rem auto;
     display: flex;
     justify-content: space-between;
+    @media (max-width: 1200px){
+        width: 90%;
+        flex-direction: column;
+        align-items: center;
+    }
 `;
 
 const AboutMain = styled(Paper)`
     width: 48%;
     padding: 1rem;
     font-size: 40px;
+    @media (max-width: 1200px){
+        width: 100%;
+    }
 `;
 
 const AboutDetails = styled.div`
     width: 48%;
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
+    @media (max-width: 1200px){
+        width: 100%;
+        margin-top: 2rem;
+    }
 `;
 
 const AboutDetail = styled(Paper)`
     width: 48%;
     padding: 1rem;
+    @media (max-width: 1200px){
+        margin-bottom: 2rem;
+    }
+    @media (max-width: 764px){
+        width: 100%;
+    }
 `;
 
 export default About;
