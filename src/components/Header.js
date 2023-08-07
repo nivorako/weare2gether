@@ -48,7 +48,7 @@ const Header = () => {
     );
 
     const toolbarColor = useSelector((state) => state.toolbar.color);
-
+console.log("toolbar color: ", toolbarColor)
     const userColor = useSelector((state) => state.toolbar.user);
 
     const shopBsktColor = useSelector((state) => state.toolbar.shopBskt);
@@ -63,68 +63,35 @@ const Header = () => {
 
     const drawer = useSelector((state) => state.drawer);
 
-    // const handleScroll = () => {
-    //     const aboutSection = document.getElementById('about');
-    //     const guestSection = document.getElementById('guest');
+    const handleScroll = () => {
+        const aboutSection = document.getElementById('about');
+        const guestSection = document.getElementById('guest');
 
-    //     if (aboutSection) {
-    //         const aboutSectionOffset = aboutSection.offsetTop;
-    //         const scrollY = window.scrollY;
-    //         if (scrollY >= aboutSectionOffset) {
-    //           // Déclencher l'action pour changer la couleur de la Toolbar
-    //           dispatch(changeToolbarColor("white"));
-    //           dispatch(changeColor("black"));
-    //           dispatch(changeShopBskt(ShoppingBskt));
-    //           dispatch(changeUser(User1));
-    //           dispatch(changeMenu(Menu));
-    //           dispatch(changeBoxShadow("lightgrey"));
-    //         } else {
-    //           // Réinitialiser la couleur de la Toolbar si nécessaire
-    //           dispatch(changeToolbarColor("var(--primary)"));
-    //           dispatch(changeColor("white"));
-    //           dispatch(changeShopBskt(ShopBskt));
-    //           dispatch(changeUser(User));
-    //           dispatch(changeMenu(MenuWhite));
-    //           dispatch(changeBoxShadow("var(--primary)"));
-    //         }
-    //     }
-    //     if(guestSection){
-    //         const guestSectionOffset = guestSection.offsetTop;
-    //         const scrollY = window.scrollY;
-    //         if(scrollY >= guestSectionOffset){
-    //             dispatch(changeToolbarColor("var(--primary)"));
-    //             dispatch(changeColor("white"));
-    //             dispatch(changeShopBskt(ShopBskt));
-    //             dispatch(changeUser(User));
-    //             dispatch(changeMenu(MenuWhite));
-    //             dispatch(changeBoxShadow("var(--primary)"));
-    //         }
-    //     }
-    // };
-
-    const handleScroll = (
-        sectionId,
-        color1,
-        color2,
-        shopBskt,
-        user,
-        menu,
-        boxShadow,
-    ) => {
-        const section = document.getElementById(sectionId);
-
-        if (section) {
-            const sectionOffset = section.offsetTop;
+        if (aboutSection) {
+            const aboutSectionOffset = aboutSection.offsetTop;
             const scrollY = window.scrollY;
-
-            if (scrollY >= sectionOffset) {
-                dispatch(changeToolbarColor(color1));
-                dispatch(changeColor(color2));
-                dispatch(changeShopBskt(shopBskt));
-                dispatch(changeUser(user));
-                dispatch(changeMenu(menu));
-                dispatch(changeBoxShadow(boxShadow));
+            if (scrollY >= aboutSectionOffset) {
+              // Déclencher l'action pour changer la couleur de la Toolbar
+              dispatch(changeToolbarColor("white"));
+              dispatch(changeColor("black"));
+              dispatch(changeShopBskt(ShoppingBskt));
+              dispatch(changeUser(User1));
+              dispatch(changeMenu(Menu));
+              dispatch(changeBoxShadow("lightgrey"));
             } else {
+              // Réinitialiser la couleur de la Toolbar si nécessaire
+              dispatch(changeToolbarColor("var(--primary)"));
+              dispatch(changeColor("white"));
+              dispatch(changeShopBskt(ShopBskt));
+              dispatch(changeUser(User));
+              dispatch(changeMenu(MenuWhite));
+              dispatch(changeBoxShadow("var(--primary)"));
+            }
+        }
+        if(guestSection){
+            const guestSectionOffset = guestSection.offsetTop;
+            const scrollY = window.scrollY;
+            if(scrollY >= guestSectionOffset){
                 dispatch(changeToolbarColor("var(--primary)"));
                 dispatch(changeColor("white"));
                 dispatch(changeShopBskt(ShopBskt));
@@ -135,18 +102,10 @@ const Header = () => {
         }
     };
 
-    const addScrollEventListener = () => {
-        // handleScroll("home", "var(--primary)", "white", ShopBskt, User, MenuWhite, "var(--primary)");
-        handleScroll("about", "white", "black", ShoppingBskt, User1, Menu, "lightgrey");
-        handleScroll("guest", "var(--primary)", "white", ShopBskt, User, MenuWhite, "var(--primary)");
-        // Ajoutez d'autres appels à handleScroll pour chaque section supplémentaire
-    };
-    
-
     useEffect(() => {
-        window.addEventListener("scroll", addScrollEventListener);
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener("scroll", addScrollEventListener);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 

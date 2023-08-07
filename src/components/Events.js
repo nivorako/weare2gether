@@ -36,7 +36,7 @@ const Events = () => {
                     >
                         <Box>
                             <Title>Weare2gether,</Title>
-                            <Desc>c'est plus que de la musique</Desc>
+                            <Desc>C'est plus que de la musique</Desc>
                         </Box>
                         <Link to="/Media" sx={{ textDecoration: "none" }}>
                             <Btn>Photos / Videos</Btn>
@@ -61,7 +61,7 @@ const Events = () => {
 };
 
 const EventContainer = styled.div`
-    position: relative;
+    
     width: 100%;
     background-color: var(--secondary);
     padding-bottom: 5rem;
@@ -69,7 +69,7 @@ const EventContainer = styled.div`
 
 const EventBox = styled.div`
     width: 70%;
-    margin: 0px auto 0 auto;
+    margin: -250px auto 0 auto;
     border-radius: 1rem 1rem 0 0;
     background-color: var(--secondary);
     z-index: 10;
