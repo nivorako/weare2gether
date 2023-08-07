@@ -61,7 +61,6 @@ const Events = () => {
 };
 
 const EventContainer = styled.div`
-    
     width: 100%;
     background-color: var(--secondary);
     padding-bottom: 5rem;

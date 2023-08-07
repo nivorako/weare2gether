@@ -4,6 +4,7 @@
     --black: #3b3b3b;
 }
 body {
+
         margin: 0;
         font-family: "Roboto", sans-serif;
         /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,7 +20,7 @@ code {
     }
    
 .App{
-    /* position: relative; */
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
