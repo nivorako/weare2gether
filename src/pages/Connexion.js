@@ -141,7 +141,6 @@ const ConnexBox = styled(Paper)`
     width: 50%;
     height: 600px;
     color: white;
-    
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -149,6 +148,12 @@ const ConnexBox = styled(Paper)`
     align-items: center;
     background-color: var(--primary);
     elevation: 16;
+    @media (max-width: 1024px){
+        width: 70%;
+    }
+    @media (max-width: 764px){
+        width: 100%;
+    }
 `;
 
 const ConnexHead = styled.div`
