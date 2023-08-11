@@ -192,6 +192,9 @@ const H2 = styled.h2``;
 const ContactInput = styled.div`
     width: 70%;
     padding: 0.5rem;
+    @media (max-width: 600px){
+        width: 90%;
+    }
 `;
 
 const ContactLinkItems = styled.div`
@@ -223,6 +226,7 @@ const CustomTextField = styled(TextField)`
             border: none;
             background-color: white;
             outline: none;
+            height: 5px;
             &:focus {
                 border: none;
                 background-color: white;

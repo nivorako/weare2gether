@@ -13,6 +13,7 @@ import {
     Box,
     Button
     } from "@mui/material";
+import { css } from '@emotion/react';
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
@@ -172,10 +173,8 @@ const SignUp = () => {
                            
                         </Grid>
                     </Box> 
-                    <Box
-                        width="50%"
-                    >
-                       <Grid container >
+                    <SignUpPswdBox>
+                       <Grid  container >
                             <Box mb={4} width="100%">
                                 <Grid item xs={12} >
                                     <Typography>
@@ -225,7 +224,7 @@ const SignUp = () => {
                                 /> 
                             </Grid>
                        </Grid>
-                    </Box> 
+                    </SignUpPswdBox> 
                     <StyledButton type='submit'>Envoyer</StyledButton>
                     <Typography>
                         Créez un compte pour accéder à votre profil, réserver ou s'abonner à un évènement
@@ -265,8 +264,18 @@ const SignUpBox = styled(Paper)`
         width: 70%;
     }
     @media (max-width: 764px){
-        width: 100%;
+        width: 100%;   
         bottom: 0;
+    }
+    @media (max-width: 600px){
+        height: 650px;
+    }
+`;
+
+const SignUpPswdBox = styled.div`
+    width: 50%;
+    @media(max-width: 600px){
+        width: 100%;
     }
 `;
 
@@ -276,6 +285,7 @@ const CustomTextField = styled(TextField)`
             border: none;
             background-color: white;
             outline: none;
+            height: 5px;
             &:focus {
                 border: none;
                 background-color: white;
@@ -293,6 +303,9 @@ const CustomTextField = styled(TextField)`
 const StyledButton = styled(Button)`
     color: white;
     opacity: .8;
+    @media(max-width: 600px){
+        margin: 1rem;
+    }
     &:hover {
         opacity: 1;
         box-shadow: .5px .5px .5px 2px white;

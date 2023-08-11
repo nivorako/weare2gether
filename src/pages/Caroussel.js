@@ -107,7 +107,7 @@ const Caroussel = () => {
 
 const CarousselContainer = styled.main`
     width: 100%;
-    height: 100vh;
+    height: 75vh;
 `;
 
 const CarousselBox = styled.article`
@@ -125,13 +125,13 @@ position: relative;
     align-items: center;
     padding-left: 0; 
     @media (max-width: 764px){
-        width: 90%;
+        width: 100%;
     }
 `;
 
 const CarousselItem = styled.li`
     width: 100%;
-    height: 50%;
+    height: 100%;
     list-style-type: none;
 `;
 
