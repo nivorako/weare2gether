@@ -10,7 +10,10 @@ import Blog from "./pages/Blog";
 import Media from "./pages/Media";
 import Caroussel from "./pages/Caroussel";
 
+import Private from "./pages/private/private";
+
 import "./App.css";
+import GuestPost from "./pages/private/GuestPost";
 
 function App() {
     return (
@@ -23,6 +26,10 @@ function App() {
                 <Route path="/Blog" element={<Blog />} />
                 <Route path="/Media" element={<Media />} />
                 <Route path="/Caroussel/:id" element={<Caroussel />} />
+                <Route path="/Private" element={<Private />} >
+                    <Route index element={<GuestPost />} />
+                    <Route path="GuestPost" element={<GuestPost />} />
+                </Route>
             </Routes>
             <Footer />
         </div>

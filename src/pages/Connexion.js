@@ -7,7 +7,7 @@ import { Paper, Grid, TextField, Button,Box } from "@mui/material"
 import { useSelector } from "react-redux";
 
 import { setActivePage } from "../features/pageSlice";
-import authSlice, { setCurrentUser } from "../features/authSlice";
+import { setCurrentUser, setLoading } from "../features/authSlice";
 
 import Parse from "parse/dist/parse.min.js";
 
@@ -19,7 +19,7 @@ Parse.serverURL = PARSE_HOST_URL;
 
 const Connexion = () => {
 
-    const { currentUser } = useSelector((store) => store.auth);
+    const currentUser = useSelector((state) => state.auth.currentUser);
     console.log('current :', currentUser)
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -39,12 +39,16 @@ const Connexion = () => {
         const data = new FormData(e.currentTarget)
         const email = data.get("email");
         const password = data.get("password");
+        const userName = email.split("@")[0];
         try{
             const loggedUser = await Parse.User.logIn(email, password);
             const currentUser = Parse.User.current();
+            dispatch(setLoading(true));
             if(loggedUser === currentUser){
+                dispatch(setLoading(false));
                 setFormData(initialFormState);
-                dispatch(setCurrentUser(currentUser))
+                dispatch(setCurrentUser(userName));
+                navigate("/");
                 console.log("success yeah !!");
             }
         }catch(error) {

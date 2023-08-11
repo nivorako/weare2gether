@@ -36,6 +36,8 @@ import ShoppingBskt from "../assets/shoppingBskt.svg";
 import Menu from "../assets/menu.svg";
 import MenuWhite from "../assets/menuWhite.svg";
 
+
+
 /**
  *
  * @returns {JSX element} element représentant le Header
@@ -43,6 +45,9 @@ import MenuWhite from "../assets/menuWhite.svg";
 
 const Header = () => {
     const activePage = useSelector((state) => state.page.activePage);
+
+    const currentUser = useSelector((state) => state.auth.currentUser);
+    console.log('currentUser :', currentUser)
 
     const toolbarBGColor = useSelector(
         (state) => state.toolbar.backgroundColor,
@@ -294,14 +299,26 @@ const Header = () => {
                                                 <img src={userColor} alt="user" />
                                             </HeaderNavItem>
                                         </HeaderLink>
-                                        <HeaderLink>
-                                            <HeaderNavItem>
-                                                <img
-                                                    src={shopBsktColor}
-                                                    alt="shopping basket"
-                                                />
-                                            </HeaderNavItem>
-                                        </HeaderLink>
+                                        <Box>
+                                            <HeaderLink>
+                                                <HeaderNavItem>
+                                                    <img
+                                                        src={shopBsktColor}
+                                                        alt="shopping basket"
+                                                    />
+                                                </HeaderNavItem>
+                                            </HeaderLink>
+                                            {   currentUser &&
+                                                <Typography 
+                                                    component="p" 
+                                                    variant="body2"
+                                                    sx={{opacity:".8", marginLeft:"1rem"}}
+
+                                                >
+                                                    bonjour {currentUser}
+                                                </Typography>
+                                            }
+                                        </Box>
                                     </HeaderNav>
                                 )}
                             </Toolbar>

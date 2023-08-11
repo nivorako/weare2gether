@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
@@ -55,7 +56,9 @@ const Guest = () => {
                     </GuestItem>
                 </GuestItems>
                 <GuestSubmit>
-                    <GuestBtn>Laissez votre temoignage</GuestBtn>
+                    <Link to="/private/GuestPost" >
+                        <GuestBtn>Laissez votre temoignage</GuestBtn>
+                    </Link>
                 </GuestSubmit>
             </GuestBox>
         </GuestContainer>

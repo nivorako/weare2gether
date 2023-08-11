@@ -15,6 +15,10 @@ import {
     checkboxClasses,
 } from "@mui/material";
 
+const handleSubmit = () => {
+    console.log('ohé !!')
+};
+
 const Contact = () => {
     return (
         <ContactContainer>
@@ -24,7 +28,9 @@ const Contact = () => {
                     <H3>CONTACTEZ - NOUS</H3>
                 </ContactHead>
 
-                <ContactBody>
+                <ContactBody
+                    onSubmit={handleSubmit}
+                >
                     <Box
                         sx={{
                             width: "100%",
@@ -216,6 +222,7 @@ const ContactSubmit = styled.div`
 `;
 
 const ContactBtn = styled(Button)`
+    type: submit;
     color: white;
     background-color: var(--secondary);
 `;
