@@ -1,19 +1,57 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import styled from "@emotion/styled";
 import { Paper, Grid, TextField, Button,Box } from "@mui/material"
+import { useSelector } from "react-redux";
 
 import { setActivePage } from "../features/pageSlice";
+import authSlice, { setCurrentUser } from "../features/authSlice";
+
+import Parse from "parse/dist/parse.min.js";
+
+const PARSE_APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
+const PARSE_HOST_URL = "https://parseapi.back4app.com/";
+const PARSE_JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
+Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
+Parse.serverURL = PARSE_HOST_URL;
 
 const Connexion = () => {
+
+    const { currentUser } = useSelector((store) => store.auth);
+    console.log('current :', currentUser)
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate("/SignUp");
+    }
+
     const initialFormState = {
         email: "",
         password: "",
     };
     const [formData, setFormData] = useState(initialFormState)
-console.log("formdata:", formData)
+    
+    const handleSubmit = async (e)=> {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget)
+        const email = data.get("email");
+        const password = data.get("password");
+        try{
+            const loggedUser = await Parse.User.logIn(email, password);
+            const currentUser = Parse.User.current();
+            if(loggedUser === currentUser){
+                setFormData(initialFormState);
+                dispatch(setCurrentUser(currentUser))
+                console.log("success yeah !!");
+            }
+        }catch(error) {
+            console.error("error :", error);
+        }
+    }
+
     // Mettre à jour l'état de la page active lorsque le composant est monté
     useEffect(() => {
         dispatch(setActivePage("Connexion"));
@@ -25,7 +63,9 @@ console.log("formdata:", formData)
                 <ConnexHead>
                     <h2>Connectez - vous</h2>
                 </ConnexHead>
-                <ConnexBody>
+                <ConnexBody
+                    onSubmit={handleSubmit}
+                >
                     <Grid container >
                         <Grid item xs={12} sm={12}>
                             <Label>Email  *</Label>
@@ -68,6 +108,7 @@ console.log("formdata:", formData)
                     </Grid>
                     <ConnexElt>
                         <Button 
+                            type="sumbit"
                             sx={{
                                 color:"white",
                                 opacity:".8",
@@ -97,16 +138,9 @@ console.log("formdata:", formData)
                         </Button>
                     </ConnexElt>
                     <ConnexElt>
-                        <Box 
-                            sx={{
-                                marginRight:"1rem",
-                                opacity: ".8",
-                            }}
-                        >
-                            <p>Pas encore inscrit(e)s ??</p>
-                        </Box>
                         <Button
-                             sx={{
+                            onClick={handleNavigate}
+                            sx={{
                                 marginLeft:"1rem",
                                 color:"white",
                                 opacity: ".8",
@@ -137,7 +171,7 @@ const ConnexContainer = styled.main`
 
 const ConnexBox = styled(Paper)`
     position: absolute;
-    bottom: 100px;
+    bottom: 50px;
     width: 50%;
     height: 600px;
     color: white;
@@ -153,6 +187,7 @@ const ConnexBox = styled(Paper)`
     }
     @media (max-width: 764px){
         width: 100%;
+        bottom: 0;
     }
 `;
 

@@ -74,6 +74,7 @@ const Header = () => {
         if (aboutSection) {
           const aboutSectionOffset = aboutSection.offsetTop;
           if (scrollY >= aboutSectionOffset) {
+            
             dispatch(changeToolbarColor("white"));
             dispatch(changeColor("black"));
             dispatch(changeShopBskt(ShoppingBskt));
@@ -93,6 +94,7 @@ const Header = () => {
         if (guestSection) {
           const guestSectionOffset = guestSection.offsetTop;
           if (scrollY >= guestSectionOffset) {
+            
             dispatch(changeToolbarColor("var(--primary)"));
             dispatch(changeColor("white"));
             dispatch(changeShopBskt(ShopBskt));
@@ -103,16 +105,13 @@ const Header = () => {
         }
 
         if (connexSection) {
-            const connexSectionOffset = connexSection.offsetTop;
-            if (scrollY >= connexSectionOffset) {
-                console.log('connexion !!')
-                dispatch(changeToolbarColor("var(--primary)"));
-                dispatch(changeColor("white"));
-                dispatch(changeShopBskt(ShopBskt));
-                dispatch(changeUser(User));
-                dispatch(changeMenu(MenuWhite));
-                dispatch(changeBoxShadow("var(--primary)"));
-            }
+           
+            dispatch(changeToolbarColor("var(--primary)"));
+            dispatch(changeColor("white"));
+            dispatch(changeShopBskt(ShopBskt));
+            dispatch(changeUser(User));
+            dispatch(changeMenu(MenuWhite));
+            dispatch(changeBoxShadow("var(--primary)"));
           }
     };
 
@@ -131,193 +130,195 @@ const Header = () => {
 
     return (
         <>
-            <CssBaseline />
+            <CssBaseline />           
             <HeaderContainer>
-                 
-                <AppBar
-                    sx={{
-                        position: "static",
-                        backgroundColor: "var(--primary)",
-                        height: "600px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "start",
-                        opacity: ".95"
-                    }}
-                >
-                    <Headroom>
-                        <Toolbar
-                            sx={{
-                                width: "100%",
-                                margin: "auto",
-                                padding: "2rem",
-                                display: "flex",
-                                justifyContent: "center",
-                                boxShadow: `0 .5px .5px ${boxShadowColor}`,
-                                backgroundColor: toolbarBGColor,
-                                zIndex: "100",
-                                "@media(max-width: 764px)": {
-                                    justifyContent: "space-between",
-                                },
-                            }}
-                        >
-                            <HeaderLink to="/">
-                                <LogoBox>
-                                    <img src={Logo} alt="logo" />
-                                </LogoBox>
-                            </HeaderLink>
-                            {isMobile ? (
-                                <>
-                                    <HeaderMenu onClick={toggleDrawer}>
-                                        <MenuIcon>
-                                            <img src={menuColor} alt="menu" />
-                                        </MenuIcon>
-                                    </HeaderMenu>
-                                    <Drawer
-                                        onClick={toggleDrawer}
-                                        open={drawer.drawer}
-                                        anchor="right"
-                                        PaperProps={{
-                                            sx: {
-                                                width: "100%", // Définir la largeur du drawer à 100%
-                                                zIndex: "10", // Placer le drawer au-dessus du reste du contenu
-                                            },
-                                        }}
-                                    >
-                                        <Box
-                                            sx={{
-                                                width: "100%",
-                                                height: "100%",
-                                                padding: "3rem",
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                justifyContent: "space-around",
+                
+                    <AppBar 
+                        sx={{
+                            position: 'static',
+                            backgroundColor: 'var(--primary)',
+                            height: '600px',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            justifyContent: 'start',
+                            opacity: '1',
+                        }}
+                    >
+                        <Headroom>
+                            <Toolbar
+                                sx={{
+                                    width: "100%",
+                                    margin: "auto",
+                                    padding: "2rem",
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    boxShadow: `0 .5px .5px ${boxShadowColor}`,
+                                    backgroundColor: toolbarBGColor,
+                                    zIndex: "100",
+                                    "@media(max-width: 764px)": {
+                                        justifyContent: "space-between",
+                                    },
+                                }}
+                            >
+                                <HeaderLink to="/">
+                                    <LogoBox>
+                                        <img src={Logo} alt="logo" />
+                                    </LogoBox>
+                                </HeaderLink>
+                                {isMobile ? (
+                                    <>
+                                        <HeaderMenu onClick={toggleDrawer}>
+                                            <MenuIcon>
+                                                <img src={menuColor} alt="menu" />
+                                            </MenuIcon>
+                                        </HeaderMenu>
+                                        <Drawer
+                                            onClick={toggleDrawer}
+                                            open={drawer.drawer}
+                                            anchor="right"
+                                            PaperProps={{
+                                                sx: {
+                                                    width: "100%", // Définir la largeur du drawer à 100%
+                                                    zIndex: "10", // Placer le drawer au-dessus du reste du contenu
+                                                },
                                             }}
                                         >
-                                            <MenuClose>
+                                            <Box
+                                                sx={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    padding: "3rem",
+                                                    display: "flex",
+                                                    flexDirection: "column",
+                                                    justifyContent: "space-around",
+                                                }}
+                                            >
+                                                <MenuClose>
+                                                    <img
+                                                        src={Close}
+                                                        alt="close drawer"
+                                                    />
+                                                </MenuClose>
+                                                <Divider />
+
+                                                <HeaderLink to="/Blog">
+                                                    <HeaderMenuItem>
+                                                        <Button
+                                                            variant="text"
+                                                            sx={{
+                                                                color: "var(--black)",
+                                                            }}
+                                                        >
+                                                            BLOG
+                                                        </Button>
+                                                    </HeaderMenuItem>
+                                                </HeaderLink>
+                                                <Divider />
+
+                                                <HeaderLink to="/Connexion">
+                                                    <HeaderMenuItem>
+                                                        <Button
+                                                            variant="text"
+                                                            sx={{
+                                                                color: "var(--black)",
+                                                            }}
+                                                        >
+                                                            CONNEXION
+                                                        </Button>
+                                                    </HeaderMenuItem>
+                                                </HeaderLink>
+                                                <Divider />
+
+                                                <HeaderLink>
+                                                    <HeaderMenuItem>
+                                                        <img
+                                                            src={User1}
+                                                            alt="user"
+                                                        />
+                                                        <Typography
+                                                            sx={{
+                                                                marginLeft: "2rem",
+                                                                color: "var(--black)",
+                                                            }}
+                                                        >
+                                                            Votre profil
+                                                        </Typography>
+                                                    </HeaderMenuItem>
+                                                </HeaderLink>
+                                                <Divider />
+
+                                                <HeaderLink>
+                                                    <HeaderMenuItem>
+                                                        <img
+                                                            src={ShoppingBskt}
+                                                            alt="panier"
+                                                        />
+                                                        <Typography
+                                                            sx={{
+                                                                marginLeft: "2rem",
+                                                                color: "var(--black)",
+                                                            }}
+                                                        >
+                                                            Votre panier
+                                                        </Typography>
+                                                    </HeaderMenuItem>
+                                                </HeaderLink>
+                                                <Divider />
+                                            </Box>
+                                        </Drawer>
+                                    </>
+                                ) : (
+                                    <HeaderNav>
+                                        <HeaderLink to="/Blog">
+                                            <HeaderNavItem>
+                                                <Button
+                                                    variant="text"
+                                                    sx={{ color: toolbarColor }}
+                                                >
+                                                    BLOG
+                                                </Button>
+                                            </HeaderNavItem>
+                                        </HeaderLink>
+                                        <HeaderLink to="/Connexion">
+                                            <HeaderNavItem>
+                                                <Button
+                                                    variant="text"
+                                                    sx={{ color: toolbarColor }}
+                                                >
+                                                    CONNEXION
+                                                </Button>
+                                            </HeaderNavItem>
+                                        </HeaderLink>
+                                        <HeaderLink>
+                                            <HeaderNavItem>
+                                                <img src={userColor} alt="user" />
+                                            </HeaderNavItem>
+                                        </HeaderLink>
+                                        <HeaderLink>
+                                            <HeaderNavItem>
                                                 <img
-                                                    src={Close}
-                                                    alt="close drawer"
+                                                    src={shopBsktColor}
+                                                    alt="shopping basket"
                                                 />
-                                            </MenuClose>
-                                            <Divider />
-
-                                            <HeaderLink to="/Blog">
-                                                <HeaderMenuItem>
-                                                    <Button
-                                                        variant="text"
-                                                        sx={{
-                                                            color: "var(--black)",
-                                                        }}
-                                                    >
-                                                        BLOG
-                                                    </Button>
-                                                </HeaderMenuItem>
-                                            </HeaderLink>
-                                            <Divider />
-
-                                            <HeaderLink to="/Connexion">
-                                                <HeaderMenuItem>
-                                                    <Button
-                                                        variant="text"
-                                                        sx={{
-                                                            color: "var(--black)",
-                                                        }}
-                                                    >
-                                                        CONNEXION
-                                                    </Button>
-                                                </HeaderMenuItem>
-                                            </HeaderLink>
-                                            <Divider />
-
-                                            <HeaderLink>
-                                                <HeaderMenuItem>
-                                                    <img
-                                                        src={User1}
-                                                        alt="user"
-                                                    />
-                                                    <Typography
-                                                        sx={{
-                                                            marginLeft: "2rem",
-                                                            color: "var(--black)",
-                                                        }}
-                                                    >
-                                                        Votre profil
-                                                    </Typography>
-                                                </HeaderMenuItem>
-                                            </HeaderLink>
-                                            <Divider />
-
-                                            <HeaderLink>
-                                                <HeaderMenuItem>
-                                                    <img
-                                                        src={ShoppingBskt}
-                                                        alt="panier"
-                                                    />
-                                                    <Typography
-                                                        sx={{
-                                                            marginLeft: "2rem",
-                                                            color: "var(--black)",
-                                                        }}
-                                                    >
-                                                        Votre panier
-                                                    </Typography>
-                                                </HeaderMenuItem>
-                                            </HeaderLink>
-                                            <Divider />
-                                        </Box>
-                                    </Drawer>
-                                </>
-                            ) : (
-                                <HeaderNav>
-                                    <HeaderLink to="/Blog">
-                                        <HeaderNavItem>
-                                            <Button
-                                                variant="text"
-                                                sx={{ color: toolbarColor }}
-                                            >
-                                                BLOG
-                                            </Button>
-                                        </HeaderNavItem>
-                                    </HeaderLink>
-                                    <HeaderLink to="/Connexion">
-                                        <HeaderNavItem>
-                                            <Button
-                                                variant="text"
-                                                sx={{ color: toolbarColor }}
-                                            >
-                                                CONNEXION
-                                            </Button>
-                                        </HeaderNavItem>
-                                    </HeaderLink>
-                                    <HeaderLink>
-                                        <HeaderNavItem>
-                                            <img src={userColor} alt="user" />
-                                        </HeaderNavItem>
-                                    </HeaderLink>
-                                    <HeaderLink>
-                                        <HeaderNavItem>
-                                            <img
-                                                src={shopBsktColor}
-                                                alt="shopping basket"
-                                            />
-                                        </HeaderNavItem>
-                                    </HeaderLink>
-                                </HeaderNav>
-                            )}
-                        </Toolbar>
-                    </Headroom>
-                    <HeaderTitle>
-                        {activePage === "Connexion"
-                            ? "Connexion"
-                            : activePage === "Blog"
-                            ? "Blog"
-                            : activePage === "Media"
-                            ? "Media"
-                            : "Home"}
-                    </HeaderTitle>
-                </AppBar>
+                                            </HeaderNavItem>
+                                        </HeaderLink>
+                                    </HeaderNav>
+                                )}
+                            </Toolbar>
+                        </Headroom>
+                        <HeaderTitle>
+                            {activePage === "Connexion"
+                                ? "Connexion"
+                                : activePage === "Blog"
+                                ? "Blog"
+                                : activePage === "Media"
+                                ? "Media"
+                                : "Home"}
+                        </HeaderTitle>
+                    </AppBar>
+                
             </HeaderContainer>
+            
         </>
     );
 };
@@ -413,7 +414,5 @@ const MenuClose = styled.div`
         transform: scale(1.3);
     }
 `;
-
-
 
 export default Header;
