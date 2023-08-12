@@ -330,6 +330,8 @@ const Header = () => {
                                 ? "Blog"
                                 : activePage === "Media"
                                 ? "Media"
+                                : activePage === "GuestPost"
+                                ? "Votre témoignage"
                                 : "Home"}
                         </HeaderTitle>
                     </AppBar>

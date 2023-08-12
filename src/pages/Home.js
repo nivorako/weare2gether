@@ -15,7 +15,7 @@ const Home = () => {
 
     // Mettre à jour l'état de la page active lorsque le composant est monté
     useEffect(() => {
-        dispatch(setActivePage("home"));
+        dispatch(setActivePage("Home"));
     }, [dispatch]);
     return (
         <>

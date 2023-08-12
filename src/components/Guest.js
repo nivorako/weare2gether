@@ -1,4 +1,5 @@
 import React from "react";
+import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
 import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
@@ -6,6 +7,9 @@ import styled from "@emotion/styled";
 import { Paper, Avatar, Button } from "@mui/material";
 
 const Guest = () => {
+
+const currentUser = useSelector(state => state.auth.currentUser)
+console.log('currentuser :', currentUser)
     return (
         <GuestContainer id="guest">
             <GuestBox>
@@ -56,9 +60,16 @@ const Guest = () => {
                     </GuestItem>
                 </GuestItems>
                 <GuestSubmit>
-                    <Link to="/private/GuestPost" >
-                        <GuestBtn>Laissez votre temoignage</GuestBtn>
-                    </Link>
+                    {currentUser ? (
+                        <Link to="/private/GuestPost" >
+                            <GuestBtn>Laissez votre temoignage</GuestBtn>
+                        </Link>
+                    ) : (
+                        <Link to="/Connexion" >
+                            <GuestBtn>Laissez votre temoignage</GuestBtn>
+                        </Link>
+                    )
+                    }
                 </GuestSubmit>
             </GuestBox>
         </GuestContainer>

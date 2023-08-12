@@ -250,6 +250,7 @@ const CustomTextField = styled(TextField)`
 
 const CustomTextarea = styled(TextareaAutosize)`
     width: 100%;
+    rows: 4;
     height: 200px; /* Height personnalisé */
 `;
 
