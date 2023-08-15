@@ -18,13 +18,8 @@ import { css } from '@emotion/react';
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Container from "@mui/material/Container";
 
-import Parse from "parse/dist/parse.min.js";
+import Parse from "../utils/parseConfig";
 
-const PARSE_APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
-const PARSE_HOST_URL = "https://parseapi.back4app.com/";
-const PARSE_JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
-Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
-Parse.serverURL = PARSE_HOST_URL;
 
 const SignUp = () => {
 
@@ -69,7 +64,7 @@ const SignUp = () => {
 			navigate("/Connexion");
 			return true;
 		} catch (error) {
-			console.error(`Error : ${error}`);
+			alert(` ${error}`);
 			return false;
 		}
     };

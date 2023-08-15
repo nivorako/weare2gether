@@ -5,8 +5,7 @@ import { Outlet, useLocation, Navigate } from "react-router-dom";
 const Private = () => {
   const { currentUser, loading } = useSelector((store) => store.auth);
   const location = useLocation();
-  console.log(location);
-  console.log('currentUser :', currentUser);
+  
   if (loading) {
     return <div>...Loading</div>;
   }

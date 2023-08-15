@@ -9,18 +9,10 @@ import { useSelector } from "react-redux";
 import { setActivePage } from "../features/pageSlice";
 import { setCurrentUser, setLoading } from "../features/authSlice";
 
-import Parse from "parse/dist/parse.min.js";
-
-const PARSE_APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
-const PARSE_HOST_URL = "https://parseapi.back4app.com/";
-const PARSE_JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
-Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
-Parse.serverURL = PARSE_HOST_URL;
+import Parse from "../utils/parseConfig";
 
 const Connexion = () => {
-
-    const currentUser = useSelector((state) => state.auth.currentUser);
-    console.log('current :', currentUser)
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -47,12 +39,13 @@ const Connexion = () => {
             if(loggedUser === currentUser){
                 dispatch(setLoading(false));
                 setFormData(initialFormState);
-                dispatch(setCurrentUser(userName));
+                dispatch(setCurrentUser({username:userName, id: currentUser.id}));
                 navigate("/");
-                console.log("success yeah !!");
+                alert("Félicitation, vous êtes connecté")
             }
         }catch(error) {
             console.error("error :", error);
+            alert(error)
         }
     }
 

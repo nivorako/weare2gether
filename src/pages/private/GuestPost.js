@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import { useDispatch } from "react-redux";
+import React, {useEffect, useState} from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
 import styled from '@emotion/styled';
 
@@ -7,11 +7,26 @@ import { TextField, Button, TextareaAutosize } from '@mui/material';
 
 import { setActivePage } from '../../features/pageSlice';
 
+import Parse from "../../utils/parseConfig";
+
 const GuestPost = () => {
+
+    const initialFormState = {
+       msg: ""
+    };
+
+    const currentUserId = useSelector(state => state.auth.currentUser.id);
+    console.log("id :", currentUserId);
+
+    const [formData, setFormData] = useState(initialFormState);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("allo !!");
+        
+        const data = new FormData(e.currentTarget)
+        const msg = data.get("msg");
+        console.log("msg !!", msg);
+
     }
 
     const dispatch = useDispatch();
@@ -20,6 +35,7 @@ const GuestPost = () => {
     useEffect(() => {
         dispatch(setActivePage("GuestPost"));
     }, [dispatch]);
+
     return (
         <GuestPostContainer id='guestPost'>
             <GuestPostBox>
@@ -27,7 +43,22 @@ const GuestPost = () => {
                     Ajouter votre temoignage ici
                 </GuestPostHead>
                 <GuestPostBody onSubmit={handleSubmit}>
-                    <StyledTextarea placeholder='toti'/>
+                    <StyledTextarea 
+                        placeholder='toti'
+                        required
+                        
+                        id="msg"
+                        //label="email"
+                        name="msg"
+                        autoComplete="msg"
+                        value={formData.msg}
+                        onChange={(e) =>
+                            setFormData({ ...formData, msg: e.target.value })
+                        }
+                        inputprops={{
+                            "data-testid": "msg-input" // Ajoutez un attribut data-testid
+                        }}
+                    />
                     <Button type="submit">Envoyer</Button>
                 </GuestPostBody>
             </GuestPostBox>

@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Headroom from "react-headroom";
 
 import { setDrawer } from "../features/drawerSlice";
+import { setCurrentUser } from "../features/authSlice";
+
 import {
     changeColor,
     changeToolbarColor,
@@ -22,6 +25,8 @@ import {
     Divider,
     CssBaseline,
     Typography,
+    Menu,
+    MenuItem
 } from "@mui/material";
 import styled from "@emotion/styled";
 import { useMediaQuery } from "@mui/material";
@@ -33,10 +38,16 @@ import User from "../assets/user4.svg";
 import User1 from "../assets/user3.svg";
 import ShopBskt from "../assets/shopBskt.svg";
 import ShoppingBskt from "../assets/shoppingBskt.svg";
-import Menu from "../assets/menu.svg";
+import MenuBlack from "../assets/menu.svg";
 import MenuWhite from "../assets/menuWhite.svg";
 
+import Parse from "parse/dist/parse.min.js";
 
+const PARSE_APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
+const PARSE_HOST_URL = "https://parseapi.back4app.com/";
+const PARSE_JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
+Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
+Parse.serverURL = PARSE_HOST_URL;
 
 /**
  *
@@ -44,11 +55,11 @@ import MenuWhite from "../assets/menuWhite.svg";
  */
 
 const Header = () => {
+
     const activePage = useSelector((state) => state.page.activePage);
 
-    const currentUser = useSelector((state) => state.auth.currentUser);
-    console.log('currentUser :', currentUser)
-
+    const currentUserName = useSelector((state) => state.auth.currentUser.username);
+    
     const toolbarBGColor = useSelector(
         (state) => state.toolbar.backgroundColor,
     );
@@ -63,11 +74,43 @@ const Header = () => {
 
     const boxShadowColor = useSelector((state) => state.toolbar.boxShadow);
 
+    const drawer = useSelector((state) => state.drawer);
+
+    const [menuAnchor, setMenuAnchor] = useState(null);
+
     const dispatch = useDispatch();
     
     const isMobile = useMediaQuery("(max-width:768px)", { noSsr: true });
 
-    const drawer = useSelector((state) => state.drawer);
+
+    const handleMenuOpen = (event) => {
+        setMenuAnchor(event.currentTarget);
+    };
+
+    const handleMenuClose = () => {
+        setMenuAnchor(null);
+    };
+
+    const handleLogOut = async () => {
+		try {
+			await Parse.User.logOut();			
+			dispatch(setCurrentUser({username: "", id: ""}));
+			alert("vous etes déconnecté")
+			return true;
+		} catch (error) {
+			if (error && error.message) {
+				alert(`Error! ${error.message}`);
+		} else {
+			alert("An error occurred.");
+		}
+			return false;
+		}
+	};
+
+    const handleLogOutAndClose = () => {
+        handleMenuClose();
+        handleLogOut();
+      };
 
     const handleScroll = () => {
     
@@ -84,7 +127,7 @@ const Header = () => {
             dispatch(changeColor("black"));
             dispatch(changeShopBskt(ShoppingBskt));
             dispatch(changeUser(User1));
-            dispatch(changeMenu(Menu));
+            dispatch(changeMenu(MenuBlack));
             dispatch(changeBoxShadow("lightgrey"));
           } else {
             dispatch(changeToolbarColor("var(--primary)"));
@@ -173,7 +216,7 @@ const Header = () => {
                                 {isMobile ? (
                                     <>
                                         <HeaderMenu onClick={toggleDrawer}>
-                                            <MenuIcon>
+                                            <MenuIcon >
                                                 <img src={menuColor} alt="menu" />
                                             </MenuIcon>
                                         </HeaderMenu>
@@ -295,9 +338,18 @@ const Header = () => {
                                             </HeaderNavItem>
                                         </HeaderLink>
                                         <HeaderLink>
-                                            <HeaderNavItem>
+                                            <HeaderNavItem onMouseEnter={handleMenuOpen}>
                                                 <img src={userColor} alt="user" />
                                             </HeaderNavItem>
+                                            <Menu
+                                                anchorEl={menuAnchor}
+                                                open={Boolean(menuAnchor)}
+                                                onClose={handleMenuClose}
+                                                onMouseLeave={handleMenuClose}
+                                                >
+                                                <MenuItem onClick={handleMenuClose}>Profil</MenuItem>
+                                                <MenuItem onClick={handleLogOutAndClose} >Déconnexion</MenuItem>
+                                            </Menu>                                           
                                         </HeaderLink>
                                         <Box>
                                             <HeaderLink>
@@ -308,16 +360,17 @@ const Header = () => {
                                                     />
                                                 </HeaderNavItem>
                                             </HeaderLink>
-                                            {   currentUser &&
+                                            {   currentUserName &&
                                                 <Typography 
                                                     component="p" 
                                                     variant="body2"
                                                     sx={{opacity:".8", marginLeft:"1rem"}}
 
                                                 >
-                                                    bonjour {currentUser}
+                                                    bonjour {currentUserName}
                                                 </Typography>
                                             }
+                                            
                                         </Box>
                                     </HeaderNav>
                                 )}
