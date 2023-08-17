@@ -15,18 +15,30 @@ const GuestPost = () => {
        msg: ""
     };
 
-    const currentUserId = useSelector(state => state.auth.currentUser.id);
-    console.log("id :", currentUserId);
+    const currentUser = useSelector(state => state.auth.currentUser);
+    console.log("current user id :", currentUser.id);
+    console.log("current user username :", currentUser.username);
 
     const [formData, setFormData] = useState(initialFormState);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         const data = new FormData(e.currentTarget)
         const msg = data.get("msg");
-        console.log("msg !!", msg);
+        
+        const guestPost = new Parse.Object("GuestPost");
+        guestPost.set("senderId", currentUser.id);
+        guestPost.set("guest", msg);
+        guestPost.set("senderUsername", currentUser.username);
 
+        try {
+            const res = await guestPost.save();
+            alert("votre témoignage est bien envoyé !!");
+            setFormData(initialFormState);
+        } catch (error) {
+            console.error('erreur :', error);
+        }
     }
 
     const dispatch = useDispatch();

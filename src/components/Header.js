@@ -41,13 +41,7 @@ import ShoppingBskt from "../assets/shoppingBskt.svg";
 import MenuBlack from "../assets/menu.svg";
 import MenuWhite from "../assets/menuWhite.svg";
 
-import Parse from "parse/dist/parse.min.js";
-
-const PARSE_APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
-const PARSE_HOST_URL = "https://parseapi.back4app.com/";
-const PARSE_JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
-Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY);
-Parse.serverURL = PARSE_HOST_URL;
+import Parse from "../utils/parseConfig";
 
 /**
  *
@@ -55,6 +49,10 @@ Parse.serverURL = PARSE_HOST_URL;
  */
 
 const Header = () => {
+
+    // const currentUserId = useSelector((state) => state.auth.currentUser.id);
+    // const query = new Parse.Query("User");
+    // console.log("user id :", currentUserId);
 
     const activePage = useSelector((state) => state.page.activePage);
 

@@ -1,63 +1,60 @@
-import React from "react";
-import { UseSelector, useSelector } from "react-redux/es/hooks/useSelector";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
 
-import { Paper, Avatar, Button } from "@mui/material";
+import { Paper, Avatar, Button, Typography } from "@mui/material";
+
+import Parse from "../utils/parseConfig";
 
 const Guest = () => {
 
-const currentUser = useSelector(state => state.auth.currentUser)
-console.log('currentuser :', currentUser)
+    const [guestMsg, setGuestMsg] = useState([]);
+
+    useEffect(() => {
+        const guestQuery = new Parse.Query("GuestPost");
+        
+        guestQuery.find().then(res => {
+            setGuestMsg(res);
+            
+        }).catch(error => {
+            console.log("error :", error);
+        })
+    }, []);
+
+    const currentUser = useSelector(state => state.auth.currentUser);
+   
     return (
         <GuestContainer id="guest">
             <GuestBox>
                 <GuestHead>
                     <GuestTitle>Laisser votre témoignages par ici :</GuestTitle>
-                    <GuestNotif>(3) Messages</GuestNotif>
+                    <GuestNotif>({guestMsg.length}) Messages</GuestNotif>
                 </GuestHead>
                 <GuestItems>
-                    <GuestItem>
-                        <Avatar />
-                        <GuestMsg>
-                            <GuestMsgTitle>Nom de l'auteur</GuestMsgTitle>
-                            <GuestMsgBody>
-                                Nous avons apprécié la soirée
-                            </GuestMsgBody>
-                            <GuestMsgNotif>Icones</GuestMsgNotif>
-                        </GuestMsg>
-                    </GuestItem>
-                    <GuestItem>
-                        <Avatar />
-                        <GuestMsg>
-                            <GuestMsgTitle>Nom de l'auteur</GuestMsgTitle>
-                            <GuestMsgBody>
-                                Nous avons apprécié la soirée
-                            </GuestMsgBody>
-                            <GuestMsgNotif>Icones</GuestMsgNotif>
-                        </GuestMsg>
-                    </GuestItem>
-                    <GuestItem>
-                        <Avatar />
-                        <GuestMsg>
-                            <GuestMsgTitle>Nom de l'auteur</GuestMsgTitle>
-                            <GuestMsgBody>
-                                Nous avons apprécié la soirée
-                            </GuestMsgBody>
-                            <GuestMsgNotif>Icones</GuestMsgNotif>
-                        </GuestMsg>
-                    </GuestItem>
-                    <GuestItem>
-                        <Avatar />
-                        <GuestMsg>
-                            <GuestMsgTitle>Nom de l'auteur</GuestMsgTitle>
-                            <GuestMsgBody>
-                                Nous avons apprécié la soirée
-                            </GuestMsgBody>
-                            <GuestMsgNotif>Icones</GuestMsgNotif>
-                        </GuestMsg>
-                    </GuestItem>
+                    {   guestMsg.map((msg, index) => {
+                            return (
+                            <GuestItem key={index}>
+                                <Avatar />
+                                <GuestMsg>
+                                    <GuestMsgTitle>
+                                        <Typography>
+                                            Nom de l'auteur: {msg.get("senderUsername")}
+                                        </Typography>
+                                        <Typography>
+                                            {new Date(msg.get("createdAt")).toLocaleDateString()}
+                                        </Typography>
+                                    </GuestMsgTitle>
+                                    <GuestMsgBody>
+                                       {msg.get("guest")}
+                                    </GuestMsgBody>
+                                    <GuestMsgNotif>Icones</GuestMsgNotif>
+                                </GuestMsg>
+                            </GuestItem>
+                            )
+                        })
+                    }
                 </GuestItems>
                 <GuestSubmit>
                     {currentUser ? (
@@ -78,7 +75,7 @@ console.log('currentuser :', currentUser)
 
 const GuestContainer = styled.article`
     width: 100%;
-    height: 140vh;
+    max-height: 140vh;
     background-color: var(--secondary);
 `;
 
@@ -146,6 +143,8 @@ const GuestMsgTitle = styled.div`
     padding: 0.5rem;
     margin-bottom: 1rem;
     color: var(--black);
+    display: flex;
+    justify-content: space-between;
 `;
 
 const GuestMsgBody = styled.div`
