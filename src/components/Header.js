@@ -14,6 +14,7 @@ import {
     changeShopBskt,
     changeMenu,
     changeBoxShadow,
+    changeUsernameColor,
 } from "../features/toolbarSlice";
 
 import {
@@ -72,9 +73,13 @@ const Header = () => {
 
     const boxShadowColor = useSelector((state) => state.toolbar.boxShadow);
 
+    const usernameColor = useSelector((state) => state.toolbar.usernameColor);
+
     const drawer = useSelector((state) => state.drawer);
 
     const [menuAnchor, setMenuAnchor] = useState(null);
+    // underline color of headerNavItem when scrolling TODO
+    const [underlineColor, setUnderlineColor] = useState("white");
 
     const dispatch = useDispatch();
     
@@ -108,7 +113,7 @@ const Header = () => {
     const handleLogOutAndClose = () => {
         handleMenuClose();
         handleLogOut();
-      };
+    };
 
     const handleScroll = () => {
     
@@ -120,56 +125,63 @@ const Header = () => {
         if (aboutSection) {
           const aboutSectionOffset = aboutSection.offsetTop;
           if (scrollY >= aboutSectionOffset) {
-            
+            setUnderlineColor('black')
             dispatch(changeToolbarColor("white"));
-            dispatch(changeColor("black"));
+            dispatch(changeColor("var(--black)"));
             dispatch(changeShopBskt(ShoppingBskt));
             dispatch(changeUser(User1));
             dispatch(changeMenu(MenuBlack));
             dispatch(changeBoxShadow("lightgrey"));
+            dispatch(changeUsernameColor("var(--black)"));
           } else {
+            setUnderlineColor('white');
             dispatch(changeToolbarColor("var(--primary)"));
             dispatch(changeColor("white"));
             dispatch(changeShopBskt(ShopBskt));
             dispatch(changeUser(User));
             dispatch(changeMenu(MenuWhite));
             dispatch(changeBoxShadow("var(--primary)"));
+            dispatch(changeUsernameColor("white"));
           }
         }
         
         if (guestSection) {
           const guestSectionOffset = guestSection.offsetTop;
           if (scrollY >= guestSectionOffset) {
-            
+            setUnderlineColor('white');
             dispatch(changeToolbarColor("var(--primary)"));
             dispatch(changeColor("white"));
             dispatch(changeShopBskt(ShopBskt));
             dispatch(changeUser(User));
             dispatch(changeMenu(MenuWhite));
             dispatch(changeBoxShadow("var(--primary)"));
+            dispatch(changeUsernameColor("white"));
           }
         }
 
         if (connexSection) {
-           
+            setUnderlineColor('white');
             dispatch(changeToolbarColor("var(--primary)"));
             dispatch(changeColor("white"));
             dispatch(changeShopBskt(ShopBskt));
             dispatch(changeUser(User));
             dispatch(changeMenu(MenuWhite));
             dispatch(changeBoxShadow("var(--primary)"));
+            dispatch(changeUsernameColor("white"));
           }
     };
 
     useEffect(() => {
         const scrollEventListener = () => handleScroll()
         window.addEventListener("scroll", scrollEventListener);
+       
         return () => {
             window.removeEventListener("scroll", scrollEventListener);
+
         };
     }, []);
 
-        
+    // console.log("underline :", underlineColor)    
     const toggleDrawer = () => {
         dispatch(setDrawer());
     };
@@ -362,7 +374,11 @@ const Header = () => {
                                                 <Typography 
                                                     component="p" 
                                                     variant="body2"
-                                                    sx={{opacity:".8", marginLeft:"1rem"}}
+                                                    sx={{
+                                                        opacity:".8",
+                                                        marginLeft:"1rem",
+                                                        color: usernameColor,
+                                                    }}
 
                                                 >
                                                     bonjour {currentUserName}
@@ -383,6 +399,8 @@ const Header = () => {
                                 ? "Media"
                                 : activePage === "GuestPost"
                                 ? "Votre témoignage"
+                                : activePage === "NotFound"
+                                ? "Page not found ..."
                                 : "Home"}
                         </HeaderTitle>
                     </AppBar>
@@ -439,6 +457,7 @@ const HeaderNavItem = styled.nav`
     position: relative;
     margin-left: 8rem;
     opacity: 0.8;
+    
     &::after {
         content: "";
         position: absolute;
@@ -446,7 +465,7 @@ const HeaderNavItem = styled.nav`
         left: 0;
         width: 100%;
         height: 2px; /* épaisseur du soulignement */
-        background-color: white; /* couleur soulignement */
+        background-color: white; couleur soulignement */
         opacity: 0;
         transition: opacity 0.2s ease-in-out;
     }

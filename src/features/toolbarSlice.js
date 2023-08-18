@@ -11,6 +11,7 @@ const initialState = {
     shopBskt: ShopBskt,
     boxShadow: "var(--primary)",
     menu: menuW,
+    usernameColor: "white"
 };
 
 export const toolbarSlice = createSlice({
@@ -35,6 +36,9 @@ export const toolbarSlice = createSlice({
         changeBoxShadow: (state, action) => {
             state.boxShadow = action.payload;
         },
+        changeUsernameColor: (state, action) => {
+            state.usernameColor = action.payload;
+        },
     },
 });
 
@@ -45,6 +49,7 @@ export const {
     changeShopBskt,
     changeMenu,
     changeBoxShadow,
+    changeUsernameColor,
 } = toolbarSlice.actions;
 
 export default toolbarSlice.reducer;

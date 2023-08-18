@@ -24,6 +24,7 @@ const Connexion = () => {
         email: "",
         password: "",
     };
+    
     const [formData, setFormData] = useState(initialFormState)
     
     const handleSubmit = async (e)=> {

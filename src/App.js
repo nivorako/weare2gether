@@ -9,6 +9,7 @@ import SignUp from "./pages/SignUp";
 import Blog from "./pages/Blog";
 import Media from "./pages/Media";
 import Caroussel from "./pages/Caroussel";
+import NotFound from "./pages/NotFound";
 
 import Private from "./pages/private/private";
 
@@ -30,6 +31,7 @@ function App() {
                     <Route index element={<GuestPost />} />
                     <Route path="GuestPost" element={<GuestPost />} />
                 </Route>
+                <Route path="/*" element={<NotFound />} />
             </Routes>
             <Footer />
         </div>
