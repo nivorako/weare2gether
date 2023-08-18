@@ -27,10 +27,14 @@ import {
     CssBaseline,
     Typography,
     Menu,
-    MenuItem
+    MenuItem,
+    useMediaQuery
 } from "@mui/material";
+
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 import styled from "@emotion/styled";
-import { useMediaQuery } from "@mui/material";
 
 import img from "../assets/imgTitle.png";
 import Close from "../assets/closeBlack.svg";
@@ -85,6 +89,9 @@ const Header = () => {
     
     const isMobile = useMediaQuery("(max-width:768px)", { noSsr: true });
 
+    const toggleDrawer = () => {
+        dispatch(setDrawer());
+    };
 
     const handleMenuOpen = (event) => {
         setMenuAnchor(event.currentTarget);
@@ -113,6 +120,12 @@ const Header = () => {
     const handleLogOutAndClose = () => {
         handleMenuClose();
         handleLogOut();
+    };
+
+    const handleLogOutCloseToggle = () => {
+        handleMenuClose();
+        handleLogOut();
+        toggleDrawer();
     };
 
     const handleScroll = () => {
@@ -182,9 +195,8 @@ const Header = () => {
     }, []);
 
     // console.log("underline :", underlineColor)    
-    const toggleDrawer = () => {
-        dispatch(setDrawer());
-    };
+
+    console.log("menu anchor: ", menuAnchor)
 
     return (
         <>
@@ -205,6 +217,7 @@ const Header = () => {
                         <Headroom>
                             <Toolbar
                                 sx={{
+                                    position: "relative",
                                     width: "100%",
                                     margin: "auto",
                                     padding: "2rem",
@@ -229,9 +242,22 @@ const Header = () => {
                                             <MenuIcon >
                                                 <img src={menuColor} alt="menu" />
                                             </MenuIcon>
+                                            {   currentUserName ?
+                                                        <Typography
+                                                            sx={{
+                                                                color: "white",
+                                                                marginTop: "2rem"
+                                                            }}
+                                                            composant="p"
+                                                            variant="body2"
+                                                        >
+                                                            Bonjour {currentUserName}
+                                                        </Typography>
+                                                        : null
+                                                    }
                                         </HeaderMenu>
                                         <Drawer
-                                            onClick={toggleDrawer}
+                                            // onClick={toggleDrawer}
                                             open={drawer.drawer}
                                             anchor="right"
                                             PaperProps={{
@@ -251,16 +277,36 @@ const Header = () => {
                                                     justifyContent: "space-around",
                                                 }}
                                             >
-                                                <MenuClose>
-                                                    <img
-                                                        src={Close}
-                                                        alt="close drawer"
-                                                    />
-                                                </MenuClose>
+                                                <Box 
+                                                    sx={{
+                                                        position: "relative",
+                                                        width: "100%",
+                                                        display: "flex",
+                                                        justifyContent: "space-between"
+                                                    }}
+                                                >   
+                                                    {   currentUserName ?
+                                                        <Typography
+                                                            sx={{
+                                                                marginLeft:"1rem",
+                                                                color: "var(--black)"
+                                                            }}
+                                                        >
+                                                            Bonjour {currentUserName}
+                                                        </Typography>
+                                                        : null
+                                                    }
+                                                    <MenuClose onClick={toggleDrawer}>
+                                                        <img
+                                                            src={Close}
+                                                            alt="close drawer"
+                                                        />
+                                                    </MenuClose>
+                                                </Box>
                                                 <Divider />
 
                                                 <HeaderLink to="/Blog">
-                                                    <HeaderMenuItem>
+                                                    <HeaderMenuItem onClick={toggleDrawer}>
                                                         <Button
                                                             variant="text"
                                                             sx={{
@@ -274,7 +320,7 @@ const Header = () => {
                                                 <Divider />
 
                                                 <HeaderLink to="/Connexion">
-                                                    <HeaderMenuItem>
+                                                    <HeaderMenuItem onClick={toggleDrawer}>
                                                         <Button
                                                             variant="text"
                                                             sx={{
@@ -288,7 +334,7 @@ const Header = () => {
                                                 <Divider />
 
                                                 <HeaderLink>
-                                                    <HeaderMenuItem>
+                                                    <HeaderMenuItem onClick={handleMenuOpen}>
                                                         <img
                                                             src={User1}
                                                             alt="user"
@@ -301,8 +347,23 @@ const Header = () => {
                                                         >
                                                             Votre profil
                                                         </Typography>
+                                                        {
+                                                            menuAnchor ? 
+                                                            <ExpandMoreIcon sx={{marginLeft: "2rem", color: "var(--black)"}}/>
+                                                                        :
+                                                            <ExpandLessIcon sx={{marginLeft: "2rem", color: "var(--black)"}}/>
+                                                        }
                                                     </HeaderMenuItem>
                                                 </HeaderLink>
+                                                <Menu
+                                                    anchorEl={menuAnchor}
+                                                    open={Boolean(menuAnchor)}
+                                                    onClose={handleMenuClose}
+                                                    onMouseLeave={handleMenuClose}
+                                                    >
+                                                    <MenuItem onClick={handleMenuClose}>Profil</MenuItem>
+                                                    <MenuItem onClick={handleLogOutCloseToggle} >Déconnexion</MenuItem>
+                                                </Menu> 
                                                 <Divider />
 
                                                 <HeaderLink>
@@ -348,8 +409,14 @@ const Header = () => {
                                             </HeaderNavItem>
                                         </HeaderLink>
                                         <HeaderLink>
-                                            <HeaderNavItem onMouseEnter={handleMenuOpen}>
+                                            <HeaderNavItem onClick={handleMenuOpen}>
                                                 <img src={userColor} alt="user" />
+                                                {
+                                                    menuAnchor ? 
+                                                    <ExpandMoreIcon sx={{marginLeft: "2rem", color: "white"}}/>
+                                                                :
+                                                    <ExpandLessIcon sx={{marginLeft: "2rem", color: "white"}}/>
+                                                }
                                             </HeaderNavItem>
                                             <Menu
                                                 anchorEl={menuAnchor}
@@ -360,17 +427,23 @@ const Header = () => {
                                                 <MenuItem onClick={handleMenuClose}>Profil</MenuItem>
                                                 <MenuItem onClick={handleLogOutAndClose} >Déconnexion</MenuItem>
                                             </Menu>                                           
+                                        </HeaderLink>                                       
+                                        <HeaderLink>
+                                            <HeaderNavItem>
+                                                <img
+                                                    src={shopBsktColor}
+                                                    alt="shopping basket"
+                                                />
+                                            </HeaderNavItem>
                                         </HeaderLink>
-                                        <Box>
-                                            <HeaderLink>
-                                                <HeaderNavItem>
-                                                    <img
-                                                        src={shopBsktColor}
-                                                        alt="shopping basket"
-                                                    />
-                                                </HeaderNavItem>
-                                            </HeaderLink>
-                                            {   currentUserName &&
+                                        {   currentUserName &&
+                                            <Box
+                                                sx={{
+                                                    position: "absolute",
+                                                    bottom: "1rem",
+                                                    right: "5rem"
+                                                }}
+                                            >
                                                 <Typography 
                                                     component="p" 
                                                     variant="body2"
@@ -381,11 +454,12 @@ const Header = () => {
                                                     }}
 
                                                 >
-                                                    bonjour {currentUserName}
+                                                    Bonjour {currentUserName}
                                                 </Typography>
-                                            }
+                                            </Box>
+                                        }
                                             
-                                        </Box>
+                                        
                                     </HeaderNav>
                                 )}
                             </Toolbar>
@@ -438,6 +512,7 @@ const HeaderNav = styled.nav`
 `;
 
 const HeaderMenu = styled.div`
+
     margin-right: 2rem;
     &:hover {
         cursor: pointer;
@@ -457,7 +532,7 @@ const HeaderNavItem = styled.nav`
     position: relative;
     margin-left: 8rem;
     opacity: 0.8;
-    
+    transition: .5s;
     &::after {
         content: "";
         position: absolute;
@@ -465,7 +540,7 @@ const HeaderNavItem = styled.nav`
         left: 0;
         width: 100%;
         height: 2px; /* épaisseur du soulignement */
-        background-color: white; couleur soulignement */
+        background-color: white; /* couleur soulignement */
         opacity: 0;
         transition: opacity 0.2s ease-in-out;
     }
@@ -496,8 +571,10 @@ const MenuIcon = styled.div`
 `;
 
 const MenuClose = styled.div`
-    align-self: flex-end;
+    position: absolute;
+    right: 0;
     cursor: pointer;
+    color: var(--black);
     transition: 0.5s;
     &:hover {
         transform: scale(1.3);
