@@ -2,8 +2,20 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import styled from "@emotion/styled";
-import {Grid, Paper, Box} from "@mui/material";
+import {
+    Grid, 
+    Paper, 
+    Box, 
+    Button, 
+    Card, 
+    CardMedia, 
+    CardContent, 
+    CardHeader,
+    Typography
+} from "@mui/material";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+import imgTitle from "../assets/imgTitle.png"
 
 import { setActivePage } from "../features/pageSlice";
 
@@ -19,22 +31,127 @@ const Blog = () => {
 
     return (
         <ThemeProvider  theme={theme}>
-            <Box >
-                <Grid container spacing={2}>
-                    <Grid item xs={8}>
-                        <Item>xs=8</Item>
+            <BlogContainer>
+                <Box
+                    sx={{
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "space-around",
+                        marginTop: "2rem"
+                    }}
+
+                >
+                    <StyledBtn>Tous</StyledBtn>
+                    <StyledBtn>Conseils</StyledBtn>
+                    <StyledBtn>Musique</StyledBtn>
+                    <StyledBtn>Danses</StyledBtn>
+                </Box>
+                <Box >
+                    <Grid 
+                        container spacing={2}
+                        sx={{
+                            marginTop:"2rem"
+                        }}
+                    >
+                        <Grid item xs={4}>
+                            <Card>
+                                <CardHeader 
+                                    title="Danses"
+                                    subheader="18 / 11 / 2023"
+                                />
+                                <CardMedia
+                                    component="img"
+                                    image={imgTitle}
+                                    alt="image test"
+                                />
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        date
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary" component="h2">
+                                        Titre de ce Blog
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Description de ce blog.
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card>
+                                <CardHeader 
+                                    title="Conseils"
+                                    subheader="18 / 11 / 2023"
+                                />
+                                <CardMedia
+                                    component="img"
+                                    image={imgTitle}
+                                    alt="image test"
+                                />
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        date
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary" component="h2">
+                                        Titre de ce Blog
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Description de ce blog.
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card>
+                                <CardHeader 
+                                    title="Musique"
+                                    subheader="18 / 11 / 2023"
+                                />
+                                <CardMedia
+                                    component="img"
+                                    image={imgTitle}
+                                    alt="image test"
+                                />
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        date
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary" component="h2">
+                                        Titre de ce Blog
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Description de ce blog.
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card>
+                                <CardHeader 
+                                    title="Danses"
+                                    subheader="18 / 11 / 2023"
+                                />
+                                <CardMedia
+                                    component="img"
+                                    image={imgTitle}
+                                    alt="image test"
+                                />
+                                <CardContent>
+                                    <Typography variant="body2" color="text.secondary">
+                                        date
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary" component="h2">
+                                        Titre de ce Blog
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        Description de ce blog.
+                                    </Typography>
+                                </CardContent>
+                            </Card>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={4}>
-                        <Item>xs=4</Item>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Item>xs=4</Item>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <Item>xs=8</Item>
-                    </Grid>
-                </Grid>
-            </Box>
+                </Box>
+            </BlogContainer>
         </ThemeProvider>
     )
        
@@ -48,8 +165,16 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
   }));
 
-const BlogContainer = styled.main`
+const StyledBtn = styled(Button)(({theme}) =>({
+    border: 'black thin solid',
+    cursor: 'pointer',
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+}))
 
+const BlogContainer = styled.main`
+    width: 80%;
+    margin: auto;
 `;
 
 export default Blog;
