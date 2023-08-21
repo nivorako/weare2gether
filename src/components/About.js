@@ -68,14 +68,15 @@ const AboutContainer = styled.article`
 `;
 
 const AboutTitle = styled.h2`
+    margin-top: 8rem;
     text-align: center;
     font-family: Lora;
-    font-size: 32px;
+    font-size: 40px;
 `;
 
 const AboutContent = styled.div`
     width: 70%;
-    margin: 4rem auto;
+    margin: 8rem auto;
     display: flex;
     justify-content: space-between;
     @media (max-width: 1200px){
@@ -88,7 +89,7 @@ const AboutContent = styled.div`
 const AboutMain = styled(Paper)`
     width: 48%;
     padding: 1rem;
-    font-size: 40px;
+    font-size: 32px;
     @media (max-width: 1200px){
         width: 100%;
     }

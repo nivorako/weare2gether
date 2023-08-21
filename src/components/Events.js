@@ -43,7 +43,7 @@ const Events = () => {
                         </Link>
                     </Box>
                 </EventsTitle>
-                <EventsAd>Les soirées à venir</EventsAd>
+                <EventsAd>Les soirées à venir :</EventsAd>
                 <EventsItems>
                     <Box>
                         <Event />
@@ -63,7 +63,7 @@ const Events = () => {
 const EventsContainer = styled.div`
     width: 100%;
     background-color: var(--secondary);
-    padding-bottom: 5rem;
+    padding-bottom: 8rem;
 `;
 
 const EventsBox = styled.div`
@@ -84,7 +84,7 @@ const EventsTitle = styled.div`
 
 const EventsItems = styled.section`
     width: 100%;
-    max-height: 100vh;
+    max-height: 90vh;
     overflow-y: auto;
     & > * {
         margin-bottom: 2rem;
@@ -99,6 +99,7 @@ const EventsAd = styled.h2`
     font-family: Lora;
     font-size: 32px;
     color: white;
+    margin: 8rem 0 4rem 0 ;
 `;
 
 const Btn = styled(Button)({

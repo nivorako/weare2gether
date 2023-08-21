@@ -93,7 +93,28 @@ const Guest = () => {
                         </Link>
                     ) : (
                         <Link to="/Connexion" >
-                            <GuestBtn>Laissez votre temoignage</GuestBtn>
+                            <GuestBtn>
+                                <Typography
+                                    component="p"   
+                                    sx={{
+                                        color: "white",
+                                        fontSize:"30px",
+                                        fontFamily: "Lora"
+                                    }}
+                                >
+                                    Laissez votre temoignage
+                                </Typography>
+                                <Typography
+                                    component="p" 
+                                    variant="p" 
+                                    sx={{
+                                        color: "white",
+                                        fontSize:"16px"
+                                    }}
+                                >
+                                    Ici
+                                </Typography>
+                            </GuestBtn>
                         </Link>
                     )
                     }

@@ -8,7 +8,6 @@ import styled from "@emotion/styled";
 import Events from "../components/Events";
 import About from "../components/About";
 import Guest from "../components/Guest";
-import Contact from "../components/Contact";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -23,7 +22,6 @@ const Home = () => {
                 <Events />
                 <About />
                 <Guest />
-                {/* <Contact /> */}
             </HomeContainer>
         </>
     );
