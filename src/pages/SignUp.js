@@ -1,8 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-
-import { setParse } from '../features/authSlice';
 
 import styled from '@emotion/styled';
 import { 
@@ -13,13 +10,17 @@ import {
     Box,
     Button
     } from "@mui/material";
-import { css } from '@emotion/react';
 
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Container from "@mui/material/Container";
+// import Parse from "../utils/parseConfig";
 
-import Parse from "../utils/parseConfig";
+import Parse from "parse/dist/parse.min.js";
 
+const APPLICATION_ID="GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV"
+const HOST_URL="https://parseapi.back4app.com/"
+const JAVASCRIPT_KEY="3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM"
+
+Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
+Parse.serverURL = HOST_URL;
 
 const SignUp = () => {
 

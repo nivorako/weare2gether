@@ -6,7 +6,16 @@ import styled from "@emotion/styled";
 
 import { Paper, Avatar, Button, Typography } from "@mui/material";
 
-import Parse from "../utils/parseConfig";
+// import Parse from "../utils/parseConfig";
+
+import Parse from "parse/dist/parse.min.js";
+
+const APPLICATION_ID="GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV"
+const HOST_URL="https://parseapi.back4app.com/"
+const JAVASCRIPT_KEY="3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM"
+
+Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
+Parse.serverURL = HOST_URL;
 
 const Guest = () => {
 
