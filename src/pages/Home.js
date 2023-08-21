@@ -23,7 +23,7 @@ const Home = () => {
                 <Events />
                 <About />
                 <Guest />
-                <Contact />
+                {/* <Contact /> */}
             </HomeContainer>
         </>
     );

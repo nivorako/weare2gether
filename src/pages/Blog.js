@@ -53,6 +53,7 @@ const Blog = () => {
                             marginTop:"2rem"
                         }}
                     >
+                        
                         <Grid item xs={4}>
                             <Card>
                                 <CardHeader 

@@ -38,7 +38,7 @@ const Guest = () => {
         <GuestContainer id="guest">
             <GuestBox>
                 <GuestHead>
-                    <GuestTitle>Laisser votre témoignages par ici :</GuestTitle>
+                    <GuestTitle>Vos témoignages :</GuestTitle>
                     <GuestNotif>({guestMsg.length}) Messages</GuestNotif>
                 </GuestHead>
                 <GuestItems>
@@ -68,7 +68,28 @@ const Guest = () => {
                 <GuestSubmit>
                     {currentUser ? (
                         <Link to="/private/GuestPost" >
-                            <GuestBtn>Laissez votre temoignage</GuestBtn>
+                            <GuestBtn>
+                                <Typography
+                                    component="p"   
+                                    sx={{
+                                        color: "white",
+                                        fontSize:"30px",
+                                        fontFamily: "Lora"
+                                    }}
+                                >
+                                    Laissez votre temoignage
+                                </Typography>
+                                <Typography
+                                    component="p" 
+                                    variant="p" 
+                                    sx={{
+                                        color: "white",
+                                        fontSize:"16px"
+                                    }}
+                                >
+                                    Ici
+                                </Typography>
+                            </GuestBtn>
                         </Link>
                     ) : (
                         <Link to="/Connexion" >
@@ -77,6 +98,28 @@ const Guest = () => {
                     )
                     }
                 </GuestSubmit>
+                <GuestSubmit>
+                    <Typography
+                                    component="p" 
+                                    variant="p" 
+                                    sx={{
+                                        color: "white",
+                                        fontSize:"16px"
+                                    }}
+                                >
+                                    Besoins d'informations supplémentaires ??
+                                </Typography>
+                    <Typography
+                                    component="p"   
+                                    sx={{
+                                        color: "white",
+                                        fontSize:"30px",
+                                        fontFamily: "Lora"
+                                    }}
+                                >
+                                    CONTACTEZ - NOUS
+                                </Typography>
+                </GuestSubmit>
             </GuestBox>
         </GuestContainer>
     );
@@ -84,7 +127,7 @@ const Guest = () => {
 
 const GuestContainer = styled.article`
     width: 100%;
-    max-height: 140vh;
+    max-height: 200vh;
     background-color: var(--secondary);
 `;
 
@@ -92,6 +135,7 @@ const GuestBox = styled.div`
     width: 70%;
     height: auto;
     margin: 0 auto;
+    padding: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -172,7 +216,11 @@ const GuestMsgNotif = styled.div`
 
 const GuestSubmit = styled.div`
     position: relative;
-    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 8rem;
+    margin-bottom: 4rem;
     opacity: 0.8;
     &::after {
         content: "";
@@ -194,8 +242,19 @@ const GuestSubmit = styled.div`
 `;
 
 const GuestBtn = styled(Button)`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
+
+const H3 = styled(Button)` 
     color: white;
-    font-size: 40px;
+    font-size: 30px;
+    font-family: Lora;
+`;
+
+const H2 = styled.div`
+    color: white;
 `;
 
 export default Guest;

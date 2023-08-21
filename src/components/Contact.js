@@ -28,7 +28,7 @@ const Contact = () => {
                     <H3>CONTACTEZ - NOUS</H3>
                 </ContactHead>
 
-                <ContactBody
+                {/* <ContactBody
                     onSubmit={handleSubmit}
                 >
                     <Box
@@ -146,7 +146,7 @@ const Contact = () => {
                     <ContactSubmit>
                         <ContactBtn>Envoyer</ContactBtn>
                     </ContactSubmit>
-                </ContactBody>
+                </ContactBody> */}
             </ContactBox>
         </ContactContainer>
     );
