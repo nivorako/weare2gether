@@ -477,10 +477,10 @@ const Header = () => {
                             {activePage === "Connexion"
                                 ? "Connexion"
                                 : activePage === "Blog"
-                                ?   <div>
+                                ?   <Blog>
                                         <h2>Blog</h2>
                                         <p>Découvrez nos derniers articles de blog</p>
-                                    </div>
+                                    </Blog>
                                 : activePage === "Media"
                                 ? "Media"
                                 : activePage === "GuestPost"
@@ -591,6 +591,15 @@ const MenuClose = styled.div`
     &:hover {
         transform: scale(1.3);
     }
+`;
+
+const Blog = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
 `;
 
 export default Header;

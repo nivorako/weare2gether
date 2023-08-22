@@ -123,19 +123,24 @@ const Guest = () => {
                     <Typography
                                     component="p" 
                                     variant="p" 
+                                    textAlign="center"
                                     sx={{
                                         color: "white",
-                                        fontSize:"16px"
+                                        fontSize:"16px",
                                     }}
                                 >
                                     Besoins d'informations supplémentaires ??
                                 </Typography>
-                    <Typography
-                                    component="p"   
+                                <Typography
+                                    component="p" 
+                                    textAlign="center"  
                                     sx={{
                                         color: "white",
                                         fontSize:"30px",
-                                        fontFamily: "Lora"
+                                        fontFamily: "Lora",
+                                        // '@media(max-width: 600px)':{
+                                        //     fontSize:"16px"
+                                        // }
                                     }}
                                 >
                                     CONTACTEZ - NOUS
@@ -148,7 +153,7 @@ const Guest = () => {
 
 const GuestContainer = styled.article`
     width: 100%;
-    max-height: 200vh;
+    height: 250vh;
     background-color: var(--secondary);
 `;
 
@@ -156,12 +161,15 @@ const GuestBox = styled.div`
     width: 70%;
     height: auto;
     margin: 0 auto;
-    padding: 4rem;
+    padding-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     @media (max-width: 764px){
         width: 90%;
+    }
+    @media (max-width: 600px){
+        margin-bottom: 8rem;
     }
 `;
 
@@ -240,9 +248,9 @@ const GuestSubmit = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 8rem;
-    margin-bottom: 4rem;
+    margin: 16rem 0 4rem 0;
     opacity: 0.8;
+    
     &::after {
         content: "";
         position: absolute;
@@ -266,16 +274,6 @@ const GuestBtn = styled(Button)`
     display: flex;
     flex-direction: column;
     justify-content: center;
-`;
-
-const H3 = styled(Button)` 
-    color: white;
-    font-size: 30px;
-    font-family: Lora;
-`;
-
-const H2 = styled.div`
-    color: white;
 `;
 
 export default Guest;

@@ -29,6 +29,7 @@ const Home = () => {
 
 const HomeContainer = styled.main`
     width: 100%;
+    
 `;
 
 export default Home;
