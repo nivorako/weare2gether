@@ -6,6 +6,7 @@ import backgroundReducer from "./features/homeBackgroundSlice";
 import toolbarReducer from "./features/toolbarSlice";
 import authReducer from "./features/authSlice";
 import blogFilterReducer from "./features/blogFilterSlice";
+import blogCardReducer from "./features/blogCardSlice";
 
 export const store = configureStore({
     reducer: {
@@ -15,5 +16,6 @@ export const store = configureStore({
         toolbar: toolbarReducer,
         auth: authReducer,
         blogFilter: blogFilterReducer,
+        blogCard: blogCardReducer,
     },
 });
