@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
-import styled from "@emotion/styled";
 import {
     Grid, 
     Paper, 
@@ -14,9 +12,11 @@ import {
     CardHeader,
     Typography
 } from "@mui/material";
+
+import styled from "@emotion/styled";
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
-import imgTitle from "../assets/imgTitle.png";
+import BlogFilter from "../components/BlogFilter";
 
 import { setActivePage } from "../features/pageSlice";
 
@@ -32,24 +32,14 @@ const Blog = () => {
         dispatch(setActivePage("Blog"));
     }, [dispatch]);
 
-    dataBlog.forEach(t => console.log("tete: ", t.id))
+    const blogFilter = useSelector((state) => state.blogFilter);
+    
+    const filteredBlogs = blogFilter.filter !== null ? dataBlog.filter(blog => blog.category === blogFilter.filter) : dataBlog;
+    
     return (
         <ThemeProvider  theme={theme}>
-            <BlogContainer>
-                <Box
-                    sx={{
-                        width: "100%",
-                        display: "flex",
-                        justifyContent: "space-around",
-                        marginTop: "2rem"
-                    }}
-
-                >
-                    <StyledBtn>Tous</StyledBtn>
-                    <StyledBtn>Conseils</StyledBtn>
-                    <StyledBtn>Musique</StyledBtn>
-                    <StyledBtn>Danses</StyledBtn>
-                </Box>
+            <BlogContainer id="blog">
+                <BlogFilter />
                 <Box >
                     <Grid 
                         container spacing={2}
@@ -57,36 +47,34 @@ const Blog = () => {
                             marginTop:"2rem"
                         }}
                     >
-                    {dataBlog.map((blog) => {   
-                        return  <Grid item xs={12} sm={6} md={4} key={blog.id}>
-                                
-                                    <Link to="/#">
-                                        <Card >
-                                            <CardHeader 
-                                                title={blog.category}
-                                                subheader={blog.date}
-                                            />
-                                            <CardMedia
-                                                component="img"
-                                                image={blog.cover}
-                                                alt="image test"
-                                                style={{ height: '400px', objectFit: 'cover' }}
-                                            />
-                                            <CardContent>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    {blog.date}
-                                                </Typography>
-                                                <Typography variant="body2" color="text.secondary" component="h2">
-                                                    Titre de ce Blog
-                                                </Typography>
-                                                <Typography variant="body2" color="text.secondary">
-                                                    {blog.desc}
-                                                </Typography>
-                                            </CardContent>
-                                        </Card>
-                                    </Link>
-                                
-                                </Grid>
+                    {filteredBlogs.map((blog) => {   
+                        return  (
+                            <Grid item xs={12} sm={6} md={4} key={blog.id}>                                                                    
+                                <Card >
+                                    <CardHeader 
+                                        title={blog.category}
+                                        subheader={blog.date}
+                                    />
+                                    <CardMedia
+                                        component="img"
+                                        image={blog.cover}
+                                        alt="image test"
+                                        style={{ height: '400px', objectFit: 'cover' }}
+                                    />
+                                    <CardContent>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {blog.date}
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary" component="h2">
+                                            Titre de ce Blog
+                                        </Typography>
+                                        <Typography variant="body2" color="text.secondary">
+                                            {blog.desc}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>   
+                            </Grid>
+                            )
                     })}
                     </Grid>
                 </Box>
@@ -109,7 +97,7 @@ const StyledBtn = styled(Button)(({theme}) =>({
     cursor: 'pointer',
     textAlign: 'center',
     color: theme.palette.text.secondary,
-}))
+}));
 
 const BlogContainer = styled.main`
     width: 80%;

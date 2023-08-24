@@ -64,10 +64,6 @@ Parse.serverURL = HOST_URL;
 
 const Header = () => {
 
-    // const currentUserId = useSelector((state) => state.auth.currentUser.id);
-    // const query = new Parse.Query("User");
-    // console.log("user id :", currentUserId);
-
     const activePage = useSelector((state) => state.page.activePage);
 
     const currentUserName = useSelector((state) => state.auth.currentUser.username);
@@ -137,17 +133,8 @@ const Header = () => {
         toggleDrawer();
     };
 
-    const handleScroll = () => {
-    
-        const aboutSection = document.getElementById('about');
-        const guestSection = document.getElementById('guest');
-        const connexSection = document.getElementById('connexion');
-        const scrollY = window.scrollY;
-      
-        if (aboutSection) {
-          const aboutSectionOffset = aboutSection.offsetTop;
-          if (scrollY >= aboutSectionOffset) {
-            setUnderlineColor('black')
+    const setToolbarWhite = () => {
+        setUnderlineColor('black')
             dispatch(changeToolbarColor("white"));
             dispatch(changeColor("var(--black)"));
             dispatch(changeShopBskt(ShoppingBskt));
@@ -155,42 +142,55 @@ const Header = () => {
             dispatch(changeMenu(MenuBlack));
             dispatch(changeBoxShadow("lightgrey"));
             dispatch(changeUsernameColor("var(--black)"));
+    };
+
+    const setToolbarPrimary = () => {
+        setUnderlineColor('white');
+        dispatch(changeToolbarColor("var(--primary)"));
+        dispatch(changeColor("white"));
+        dispatch(changeShopBskt(ShopBskt));
+        dispatch(changeUser(User));
+        dispatch(changeMenu(MenuWhite));
+        dispatch(changeBoxShadow("var(--primary)"));
+        dispatch(changeUsernameColor("white"));
+    };
+
+    const handleScroll = () => {
+    
+        const aboutSection = document.getElementById('about');
+        const guestSection = document.getElementById('guest');
+        const connexSection = document.getElementById('connexion');
+        const blogSection = document.getElementById("blog");
+        const scrollY = window.scrollY;
+      
+        if (aboutSection) {
+          const aboutSectionOffset = aboutSection.offsetTop;
+          if (scrollY >= aboutSectionOffset) {
+            setToolbarWhite()
           } else {
-            setUnderlineColor('white');
-            dispatch(changeToolbarColor("var(--primary)"));
-            dispatch(changeColor("white"));
-            dispatch(changeShopBskt(ShopBskt));
-            dispatch(changeUser(User));
-            dispatch(changeMenu(MenuWhite));
-            dispatch(changeBoxShadow("var(--primary)"));
-            dispatch(changeUsernameColor("white"));
+            setToolbarPrimary();
           }
         }
         
         if (guestSection) {
           const guestSectionOffset = guestSection.offsetTop;
           if (scrollY >= guestSectionOffset) {
-            setUnderlineColor('white');
-            dispatch(changeToolbarColor("var(--primary)"));
-            dispatch(changeColor("white"));
-            dispatch(changeShopBskt(ShopBskt));
-            dispatch(changeUser(User));
-            dispatch(changeMenu(MenuWhite));
-            dispatch(changeBoxShadow("var(--primary)"));
-            dispatch(changeUsernameColor("white"));
+            setToolbarPrimary();
           }
         }
 
         if (connexSection) {
-            setUnderlineColor('white');
-            dispatch(changeToolbarColor("var(--primary)"));
-            dispatch(changeColor("white"));
-            dispatch(changeShopBskt(ShopBskt));
-            dispatch(changeUser(User));
-            dispatch(changeMenu(MenuWhite));
-            dispatch(changeBoxShadow("var(--primary)"));
-            dispatch(changeUsernameColor("white"));
-          }
+            setToolbarPrimary();
+        }
+
+        if(blogSection) {
+            const blogSectionOffset = blogSection.offsetTop;
+            if(blogSectionOffset <= scrollY){
+                setToolbarWhite();
+            }else{
+                setToolbarPrimary();
+            }
+        }
     };
 
     useEffect(() => {
@@ -202,10 +202,6 @@ const Header = () => {
 
         };
     }, []);
-
-    // console.log("underline :", underlineColor)    
-
-    console.log("menu anchor: ", menuAnchor)
 
     return (
         <>
