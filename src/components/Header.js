@@ -134,7 +134,7 @@ const Header = () => {
     };
 
     const setToolbarWhite = () => {
-        setUnderlineColor('black')
+            setUnderlineColor('black')
             dispatch(changeToolbarColor("white"));
             dispatch(changeColor("var(--black)"));
             dispatch(changeShopBskt(ShoppingBskt));
@@ -250,7 +250,7 @@ const Header = () => {
                                             {   currentUserName ?
                                                         <Typography
                                                             sx={{
-                                                                color: "white",
+                                                                color: usernameColor,
                                                                 marginTop: "2rem"
                                                             }}
                                                             composant="p"
@@ -371,7 +371,7 @@ const Header = () => {
                                                 </Menu> 
                                                 <Divider />
 
-                                                <HeaderLink>
+                                                {/* <HeaderLink>
                                                     <HeaderMenuItem>
                                                         <img
                                                             src={ShoppingBskt}
@@ -387,7 +387,7 @@ const Header = () => {
                                                         </Typography>
                                                     </HeaderMenuItem>
                                                 </HeaderLink>
-                                                <Divider />
+                                                <Divider /> */}
                                             </Box>
                                         </Drawer>
                                     </>
@@ -433,14 +433,14 @@ const Header = () => {
                                                 <MenuItem onClick={handleLogOutAndClose} >Déconnexion</MenuItem>
                                             </Menu>                                           
                                         </HeaderLink>                                       
-                                        <HeaderLink>
+                                        {/* <HeaderLink>
                                             <HeaderNavItem>
                                                 <img
                                                     src={shopBsktColor}
                                                     alt="shopping basket"
                                                 />
                                             </HeaderNavItem>
-                                        </HeaderLink>
+                                        </HeaderLink> */}
                                         {   currentUserName &&
                                             <Box
                                                 sx={{
@@ -471,18 +471,26 @@ const Header = () => {
                         </Headroom>
                         <HeaderTitle>
                             {activePage === "Connexion"
-                                ? "Connexion"
+                                ?   <Title>
+                                        <h2>Connexion</h2>
+                                    </Title>
                                 : activePage === "Blog"
-                                ?   <Blog>
+                                ?   <Title>
                                         <h2>Blog</h2>
                                         <p>Découvrez nos derniers articles de blog</p>
-                                    </Blog>
+                                    </Title>
                                 : activePage === "Media"
-                                ? "Media"
+                                ?   <Title>
+                                        <h2>Media</h2>
+                                    </Title>
                                 : activePage === "GuestPost"
-                                ? "Votre témoignage"
+                                ?   <Title>
+                                        <h2>Guest Post</h2>
+                                    </Title>
                                 : activePage === "NotFound"
-                                ? "Page not found ..."
+                                ?   <Title>
+                                        <h2>Page not found ...</h2>
+                                    </Title>
                                 : "Home"}
                         </HeaderTitle>
                     </AppBar>
@@ -589,7 +597,7 @@ const MenuClose = styled.div`
     }
 `;
 
-const Blog = styled.div`
+const Title = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
