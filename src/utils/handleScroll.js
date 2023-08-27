@@ -13,40 +13,39 @@ import {
     changeBoxShadow,
 } from "../features/toolbarSlice";
 
-export function handleScroll(dispatch){
-    
-        const aboutSection = document.getElementById('about');
-        const guestSection = document.getElementById('guest');
-        const scrollY = window.scrollY;
-      
-        if (aboutSection) {
-          const aboutSectionOffset = aboutSection.offsetTop;
-          if (scrollY >= aboutSectionOffset) {
+export function handleScroll(dispatch) {
+    const aboutSection = document.getElementById("about");
+    const guestSection = document.getElementById("guest");
+    const scrollY = window.scrollY;
+
+    if (aboutSection) {
+        const aboutSectionOffset = aboutSection.offsetTop;
+        if (scrollY >= aboutSectionOffset) {
             dispatch(changeToolbarColor("white"));
             dispatch(changeColor("black"));
             dispatch(changeShopBskt(ShoppingBskt));
             dispatch(changeUser(User1));
             dispatch(changeMenu(Menu));
             dispatch(changeBoxShadow("lightgrey"));
-          } else {
+        } else {
             dispatch(changeToolbarColor("var(--primary)"));
             dispatch(changeColor("white"));
             dispatch(changeShopBskt(ShopBskt));
             dispatch(changeUser(User));
             dispatch(changeMenu(MenuWhite));
             dispatch(changeBoxShadow("var(--primary)"));
-          }
         }
-        
-        if (guestSection) {
-          const guestSectionOffset = guestSection.offsetTop;
-          if (scrollY >= guestSectionOffset) {
+    }
+
+    if (guestSection) {
+        const guestSectionOffset = guestSection.offsetTop;
+        if (scrollY >= guestSectionOffset) {
             dispatch(changeToolbarColor("var(--primary)"));
             dispatch(changeColor("white"));
             dispatch(changeShopBskt(ShopBskt));
             dispatch(changeUser(User));
             dispatch(changeMenu(MenuWhite));
             dispatch(changeBoxShadow("var(--primary)"));
-          }
         }
+    }
 }

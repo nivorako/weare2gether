@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 import { setActivePage } from "../features/pageSlice";
@@ -29,7 +29,6 @@ const Home = () => {
 
 const HomeContainer = styled.main`
     width: 100%;
-    
 `;
 
 export default Home;

@@ -1,81 +1,77 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
 
-import { setFilter } from '../features/blogFilterSlice';
-import { setSelectedCard } from '../features/blogCardSlice';
+import { setFilter } from "../features/blogFilterSlice";
+import { setSelectedCard } from "../features/blogCardSlice";
 
 const BlogFilter = () => {
-
     const dispatch = useDispatch();
 
     const blogFilter = useSelector((state) => state.blogFilter.filter);
 
     const handleFilterClick = (newFilter) => {
-        if(newFilter === null){
+        if (newFilter === null) {
             dispatch(setFilter(null));
             dispatch(setSelectedCard(null));
-        }else{
+        } else {
             dispatch(setFilter(newFilter));
             dispatch(setSelectedCard(null));
         }
     };
 
-     return (
+    return (
         <Box
             sx={{
                 width: "100%",
                 display: "flex",
                 justifyContent: "space-around",
-                marginTop: "2rem"
+                marginTop: "2rem",
             }}
-
         >
-            <StyledBtn 
+            <StyledBtn
                 active={blogFilter === null ? true : false}
                 onClick={() => handleFilterClick(null)}
             >
                 Tous
             </StyledBtn>
-            <StyledBtn 
+            <StyledBtn
                 active={blogFilter === "conseils" ? true : false}
                 onClick={() => handleFilterClick("conseils")}
             >
                 Conseils
             </StyledBtn>
-            <StyledBtn 
+            <StyledBtn
                 active={blogFilter === "musiques" ? true : false}
                 onClick={() => handleFilterClick("musiques")}
             >
                 Musique
             </StyledBtn>
-            <StyledBtn 
+            <StyledBtn
                 active={blogFilter === "danses" ? true : false}
                 onClick={() => handleFilterClick("danses")}
             >
                 Danses
             </StyledBtn>
         </Box>
-    )
+    );
 };
 
-const StyledBtn = styled(Button)(({theme, active}) =>({
-    border: active ? null : 'black thin solid',
-    backgroundColor: active ? 'var(--primary)' : "white",
-    cursor: 'pointer',
-    textAlign: 'center',
+const StyledBtn = styled(Button)(({ theme, active }) => ({
+    border: active ? null : "black thin solid",
+    backgroundColor: active ? "var(--primary)" : "white",
+    cursor: "pointer",
+    textAlign: "center",
     color: active ? "white" : theme.palette.text.secondary,
-    "&:hover":{
+    "&:hover": {
         border: "none",
         backgroundColor: "var(--primary)",
         color: "white",
-        opacity: ".6"
-    }
+        opacity: ".6",
+    },
 }));
 
-
-
-export default BlogFilter
+export default BlogFilter;

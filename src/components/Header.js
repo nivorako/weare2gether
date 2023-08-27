@@ -28,11 +28,11 @@ import {
     Typography,
     Menu,
     MenuItem,
-    useMediaQuery
+    useMediaQuery,
 } from "@mui/material";
 
-import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import styled from "@emotion/styled";
 
@@ -50,9 +50,9 @@ import MenuWhite from "../assets/menuWhite.svg";
 
 import Parse from "parse/dist/parse.min.js";
 
-const APPLICATION_ID="GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV"
-const HOST_URL="https://parseapi.back4app.com/"
-const JAVASCRIPT_KEY="3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM"
+const APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
+const HOST_URL = "https://parseapi.back4app.com/";
+const JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
 
 Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
 Parse.serverURL = HOST_URL;
@@ -64,10 +64,17 @@ Parse.serverURL = HOST_URL;
 
 const Header = () => {
 
+    const currentUser = Parse.User.current();
+    console.log("currentUser: ", currentUser);
+    const userRole = currentUser ? currentUser.get("role") : null;
+    console.log("userRole :", userRole);
+    
     const activePage = useSelector((state) => state.page.activePage);
 
-    const currentUserName = useSelector((state) => state.auth.currentUser.username);
-    
+    const currentUserName = useSelector(
+        (state) => state.auth.currentUser.username,
+    );
+
     const toolbarBGColor = useSelector(
         (state) => state.toolbar.backgroundColor,
     );
@@ -91,7 +98,7 @@ const Header = () => {
     const [underlineColor, setUnderlineColor] = useState("white");
 
     const dispatch = useDispatch();
-    
+
     const isMobile = useMediaQuery("(max-width:768px)", { noSsr: true });
 
     const toggleDrawer = () => {
@@ -107,20 +114,20 @@ const Header = () => {
     };
 
     const handleLogOut = async () => {
-		try {
-			await Parse.User.logOut();			
-			dispatch(setCurrentUser({username: "", id: ""}));
-			alert("vous etes déconnecté")
-			return true;
-		} catch (error) {
-			if (error && error.message) {
-				alert(`Error! ${error.message}`);
-		} else {
-			alert("An error occurred.");
-		}
-			return false;
-		}
-	};
+        try {
+            await Parse.User.logOut();
+            dispatch(setCurrentUser({ username: "", id: "" }));
+            alert("vous etes déconnecté");
+            return true;
+        } catch (error) {
+            if (error && error.message) {
+                alert(`Error! ${error.message}`);
+            } else {
+                alert("An error occurred.");
+            }
+            return false;
+        }
+    };
 
     const handleLogOutAndClose = () => {
         handleMenuClose();
@@ -134,18 +141,18 @@ const Header = () => {
     };
 
     const setToolbarWhite = () => {
-            setUnderlineColor('black')
-            dispatch(changeToolbarColor("white"));
-            dispatch(changeColor("var(--black)"));
-            dispatch(changeShopBskt(ShoppingBskt));
-            dispatch(changeUser(User1));
-            dispatch(changeMenu(MenuBlack));
-            dispatch(changeBoxShadow("lightgrey"));
-            dispatch(changeUsernameColor("var(--black)"));
+        setUnderlineColor("black");
+        dispatch(changeToolbarColor("white"));
+        dispatch(changeColor("var(--black)"));
+        dispatch(changeShopBskt(ShoppingBskt));
+        dispatch(changeUser(User1));
+        dispatch(changeMenu(MenuBlack));
+        dispatch(changeBoxShadow("lightgrey"));
+        dispatch(changeUsernameColor("var(--black)"));
     };
 
     const setToolbarPrimary = () => {
-        setUnderlineColor('white');
+        setUnderlineColor("white");
         dispatch(changeToolbarColor("var(--primary)"));
         dispatch(changeColor("white"));
         dispatch(changeShopBskt(ShopBskt));
@@ -156,222 +163,248 @@ const Header = () => {
     };
 
     const handleScroll = () => {
-    
-        const aboutSection = document.getElementById('about');
-        const guestSection = document.getElementById('guest');
-        const connexSection = document.getElementById('connexion');
+        const aboutSection = document.getElementById("about");
+        const guestSection = document.getElementById("guest");
+        const connexSection = document.getElementById("connexion");
         const blogSection = document.getElementById("blog");
         const scrollY = window.scrollY;
-      
+
         if (aboutSection) {
-          const aboutSectionOffset = aboutSection.offsetTop;
-          if (scrollY >= aboutSectionOffset) {
-            setToolbarWhite()
-          } else {
-            setToolbarPrimary();
-          }
+            const aboutSectionOffset = aboutSection.offsetTop;
+            if (scrollY >= aboutSectionOffset) {
+                setToolbarWhite();
+            } else {
+                setToolbarPrimary();
+            }
         }
-        
+
         if (guestSection) {
-          const guestSectionOffset = guestSection.offsetTop;
-          if (scrollY >= guestSectionOffset) {
-            setToolbarPrimary();
-          }
+            const guestSectionOffset = guestSection.offsetTop;
+            if (scrollY >= guestSectionOffset) {
+                setToolbarPrimary();
+            }
         }
 
         if (connexSection) {
             setToolbarPrimary();
         }
 
-        if(blogSection) {
+        if (blogSection) {
             const blogSectionOffset = blogSection.offsetTop;
-            if(blogSectionOffset <= scrollY){
+            if (blogSectionOffset <= scrollY) {
                 setToolbarWhite();
-            }else{
+            } else {
                 setToolbarPrimary();
             }
         }
     };
 
     useEffect(() => {
-        const scrollEventListener = () => handleScroll()
+        const scrollEventListener = () => handleScroll();
         window.addEventListener("scroll", scrollEventListener);
-       
+
         return () => {
             window.removeEventListener("scroll", scrollEventListener);
-
         };
     }, []);
 
     return (
         <>
-            <CssBaseline />           
+            <CssBaseline />
             <HeaderContainer>
-                
-                    <AppBar 
-                        sx={{
-                            position: 'static',
-                            backgroundColor: 'var(--primary)',
-                            height: '600px',
-                            display: 'flex',
-                            flexDirection: 'column',
-                            justifyContent: 'start',
-                            opacity: '1',
-                        }}
-                    >
-                        <Headroom>
-                            <Toolbar
-                                sx={{
-                                    position: "relative",
-                                    width: "100%",
-                                    margin: "auto",
-                                    padding: "2rem",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    boxShadow: `0 .5px .5px ${boxShadowColor}`,
-                                    backgroundColor: toolbarBGColor,
-                                    zIndex: "100",
-                                    "@media(max-width: 764px)": {
-                                        justifyContent: "space-between",
-                                    },
-                                }}
-                            >
-                                <HeaderLink to="/">
-                                    <LogoBox>
-                                        <img src={Logo} alt="logo" />
-                                    </LogoBox>
-                                </HeaderLink>
-                                {isMobile ? (
-                                    <>
-                                        <HeaderMenu onClick={toggleDrawer}>
-                                            <MenuIcon >
-                                                <img src={menuColor} alt="menu" />
-                                            </MenuIcon>
-                                            {   currentUserName ?
-                                                        <Typography
-                                                            sx={{
-                                                                color: usernameColor,
-                                                                marginTop: "2rem"
-                                                            }}
-                                                            composant="p"
-                                                            variant="body2"
-                                                        >
-                                                            Bonjour {currentUserName}
-                                                        </Typography>
-                                                        : null
-                                                    }
-                                        </HeaderMenu>
-                                        <Drawer
-                                            // onClick={toggleDrawer}
-                                            open={drawer.drawer}
-                                            anchor="right"
-                                            PaperProps={{
-                                                sx: {
-                                                    width: "100%", // Définir la largeur du drawer à 100%
-                                                    zIndex: "10", // Placer le drawer au-dessus du reste du contenu
-                                                },
+                <AppBar
+                    sx={{
+                        position: "static",
+                        backgroundColor: "var(--primary)",
+                        height: "600px",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "start",
+                        opacity: "1",
+                    }}
+                >
+                    <Headroom>
+                        <Toolbar
+                            sx={{
+                                position: "relative",
+                                width: "100%",
+                                margin: "auto",
+                                padding: "2rem",
+                                display: "flex",
+                                justifyContent: "center",
+                                boxShadow: `0 .5px .5px ${boxShadowColor}`,
+                                backgroundColor: toolbarBGColor,
+                                zIndex: "100",
+                                "@media(max-width: 764px)": {
+                                    justifyContent: "space-between",
+                                },
+                            }}
+                        >
+                            <HeaderLink to="/">
+                                <LogoBox>
+                                    <img src={Logo} alt="logo" />
+                                </LogoBox>
+                            </HeaderLink>
+                            {isMobile ? (
+                                <>
+                                    <HeaderMenu onClick={toggleDrawer}>
+                                        <MenuIcon>
+                                            <img src={menuColor} alt="menu" />
+                                        </MenuIcon>
+                                        {currentUserName ? (
+                                            <Typography
+                                                sx={{
+                                                    color: usernameColor,
+                                                    marginTop: "2rem",
+                                                }}
+                                                composant="p"
+                                                variant="body2"
+                                            >
+                                                Bonjour {currentUserName}
+                                            </Typography>
+                                        ) : null}
+                                    </HeaderMenu>
+                                    <Drawer
+                                        // onClick={toggleDrawer}
+                                        open={drawer.drawer}
+                                        anchor="right"
+                                        PaperProps={{
+                                            sx: {
+                                                width: "100%", // Définir la largeur du drawer à 100%
+                                                zIndex: "10", // Placer le drawer au-dessus du reste du contenu
+                                            },
+                                        }}
+                                    >
+                                        <Box
+                                            sx={{
+                                                width: "100%",
+                                                height: "100%",
+                                                padding: "3rem",
+                                                display: "flex",
+                                                flexDirection: "column",
+                                                justifyContent: "space-around",
                                             }}
                                         >
                                             <Box
                                                 sx={{
+                                                    position: "relative",
                                                     width: "100%",
-                                                    height: "100%",
-                                                    padding: "3rem",
                                                     display: "flex",
-                                                    flexDirection: "column",
-                                                    justifyContent: "space-around",
+                                                    justifyContent:
+                                                        "space-between",
                                                 }}
                                             >
-                                                <Box 
-                                                    sx={{
-                                                        position: "relative",
-                                                        width: "100%",
-                                                        display: "flex",
-                                                        justifyContent: "space-between"
-                                                    }}
-                                                >   
-                                                    {   currentUserName ?
-                                                        <Typography
-                                                            sx={{
-                                                                marginLeft:"1rem",
-                                                                color: "var(--black)"
-                                                            }}
-                                                        >
-                                                            Bonjour {currentUserName}
-                                                        </Typography>
-                                                        : null
-                                                    }
-                                                    <MenuClose onClick={toggleDrawer}>
-                                                        <img
-                                                            src={Close}
-                                                            alt="close drawer"
-                                                        />
-                                                    </MenuClose>
-                                                </Box>
-                                                <Divider />
-
-                                                <HeaderLink to="/Blog">
-                                                    <HeaderMenuItem onClick={toggleDrawer}>
-                                                        <Button
-                                                            variant="text"
-                                                            sx={{
-                                                                color: "var(--black)",
-                                                            }}
-                                                        >
-                                                            BLOG
-                                                        </Button>
-                                                    </HeaderMenuItem>
-                                                </HeaderLink>
-                                                <Divider />
-
-                                                <HeaderLink to="/Connexion">
-                                                    <HeaderMenuItem onClick={toggleDrawer}>
-                                                        <Button
-                                                            variant="text"
-                                                            sx={{
-                                                                color: "var(--black)",
-                                                            }}
-                                                        >
-                                                            CONNEXION
-                                                        </Button>
-                                                    </HeaderMenuItem>
-                                                </HeaderLink>
-                                                <Divider />
-
-                                                <HeaderLink>
-                                                    <HeaderMenuItem onClick={handleMenuOpen}>
-                                                        <img
-                                                            src={User1}
-                                                            alt="user"
-                                                        />
-                                                        <Typography
-                                                            sx={{
-                                                                marginLeft: "2rem",
-                                                                color: "var(--black)",
-                                                            }}
-                                                        >
-                                                            Votre profil
-                                                        </Typography>
-                                                        {
-                                                            menuAnchor ? 
-                                                            <ExpandMoreIcon sx={{marginLeft: "2rem", color: "var(--black)"}}/>
-                                                                        :
-                                                            <ExpandLessIcon sx={{marginLeft: "2rem", color: "var(--black)"}}/>
-                                                        }
-                                                    </HeaderMenuItem>
-                                                </HeaderLink>
-                                                <Menu
-                                                    anchorEl={menuAnchor}
-                                                    open={Boolean(menuAnchor)}
-                                                    onClose={handleMenuClose}
-                                                    onMouseLeave={handleMenuClose}
+                                                {currentUserName ? (
+                                                    <Typography
+                                                        sx={{
+                                                            marginLeft: "1rem",
+                                                            color: "var(--black)",
+                                                        }}
                                                     >
-                                                    <MenuItem onClick={handleMenuClose}>Profil</MenuItem>
-                                                    <MenuItem onClick={handleLogOutCloseToggle} >Déconnexion</MenuItem>
-                                                </Menu> 
-                                                <Divider />
+                                                        Bonjour{" "}
+                                                        {currentUserName}
+                                                    </Typography>
+                                                ) : null}
+                                                <MenuClose
+                                                    onClick={toggleDrawer}
+                                                >
+                                                    <img
+                                                        src={Close}
+                                                        alt="close drawer"
+                                                    />
+                                                </MenuClose>
+                                            </Box>
+                                            <Divider />
 
-                                                {/* <HeaderLink>
+                                            <HeaderLink to="/Blog">
+                                                <HeaderMenuItem
+                                                    onClick={toggleDrawer}
+                                                >
+                                                    <Button
+                                                        variant="text"
+                                                        sx={{
+                                                            color: "var(--black)",
+                                                        }}
+                                                    >
+                                                        BLOG
+                                                    </Button>
+                                                </HeaderMenuItem>
+                                            </HeaderLink>
+                                            <Divider />
+
+                                            <HeaderLink to={userRole === "admin" ? "/AdminConnexion" : "Connexion"}>
+                                                <HeaderMenuItem
+                                                    onClick={toggleDrawer}
+                                                >
+                                                    <Button
+                                                        variant="text"
+                                                        sx={{
+                                                            color: "var(--black)",
+                                                        }}
+                                                    >
+                                                        CONNEXION
+                                                    </Button>
+                                                </HeaderMenuItem>
+                                            </HeaderLink>
+                                            <Divider />
+
+                                            <HeaderLink>
+                                                <HeaderMenuItem
+                                                    onClick={handleMenuOpen}
+                                                >
+                                                    <img
+                                                        src={User1}
+                                                        alt="user"
+                                                    />
+                                                    <Typography
+                                                        sx={{
+                                                            marginLeft: "2rem",
+                                                            color: "var(--black)",
+                                                        }}
+                                                    >
+                                                        Votre profil
+                                                    </Typography>
+                                                    {menuAnchor ? (
+                                                        <ExpandMoreIcon
+                                                            sx={{
+                                                                marginLeft:
+                                                                    "2rem",
+                                                                color: "var(--black)",
+                                                            }}
+                                                        />
+                                                    ) : (
+                                                        <ExpandLessIcon
+                                                            sx={{
+                                                                marginLeft:
+                                                                    "2rem",
+                                                                color: "var(--black)",
+                                                            }}
+                                                        />
+                                                    )}
+                                                </HeaderMenuItem>
+                                            </HeaderLink>
+                                            <Menu
+                                                anchorEl={menuAnchor}
+                                                open={Boolean(menuAnchor)}
+                                                onClose={handleMenuClose}
+                                                onMouseLeave={handleMenuClose}
+                                            >
+                                                <MenuItem
+                                                    onClick={handleMenuClose}
+                                                >
+                                                    Profil
+                                                </MenuItem>
+                                                <MenuItem
+                                                    onClick={
+                                                        handleLogOutCloseToggle
+                                                    }
+                                                >
+                                                    Déconnexion
+                                                </MenuItem>
+                                            </Menu>
+                                            <Divider />
+
+                                            {/* <HeaderLink>
                                                     <HeaderMenuItem>
                                                         <img
                                                             src={ShoppingBskt}
@@ -388,52 +421,67 @@ const Header = () => {
                                                     </HeaderMenuItem>
                                                 </HeaderLink>
                                                 <Divider /> */}
-                                            </Box>
-                                        </Drawer>
-                                    </>
-                                ) : (
-                                    <HeaderNav>
-                                        <HeaderLink to="/Blog">
-                                            <HeaderNavItem>
-                                                <Button
-                                                    variant="text"
-                                                    sx={{ color: toolbarColor }}
-                                                >
-                                                    BLOG
-                                                </Button>
-                                            </HeaderNavItem>
-                                        </HeaderLink>
-                                        <HeaderLink to="/Connexion">
-                                            <HeaderNavItem>
-                                                <Button
-                                                    variant="text"
-                                                    sx={{ color: toolbarColor }}
-                                                >
-                                                    CONNEXION
-                                                </Button>
-                                            </HeaderNavItem>
-                                        </HeaderLink>
-                                        <HeaderLink>
-                                            <HeaderNavItem onClick={handleMenuOpen}>
-                                                <img src={userColor} alt="user" />
-                                                {
-                                                    menuAnchor ? 
-                                                    <ExpandMoreIcon sx={{marginLeft: "2rem", color: "white"}}/>
-                                                                :
-                                                    <ExpandLessIcon sx={{marginLeft: "2rem", color: "white"}}/>
-                                                }
-                                            </HeaderNavItem>
-                                            <Menu
-                                                anchorEl={menuAnchor}
-                                                open={Boolean(menuAnchor)}
-                                                onClose={handleMenuClose}
-                                                onMouseLeave={handleMenuClose}
-                                                >
-                                                <MenuItem onClick={handleMenuClose}>Profil</MenuItem>
-                                                <MenuItem onClick={handleLogOutAndClose} >Déconnexion</MenuItem>
-                                            </Menu>                                           
-                                        </HeaderLink>                                       
-                                        {/* <HeaderLink>
+                                        </Box>
+                                    </Drawer>
+                                </>
+                            ) : (
+                                <HeaderNav>
+                                    <HeaderLink to="/Blog">
+                                        <HeaderNavItem>
+                                            <Button
+                                                variant="text"
+                                                sx={{ color: toolbarColor }}
+                                            >
+                                                BLOG
+                                            </Button>
+                                        </HeaderNavItem>
+                                    </HeaderLink>
+                                    <HeaderLink to="/Connexion">
+                                        <HeaderNavItem>
+                                            <Button
+                                                variant="text"
+                                                sx={{ color: toolbarColor }}
+                                            >
+                                                CONNEXION
+                                            </Button>
+                                        </HeaderNavItem>
+                                    </HeaderLink>
+                                    <HeaderLink>
+                                        <HeaderNavItem onClick={handleMenuOpen}>
+                                            <img src={userColor} alt="user" />
+                                            {menuAnchor ? (
+                                                <ExpandMoreIcon
+                                                    sx={{
+                                                        marginLeft: "2rem",
+                                                        color: "white",
+                                                    }}
+                                                />
+                                            ) : (
+                                                <ExpandLessIcon
+                                                    sx={{
+                                                        marginLeft: "2rem",
+                                                        color: "white",
+                                                    }}
+                                                />
+                                            )}
+                                        </HeaderNavItem>
+                                        <Menu
+                                            anchorEl={menuAnchor}
+                                            open={Boolean(menuAnchor)}
+                                            onClose={handleMenuClose}
+                                            onMouseLeave={handleMenuClose}
+                                        >
+                                            <MenuItem onClick={handleMenuClose}>
+                                                Profil
+                                            </MenuItem>
+                                            <MenuItem
+                                                onClick={handleLogOutAndClose}
+                                            >
+                                                Déconnexion
+                                            </MenuItem>
+                                        </Menu>
+                                    </HeaderLink>
+                                    {/* <HeaderLink>
                                             <HeaderNavItem>
                                                 <img
                                                     src={shopBsktColor}
@@ -441,62 +489,67 @@ const Header = () => {
                                                 />
                                             </HeaderNavItem>
                                         </HeaderLink> */}
-                                        {   currentUserName &&
-                                            <Box
+                                    {currentUserName && (
+                                        <Box
+                                            sx={{
+                                                position: "absolute",
+                                                bottom: "1rem",
+                                                right: "5rem",
+                                            }}
+                                        >
+                                            <Typography
+                                                component="p"
+                                                variant="body2"
                                                 sx={{
-                                                    position: "absolute",
-                                                    bottom: "1rem",
-                                                    right: "5rem"
+                                                    opacity: ".8",
+                                                    marginLeft: "1rem",
+                                                    color: usernameColor,
                                                 }}
                                             >
-                                                <Typography 
-                                                    component="p" 
-                                                    variant="body2"
-                                                    sx={{
-                                                        opacity:".8",
-                                                        marginLeft:"1rem",
-                                                        color: usernameColor,
-                                                    }}
-
-                                                >
-                                                    Bonjour {currentUserName}
-                                                </Typography>
-                                            </Box>
-                                        }
-                                            
-                                        
-                                    </HeaderNav>
-                                )}
-                            </Toolbar>
-                        </Headroom>
-                        <HeaderTitle>
-                            {activePage === "Connexion"
-                                ?   <Title>
-                                        <h2>Connexion</h2>
-                                    </Title>
-                                : activePage === "Blog"
-                                ?   <Title>
-                                        <h2>Blog</h2>
-                                        <p>Découvrez nos derniers articles de blog</p>
-                                    </Title>
-                                : activePage === "Media"
-                                ?   <Title>
-                                        <h2>Media</h2>
-                                    </Title>
-                                : activePage === "GuestPost"
-                                ?   <Title>
-                                        <h2>Guest Post</h2>
-                                    </Title>
-                                : activePage === "NotFound"
-                                ?   <Title>
-                                        <h2>Page not found ...</h2>
-                                    </Title>
-                                : "Home"}
-                        </HeaderTitle>
-                    </AppBar>
-                
+                                                Bonjour {currentUserName}
+                                            </Typography>
+                                        </Box>
+                                    )}
+                                </HeaderNav>
+                            )}
+                        </Toolbar>
+                    </Headroom>
+                    <HeaderTitle>
+                        {activePage === "Connexion" ? (
+                            <Title>
+                                <h2>Connexion</h2>
+                            </Title>
+                        ) : activePage === "Blog" ? (
+                            <Title>
+                                <h2>Blog</h2>
+                                <p>Découvrez nos derniers articles de blog</p>
+                            </Title>
+                        ) : activePage === "Media" ? (
+                            <Title>
+                                <h2>Media</h2>
+                            </Title>
+                        ) : activePage === "GuestPost" ? (
+                            <Title>
+                                <h2>Guest Post</h2>
+                            </Title>
+                        ) : activePage === "NotFound" ? (
+                            <Title>
+                                <h2>Page not found ...</h2>
+                            </Title>
+                        ) : activePage === "signUp" ? (
+                            <Title>
+                                <h2>Créez votre compte</h2>
+                            </Title>
+                        ) : activePage === "adminConnexion" ? (
+                            <Title>
+                                <h2>Connexion administrateur</h2>
+                            </Title>
+                        )  :   (
+                            "Home"
+                        )}
+                    </HeaderTitle>
+                </AppBar>
             </HeaderContainer>
-            
         </>
     );
 };
@@ -528,7 +581,6 @@ const HeaderNav = styled.nav`
 `;
 
 const HeaderMenu = styled.div`
-
     margin-right: 2rem;
     &:hover {
         cursor: pointer;
@@ -548,7 +600,7 @@ const HeaderNavItem = styled.nav`
     position: relative;
     margin-left: 8rem;
     opacity: 0.8;
-    transition: .5s;
+    transition: 0.5s;
     &::after {
         content: "";
         position: absolute;

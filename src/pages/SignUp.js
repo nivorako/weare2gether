@@ -1,78 +1,81 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
-import styled from '@emotion/styled';
-import { 
-    Paper,
-    Typography,
-    TextField,
-    Grid,
-    Box,
-    Button
-    } from "@mui/material";
+import styled from "@emotion/styled";
+import { Paper, Typography, TextField, Grid, Box, Button } from "@mui/material";
+
+import { setActivePage } from "../features/pageSlice";
 
 // import Parse from "../utils/parseConfig";
 
 import Parse from "parse/dist/parse.min.js";
 
-const APPLICATION_ID="GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV"
-const HOST_URL="https://parseapi.back4app.com/"
-const JAVASCRIPT_KEY="3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM"
+const APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
+const HOST_URL = "https://parseapi.back4app.com/";
+const JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
 
 Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
 Parse.serverURL = HOST_URL;
 
 const SignUp = () => {
 
+    const dispatch = useDispatch();
+
+    // Mettre à jour l'état de la page active lorsque le composant est monté
+    useEffect(() => {
+        dispatch(setActivePage("signUp"));
+    }, [dispatch]);
+
     const navigate = useNavigate();
 
     const initialFormState = {
-        userName:"",
+        userName: "",
         firstName: "",
         lastName: "",
         email: "",
         password: "",
-        confirmPassword: ""
+        confirmPassword: "",
     };
 
     const [formData, setFormData] = useState(initialFormState);
 
     const [passwordMatchError, setPasswordMatchError] = useState(false);
-     
+
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        
+        e.preventDefault();
+
         if (formData.password !== formData.confirmPassword) {
             setPasswordMatchError(true);
             return; // Empêche la soumission si les mots de passe ne correspondent pas
         }
-        setPasswordMatchError(false)
-        console.log("ok submit")
-        const data = new FormData(e.currentTarget)
+        setPasswordMatchError(false);
+        
+        const data = new FormData(e.currentTarget);
         const email = data.get("email");
-		const password = data.get("password");
-		const firstName = data.get("firstName");
-		const lastName = data.get("lastName");
+        const password = data.get("password");
+        const firstName = data.get("firstName");
+        const lastName = data.get("lastName");
         const userName = data.get("userName");
 
         try {
-			await Parse.User.signUp(userName, password, {
+            await Parse.User.signUp(userName, password, {
                 email: email,
-				firstName: firstName,
-				lastName: lastName,
-		    })
-			setFormData(initialFormState);
-			navigate("/Connexion");
-			return true;
-		} catch (error) {
-			alert(` ${error}`);
-			return false;
-		}
+                firstName: firstName,
+                lastName: lastName,
+            });
+            setFormData(initialFormState);
+            navigate("/Connexion");
+            return true;
+        } catch (error) {
+            alert(` ${error}`);
+            return false;
+        }
     };
 
     return (
         <SignUpContainer>
-            <SignUpBox> 
+            <SignUpBox>
                 <Box
                     height="100%"
                     component="form"
@@ -85,10 +88,8 @@ const SignUp = () => {
                     <Box>
                         <Grid container spacing={2}>
                             <Grid item sm={6} xs={12}>
-                                <Typography>
-                                    Identifiant
-                                </Typography>
-                                <CustomTextField 
+                                <Typography>Identifiant</Typography>
+                                <CustomTextField
                                     required
                                     fullWidth
                                     id="userName"
@@ -97,18 +98,19 @@ const SignUp = () => {
                                     autoComplete="userName"
                                     value={formData.userName}
                                     onChange={(e) =>
-                                        setFormData({ ...formData, userName: e.target.value })
+                                        setFormData({
+                                            ...formData,
+                                            userName: e.target.value,
+                                        })
                                     }
                                     inputprops={{
-                                        "data-testid": "userName-input" // Ajoutez un attribut data-testid
+                                        "data-testid": "userName-input", // Ajoutez un attribut data-testid
                                     }}
-                                />                          
+                                />
                             </Grid>
                             <Grid item sm={6} xs={12}>
-                                <Typography>
-                                    Nom 
-                                </Typography>
-                                <CustomTextField 
+                                <Typography>Nom</Typography>
+                                <CustomTextField
                                     required
                                     fullWidth
                                     id="lastName"
@@ -117,20 +119,20 @@ const SignUp = () => {
                                     autoComplete="lastName"
                                     value={formData.lastName}
                                     onChange={(e) =>
-                                        setFormData({ ...formData, lastName: e.target.value })
+                                        setFormData({
+                                            ...formData,
+                                            lastName: e.target.value,
+                                        })
                                     }
                                     inputprops={{
-                                        "data-testid": "lastName-input" // Ajoutez un attribut data-testid
+                                        "data-testid": "lastName-input", // Ajoutez un attribut data-testid
                                     }}
                                 />
-                                
                             </Grid>
-                           
+
                             <Grid item sm={6} xs={12}>
-                                <Typography>
-                                    Email
-                                </Typography>
-                                <CustomTextField 
+                                <Typography>Email</Typography>
+                                <CustomTextField
                                     required
                                     fullWidth
                                     id="email"
@@ -139,18 +141,19 @@ const SignUp = () => {
                                     autoComplete="email"
                                     value={formData.email}
                                     onChange={(e) =>
-                                        setFormData({ ...formData, email: e.target.value })
+                                        setFormData({
+                                            ...formData,
+                                            email: e.target.value,
+                                        })
                                     }
                                     inputprops={{
-                                        "data-testid": "email-input" // Ajoutez un attribut data-testid
+                                        "data-testid": "email-input", // Ajoutez un attribut data-testid
                                     }}
-                                />                          
+                                />
                             </Grid>
                             <Grid item sm={6} xs={12}>
-                                <Typography>
-                                    Prénom
-                                </Typography>
-                                <CustomTextField 
+                                <Typography>Prénom</Typography>
+                                <CustomTextField
                                     required
                                     fullWidth
                                     id="firstName"
@@ -159,24 +162,24 @@ const SignUp = () => {
                                     autoComplete="firstName"
                                     value={formData.firstName}
                                     onChange={(e) =>
-                                        setFormData({ ...formData, firstName: e.target.value })
+                                        setFormData({
+                                            ...formData,
+                                            firstName: e.target.value,
+                                        })
                                     }
                                     inputprops={{
-                                        "data-testid": "firstName-input" // Ajoutez un attribut data-testid
+                                        "data-testid": "firstName-input", // Ajoutez un attribut data-testid
                                     }}
-                                />                          
+                                />
                             </Grid>
-                           
                         </Grid>
-                    </Box> 
+                    </Box>
                     <SignUpPswdBox>
-                       <Grid  container >
+                        <Grid container>
                             <Box mb={4} width="100%">
-                                <Grid item xs={12} >
-                                    <Typography>
-                                        Mot de passe 
-                                    </Typography>
-                                    <CustomTextField 
+                                <Grid item xs={12}>
+                                    <Typography>Mot de passe</Typography>
+                                    <CustomTextField
                                         required
                                         fullWidth
                                         id="password"
@@ -185,12 +188,15 @@ const SignUp = () => {
                                         autoComplete="password"
                                         value={formData.password}
                                         onChange={(e) =>
-                                            setFormData({ ...formData, password: e.target.value })
+                                            setFormData({
+                                                ...formData,
+                                                password: e.target.value,
+                                            })
                                         }
                                         inputprops={{
-                                            "data-testid": "password-input" // Ajoutez un attribut data-testid
+                                            "data-testid": "password-input", // Ajoutez un attribut data-testid
                                         }}
-                                    /> 
+                                    />
                                 </Grid>
                                 {passwordMatchError && (
                                     <Typography color="white">
@@ -199,11 +205,11 @@ const SignUp = () => {
                                 )}
                             </Box>
 
-                            <Grid item xs={12} >
+                            <Grid item xs={12}>
                                 <Typography>
                                     Confirmez votre mot de passe
                                 </Typography>
-                                <CustomTextField 
+                                <CustomTextField
                                     required
                                     fullWidth
                                     id="ConfirmPassword"
@@ -212,26 +218,28 @@ const SignUp = () => {
                                     autoComplete="ConfirmPassword"
                                     value={formData.confirmPassword}
                                     onChange={(e) =>
-                                        setFormData({ ...formData, confirmPassword: e.target.value })
+                                        setFormData({
+                                            ...formData,
+                                            confirmPassword: e.target.value,
+                                        })
                                     }
                                     inputprops={{
-                                        "data-testid": "confirmPassword-input" // Ajoutez un attribut data-testid
+                                        "data-testid": "confirmPassword-input", // Ajoutez un attribut data-testid
                                     }}
-                                /> 
+                                />
                             </Grid>
-                       </Grid>
-                    </SignUpPswdBox> 
-                    <StyledButton type='submit'>Envoyer</StyledButton>
+                        </Grid>
+                    </SignUpPswdBox>
+                    <StyledButton type="submit">Envoyer</StyledButton>
                     <Typography>
-                        Créez un compte pour accéder à votre profil, réserver ou s'abonner à un évènement
+                        Créez un compte pour accéder à votre profil, réserver ou
+                        s'abonner à un évènement
                     </Typography>
                 </Box>
             </SignUpBox>
         </SignUpContainer>
-    )
+    );
 };
-
-
 
 const SignUpContainer = styled.main`
     position: relative;
@@ -256,21 +264,21 @@ const SignUpBox = styled(Paper)`
     align-items: center;
     background-color: var(--primary);
     elevation: 16;
-    @media (max-width: 1024px){
+    @media (max-width: 1024px) {
         width: 70%;
     }
-    @media (max-width: 764px){
-        width: 100%;   
+    @media (max-width: 764px) {
+        width: 100%;
         bottom: 0;
     }
-    @media (max-width: 600px){
+    @media (max-width: 600px) {
         height: 650px;
     }
 `;
 
 const SignUpPswdBox = styled.div`
     width: 50%;
-    @media(max-width: 600px){
+    @media (max-width: 600px) {
         width: 100%;
     }
 `;
@@ -298,14 +306,14 @@ const CustomTextField = styled(TextField)`
 
 const StyledButton = styled(Button)`
     color: white;
-    opacity: .8;
-    @media(max-width: 600px){
+    opacity: 0.8;
+    @media (max-width: 600px) {
         margin: 1rem;
     }
     &:hover {
         opacity: 1;
-        box-shadow: .5px .5px .5px 2px white;
+        box-shadow: 0.5px 0.5px 0.5px 2px white;
     }
 `;
 
-export default SignUp
+export default SignUp;

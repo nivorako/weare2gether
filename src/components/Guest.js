@@ -10,30 +10,31 @@ import { Paper, Avatar, Button, Typography } from "@mui/material";
 
 import Parse from "parse/dist/parse.min.js";
 
-const APPLICATION_ID="GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV"
-const HOST_URL="https://parseapi.back4app.com/"
-const JAVASCRIPT_KEY="3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM"
+const APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
+const HOST_URL = "https://parseapi.back4app.com/";
+const JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
 
 Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
 Parse.serverURL = HOST_URL;
 
 const Guest = () => {
-
     const [guestMsg, setGuestMsg] = useState([]);
 
     useEffect(() => {
         const guestQuery = new Parse.Query("GuestPost");
-        
-        guestQuery.find().then(res => {
-            setGuestMsg(res);
-            
-        }).catch(error => {
-            console.log("error :", error);
-        })
+
+        guestQuery
+            .find()
+            .then((res) => {
+                setGuestMsg(res);
+            })
+            .catch((error) => {
+                console.log("error :", error);
+            });
     }, []);
 
-    const currentUser = useSelector(state => state.auth.currentUser);
-   
+    const currentUser = useSelector((state) => state.auth.currentUser);
+
     return (
         <GuestContainer id="guest">
             <GuestBox>
@@ -42,49 +43,51 @@ const Guest = () => {
                     <GuestNotif>({guestMsg.length}) Messages</GuestNotif>
                 </GuestHead>
                 <GuestItems>
-                    {   guestMsg.map((msg, index) => {
-                            return (
+                    {guestMsg.map((msg, index) => {
+                        return (
                             <GuestItem key={index}>
                                 <Avatar />
                                 <GuestMsg>
                                     <GuestMsgTitle>
                                         <Typography>
-                                            Nom de l'auteur: {msg.get("senderUsername")}
+                                            Nom de l'auteur:{" "}
+                                            {msg.get("senderUsername")}
                                         </Typography>
                                         <Typography>
-                                            {new Date(msg.get("createdAt")).toLocaleDateString()}
+                                            {new Date(
+                                                msg.get("createdAt"),
+                                            ).toLocaleDateString()}
                                         </Typography>
                                     </GuestMsgTitle>
                                     <GuestMsgBody>
-                                       {msg.get("guest")}
+                                        {msg.get("guest")}
                                     </GuestMsgBody>
                                     <GuestMsgNotif>Icones</GuestMsgNotif>
                                 </GuestMsg>
                             </GuestItem>
-                            )
-                        })
-                    }
+                        );
+                    })}
                 </GuestItems>
                 <GuestSubmit>
                     {currentUser ? (
-                        <Link to="/private/GuestPost" >
+                        <Link to="/private/GuestPost">
                             <GuestBtn>
                                 <Typography
-                                    component="p"   
+                                    component="p"
                                     sx={{
                                         color: "white",
-                                        fontSize:"30px",
-                                        fontFamily: "Lora"
+                                        fontSize: "30px",
+                                        fontFamily: "Lora",
                                     }}
                                 >
                                     Laissez votre temoignage
                                 </Typography>
                                 <Typography
-                                    component="p" 
-                                    variant="p" 
+                                    component="p"
+                                    variant="p"
                                     sx={{
                                         color: "white",
-                                        fontSize:"16px"
+                                        fontSize: "16px",
                                     }}
                                 >
                                     Ici
@@ -92,59 +95,58 @@ const Guest = () => {
                             </GuestBtn>
                         </Link>
                     ) : (
-                        <Link to="/Connexion" >
+                        <Link to="/Connexion">
                             <GuestBtn>
                                 <Typography
-                                    component="p"   
+                                    component="p"
                                     sx={{
                                         color: "white",
-                                        fontSize:"30px",
-                                        fontFamily: "Lora"
+                                        fontSize: "30px",
+                                        fontFamily: "Lora",
                                     }}
                                 >
                                     Laissez votre temoignage
                                 </Typography>
                                 <Typography
-                                    component="p" 
-                                    variant="p" 
+                                    component="p"
+                                    variant="p"
                                     sx={{
                                         color: "white",
-                                        fontSize:"16px"
+                                        fontSize: "16px",
                                     }}
                                 >
                                     Ici
                                 </Typography>
                             </GuestBtn>
                         </Link>
-                    )
-                    }
+                    )}
                 </GuestSubmit>
                 <GuestSubmit>
                     <Typography
-                                    component="p" 
-                                    variant="p" 
-                                    textAlign="center"
-                                    sx={{
-                                        color: "white",
-                                        fontSize:"16px",
-                                    }}
-                                >
-                                    Besoins d'informations supplémentaires ??
-                                </Typography>
-                                <Typography
-                                    component="p" 
-                                    textAlign="center"  
-                                    sx={{
-                                        color: "white",
-                                        fontSize:"30px",
-                                        fontFamily: "Lora",
-                                        // '@media(max-width: 600px)':{
-                                        //     fontSize:"16px"
-                                        // }
-                                    }}
-                                >
-                                    CONTACTEZ - NOUS
-                                </Typography>
+                        component="p"
+                        variant="p"
+                        textAlign="center"
+                        sx={{
+                            color: "white",
+                            fontSize: "16px",
+                        }}
+                    >
+                        Besoins d'informations supplémentaires ??
+                    </Typography>
+                    <Typography
+                        component="p"
+                        textAlign="center"
+                        sx={{
+                            color: "white",
+                            fontSize: "30px",
+                            fontFamily: "Lora",
+                            // '@media(max-width: 600px)':{
+                            //     fontSize:"16px"
+                            // }
+                        }}
+                    >
+                        CONTACTEZ - NOUS
+                    </Typography>
                 </GuestSubmit>
             </GuestBox>
         </GuestContainer>
@@ -165,10 +167,10 @@ const GuestBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    @media (max-width: 764px){
+    @media (max-width: 764px) {
         width: 90%;
     }
-    @media (max-width: 600px){
+    @media (max-width: 600px) {
         margin-bottom: 8rem;
     }
 `;
@@ -180,7 +182,7 @@ const GuestHead = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media (max-width: 764px){
+    @media (max-width: 764px) {
         flex-direction: column;
     }
 `;
@@ -210,7 +212,7 @@ const GuestItem = styled(Paper)`
     background-color: white;
     display: flex;
     padding: 1rem;
-    @media (max-width: 764px){
+    @media (max-width: 764px) {
         flex-direction: column;
     }
 `;
@@ -250,7 +252,7 @@ const GuestSubmit = styled.div`
     justify-content: center;
     margin: 16rem 0 4rem 0;
     opacity: 0.8;
-    
+
     &::after {
         content: "";
         position: absolute;

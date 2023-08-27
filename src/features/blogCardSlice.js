@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    selectedCard: null
+    selectedCard: null,
 };
 
 const blogCardSlice = createSlice({
@@ -10,9 +10,9 @@ const blogCardSlice = createSlice({
     reducers: {
         setSelectedCard: (state, action) => {
             state.selectedCard = action.payload;
-        }
-    }
-})
+        },
+    },
+});
 
 export const { setSelectedCard } = blogCardSlice.actions;
 

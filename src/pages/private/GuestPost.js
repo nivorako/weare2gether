@@ -1,21 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
-import { TextField, Button, TextareaAutosize } from '@mui/material';
+import { TextField, Button, TextareaAutosize } from "@mui/material";
 
-import { setActivePage } from '../../features/pageSlice';
+import { setActivePage } from "../../features/pageSlice";
 
 import Parse from "../../utils/parseConfig";
 
 const GuestPost = () => {
-
     const initialFormState = {
-       msg: ""
+        msg: "",
     };
 
-    const currentUser = useSelector(state => state.auth.currentUser);
+    const currentUser = useSelector((state) => state.auth.currentUser);
     console.log("current user id :", currentUser.id);
     console.log("current user username :", currentUser.username);
 
@@ -23,10 +22,10 @@ const GuestPost = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        const data = new FormData(e.currentTarget)
+
+        const data = new FormData(e.currentTarget);
         const msg = data.get("msg");
-        
+
         const guestPost = new Parse.Object("GuestPost");
         guestPost.set("senderId", currentUser.id);
         guestPost.set("guest", msg);
@@ -37,9 +36,9 @@ const GuestPost = () => {
             alert("votre témoignage est bien envoyé !!");
             setFormData(initialFormState);
         } catch (error) {
-            console.error('erreur :', error);
+            console.error("erreur :", error);
         }
-    }
+    };
 
     const dispatch = useDispatch();
 
@@ -49,16 +48,13 @@ const GuestPost = () => {
     }, [dispatch]);
 
     return (
-        <GuestPostContainer id='guestPost'>
+        <GuestPostContainer id="guestPost">
             <GuestPostBox>
-                <GuestPostHead>
-                    Ajouter votre temoignage ici
-                </GuestPostHead>
+                <GuestPostHead>Ajouter votre temoignage ici</GuestPostHead>
                 <GuestPostBody onSubmit={handleSubmit}>
-                    <StyledTextarea 
-                        placeholder='toti'
+                    <StyledTextarea
+                        placeholder="toti"
                         required
-                        
                         id="msg"
                         //label="email"
                         name="msg"
@@ -68,15 +64,15 @@ const GuestPost = () => {
                             setFormData({ ...formData, msg: e.target.value })
                         }
                         inputprops={{
-                            "data-testid": "msg-input" // Ajoutez un attribut data-testid
+                            "data-testid": "msg-input", // Ajoutez un attribut data-testid
                         }}
                     />
                     <Button type="submit">Envoyer</Button>
                 </GuestPostBody>
             </GuestPostBox>
         </GuestPostContainer>
-    )
-}
+    );
+};
 
 const GuestPostContainer = styled.main`
     width: 100%;
@@ -92,15 +88,12 @@ const GuestPostBox = styled.div`
     align-items: center;
 `;
 
-const GuestPostHead = styled.div`
-
-`;
+const GuestPostHead = styled.div``;
 
 const GuestPostBody = styled.form`
     width: 100%;
     display: flex;
     flex-direction: column;
-    
 `;
 
 const StyledTextarea = styled(TextareaAutosize)`
@@ -109,4 +102,4 @@ const StyledTextarea = styled(TextareaAutosize)`
     rows: 3;
 `;
 
-export default GuestPost
+export default GuestPost;

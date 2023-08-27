@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import styled from "@emotion/styled";
-import { Paper, Grid, TextField, Button,Box } from "@mui/material"
+import { Paper, Grid, TextField, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
 import { setActivePage } from "../features/pageSlice";
@@ -13,69 +13,103 @@ import { setCurrentUser, setLoading } from "../features/authSlice";
 
 import Parse from "parse/dist/parse.min.js";
 
-const APPLICATION_ID="GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV"
-const HOST_URL="https://parseapi.back4app.com/"
-const JAVASCRIPT_KEY="3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM"
+const APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
+const HOST_URL = "https://parseapi.back4app.com/";
+const JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
 
 Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
 Parse.serverURL = HOST_URL;
 
 const Connexion = () => {
-    
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    
+    const [role, setRole] = useState(undefined);
 
-    const handleNavigate = () => {
+     // Mettre à jour l'état de la page active lorsque le composant est monté
+     useEffect(() => {
+        dispatch(setActivePage("Connexion"));
+    }, [dispatch]);
+
+    const handleNavigateSignUp = () => {
         navigate("/SignUp");
-    }
+    };
+
+    const handleNavigateAdminConnexion = () => {
+        console.log("role :", role);
+        navigate("/AdminConnexion");
+    };
 
     const initialFormState = {
         email: "",
         password: "",
     };
-    
-    const [formData, setFormData] = useState(initialFormState)
-    
-    const handleSubmit = async (e)=> {
+
+    const [formData, setFormData] = useState(initialFormState);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const data = new FormData(e.currentTarget)
+        const data = new FormData(e.currentTarget);
         const email = data.get("email");
         const password = data.get("password");
         const userName = email.split("@")[0];
-        try{
+        try {
             const loggedUser = await Parse.User.logIn(email, password);
             const currentUser = Parse.User.current();
+            const userRole = currentUser.get("role");
+            console.log("userRole connexion: ", userRole)
+            setRole(userRole);
             dispatch(setLoading(true));
-            if(loggedUser === currentUser){
+            if (loggedUser === currentUser) {
                 dispatch(setLoading(false));
                 setFormData(initialFormState);
-                dispatch(setCurrentUser({username:userName, id: currentUser.id}));
+                dispatch(
+                    setCurrentUser({ username: userName, id: currentUser.id }),
+                );
                 navigate("/");
-                alert("Félicitation, vous êtes connecté")
+                alert("Félicitation, vous êtes connecté");
             }
-        }catch(error) {
+        } catch (error) {
             console.error("error :", error);
-            alert(error)
+            alert(error);
         }
-    }
-
-    // Mettre à jour l'état de la page active lorsque le composant est monté
-    useEffect(() => {
-        dispatch(setActivePage("Connexion"));
-    }, [dispatch]);
+    };
 
     return (
         <ConnexContainer id="connexion">
             <ConnexBox>
                 <ConnexHead>
-                    <h2>Connectez - vous</h2>
+                    <Typography
+                        component="h2"
+                        variant="h5"
+                        sx={{
+                            marginTop: "1rem"
+                        }}
+                    >
+                        Connectez - vous
+                    </Typography>
+                    <Typography
+                        component="h2"
+                        variant="h5"
+                        onClick={handleNavigateSignUp}
+                        sx={{
+                            marginBottom: "2rem",
+                            opacity: ".6",
+                            "&:hover":{
+                                cursor: "pointer",
+                                opacity: "1",
+                                boxShadow: ".1px 1px white",
+                            }
+                        }}
+                    >
+                        Créez votre compte
+                    </Typography>
                 </ConnexHead>
-                <ConnexBody
-                    onSubmit={handleSubmit}
-                >
-                    <Grid container >
+                <ConnexBody onSubmit={handleSubmit}>
+                    <Grid container>
                         <Grid item xs={12} sm={12}>
-                            <Label>Email  *</Label>
+                            <Label>Email *</Label>
                             <CustomTextField
                                 required
                                 fullWidth
@@ -85,16 +119,18 @@ const Connexion = () => {
                                 autoComplete="email"
                                 value={formData.email}
                                 onChange={(e) =>
-                                	setFormData({ ...formData, email: e.target.value })
+                                    setFormData({
+                                        ...formData,
+                                        email: e.target.value,
+                                    })
                                 }
                                 inputprops={{
-                                	"data-testid": "email-input" // Ajoutez un attribut data-testid
+                                    "data-testid": "email-input", // Ajoutez un attribut data-testid
                                 }}
-                        
                             />
                         </Grid>
                         <Grid item xs={12} sm={12}>
-                            <Label>Mot de passe  *</Label>
+                            <Label>Mot de passe *</Label>
                             <CustomTextField
                                 required
                                 fullWidth
@@ -104,41 +140,42 @@ const Connexion = () => {
                                 autoComplete="password"
                                 value={formData.password}
                                 onChange={(e) =>
-                                	setFormData({ ...formData, password: e.target.value })
+                                    setFormData({
+                                        ...formData,
+                                        password: e.target.value,
+                                    })
                                 }
                                 inputprops={{
-                                	"data-testid": "password-input" // Ajoutez un attribut data-testid
+                                    "data-testid": "password-input", // Ajoutez un attribut data-testid
                                 }}
-                        
                             />
                         </Grid>
                     </Grid>
                     <ConnexElt>
-                        <Button 
+                        <Button
                             type="sumbit"
                             sx={{
-                                color:"white",
-                                opacity:".8",
-                                "&:hover":{
+                                color: "white",
+                                opacity: ".6",
+                                "&:hover": {
                                     opacity: "1",
-                                    boxShadow: ".5px .5px .5px 2px white"
-                                }
+                                    boxShadow: ".1px 1px white",
+                                },
                             }}
-                        
                         >
-                            Connectez-vous
+                            Envoyer
                         </Button>
                     </ConnexElt>
                     <ConnexElt>
-                        <Button 
+                        <Button
                             sx={{
-                                color:"white",
-                                opacity:".8",
-                               
-                                "&:hover":{
+                                color: "white",
+                                opacity: ".6",
+
+                                "&:hover": {
                                     opacity: "1",
-                                    boxShadow: ".5px .5px .5px 2px white"
-                                }
+                                    boxShadow: ".1px 1px white",
+                                },
                             }}
                         >
                             Mot de passe oublié ??
@@ -146,18 +183,18 @@ const Connexion = () => {
                     </ConnexElt>
                     <ConnexElt>
                         <Button
-                            onClick={handleNavigate}
+                            onClick={handleNavigateAdminConnexion}
                             sx={{
-                                marginLeft:"1rem",
-                                color:"white",
-                                opacity: ".8",
-                                "&:hover":{
+                                marginLeft: "1rem",
+                                color: "white",
+                                opacity: ".6",
+                                "&:hover": {
                                     opacity: "1",
-                                    boxShadow: ".5px .5px .5px 2px white"
-                                }
+                                    boxShadow: ".1px 1px white",
+                                },
                             }}
                         >
-                            Créez votre compte
+                            Administrateur
                         </Button>
                     </ConnexElt>
                 </ConnexBody>
@@ -189,17 +226,27 @@ const ConnexBox = styled(Paper)`
     align-items: center;
     background-color: var(--primary);
     elevation: 16;
-    @media (max-width: 1024px){
+    @media (max-width: 1024px) {
         width: 70%;
     }
-    @media (max-width: 764px){
+    @media (max-width: 764px) {
         width: 100%;
         bottom: 0;
+    }
+    @media (max-width: 600px) {
+       height: 700px;
     }
 `;
 
 const ConnexHead = styled.div`
-
+    width: 100%;      
+    display: flex;
+    justify-content: space-between;
+    margin: 2rem 0 ;
+    @media(max-width: 600px){
+        flex-direction: column-reverse;
+        align-items: center;
+    }
 `;
 
 const ConnexBody = styled.form`

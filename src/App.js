@@ -10,11 +10,14 @@ import Blog from "./pages/Blog";
 import Media from "./pages/Media";
 import Caroussel from "./pages/Caroussel";
 import NotFound from "./pages/NotFound";
+import AdminConnexion from "./pages/AdminConnexion";
 
 import Private from "./pages/private/private";
+import GuestPost from "./pages/private/GuestPost";
+
+
 
 import "./App.css";
-import GuestPost from "./pages/private/GuestPost";
 
 function App() {
     return (
@@ -27,10 +30,11 @@ function App() {
                 <Route path="/Blog" element={<Blog />} />
                 <Route path="/Media" element={<Media />} />
                 <Route path="/Caroussel/:id" element={<Caroussel />} />
-                <Route path="/Private" element={<Private />} >
+                <Route path="/Private" element={<Private />}>
                     <Route index element={<GuestPost />} />
                     <Route path="GuestPost" element={<GuestPost />} />
                 </Route>
+                <Route path="/AdminConnexion" element={<AdminConnexion />} />
                 <Route path="/*" element={<NotFound />} />
             </Routes>
             <Footer />

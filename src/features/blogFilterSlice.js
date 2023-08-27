@@ -12,7 +12,7 @@ const blogFilterSlice = createSlice({
             state.filter = action.payload;
         },
     },
-})
+});
 
 export const { setFilter } = blogFilterSlice.actions;
 

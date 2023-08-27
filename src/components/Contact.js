@@ -16,7 +16,7 @@ import {
 } from "@mui/material";
 
 const handleSubmit = () => {
-    console.log('ohé !!')
+    console.log("ohé !!");
 };
 
 const Contact = () => {
@@ -164,14 +164,14 @@ const ContactBox = styled.div`
     margin: 0 auto;
     color: white;
     padding-bottom: 2rem;
-    @media (max-width: 1440px){
+    @media (max-width: 1440px) {
         width: 70%;
     }
-    @media (max-width: 764px){
+    @media (max-width: 764px) {
         width: 100%;
         padding-bottom: 0;
     }
-    `;
+`;
 
 const ContactBody = styled.form`
     width: 100%;
@@ -198,7 +198,7 @@ const H2 = styled.h2``;
 const ContactInput = styled.div`
     width: 70%;
     padding: 0.5rem;
-    @media (max-width: 600px){
+    @media (max-width: 600px) {
         width: 90%;
     }
 `;
@@ -210,8 +210,8 @@ const ContactLinkItems = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    @media (max-width: 1024px){
-        height: 200px
+    @media (max-width: 1024px) {
+        height: 200px;
     }
 `;
 

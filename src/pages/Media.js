@@ -18,42 +18,51 @@ const Media = () => {
     return (
         <MediaContainer>
             <MediaBox>
-                <MediaItems> 
-                    {
-                        photos.map(({id, cover, pictures}) => (
-                            <MediaItem key={id}>
-                                <Link to={`/Caroussel/${id}`} sx={{ textDecoration: "none" }}>
-                                    <Card sx={{width: "100%", height:"100%"}}>
-                                        <CardMedia component="img" alt="test" image={cover}  sx={{ height: "60%"}}/>
-                                        <CardContent
-                                            sx={{
-                                                height: "40%",
-                                                fontSize: "10px",
-                                                display: "flex",
-                                                flexDirection: "column",
-                                                justifyContent: "space-between",
-                                                color: "var(--black)",
-                                                padding: ".5rem"
-                                            }}
-                                        >
-                                            <Desc>
-                                                <p>18 / 11 / 2003</p>
-                                                <p><span>{pictures.length} </span> Photos</p>
-                                            </Desc>
-                                            <Desc>
-                                                <Adress>
-                                                    <p>Bar de la gare</p> 
-                                                    <p>2, rue de la gare</p>
-                                                    <p>95 000 PONTOISE</p>
-                                                </Adress>
-                                                <p>Auteur : auteur</p>
-                                            </Desc>
-                                        </CardContent>
-                                    </Card>
-                                </Link>
-                            </MediaItem>
-                        ))
-                    }
+                <MediaItems>
+                    {photos.map(({ id, cover, pictures }) => (
+                        <MediaItem key={id}>
+                            <Link
+                                to={`/Caroussel/${id}`}
+                                sx={{ textDecoration: "none" }}
+                            >
+                                <Card sx={{ width: "100%", height: "100%" }}>
+                                    <CardMedia
+                                        component="img"
+                                        alt="test"
+                                        image={cover}
+                                        sx={{ height: "60%" }}
+                                    />
+                                    <CardContent
+                                        sx={{
+                                            height: "40%",
+                                            fontSize: "10px",
+                                            display: "flex",
+                                            flexDirection: "column",
+                                            justifyContent: "space-between",
+                                            color: "var(--black)",
+                                            padding: ".5rem",
+                                        }}
+                                    >
+                                        <Desc>
+                                            <p>18 / 11 / 2003</p>
+                                            <p>
+                                                <span>{pictures.length} </span>{" "}
+                                                Photos
+                                            </p>
+                                        </Desc>
+                                        <Desc>
+                                            <Adress>
+                                                <p>Bar de la gare</p>
+                                                <p>2, rue de la gare</p>
+                                                <p>95 000 PONTOISE</p>
+                                            </Adress>
+                                            <p>Auteur : auteur</p>
+                                        </Desc>
+                                    </CardContent>
+                                </Card>
+                            </Link>
+                        </MediaItem>
+                    ))}
                 </MediaItems>
             </MediaBox>
         </MediaContainer>
@@ -62,7 +71,7 @@ const Media = () => {
 
 const MediaContainer = styled.main`
     width: 100%;
-   
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,7 +80,7 @@ const MediaContainer = styled.main`
 const MediaBox = styled.article`
     width: 70%;
     margin: 0 auto;
-    @media (max-width: 1440px){
+    @media (max-width: 1440px) {
         width: 90%;
     }
 `;
@@ -90,14 +99,14 @@ const MediaItem = styled.li`
     width: 30%;
     height: 320px;
     margin: 1rem 1rem 2rem 1rem;
-    transition: .5s;
-    @media (max-width: 1200px){
+    transition: 0.5s;
+    @media (max-width: 1200px) {
         width: 45%;
     }
-    @media (max-width: 764px){
+    @media (max-width: 764px) {
         width: 100%;
     }
-    &:hover{
+    &:hover {
         transform: scale(1.02);
     }
 `;
@@ -109,8 +118,6 @@ const Desc = styled.div`
     align-items: flex-end;
 `;
 
-const Adress = styled.div`
-
-`;
+const Adress = styled.div``;
 
 export default Media;

@@ -7,6 +7,7 @@ import toolbarReducer from "./features/toolbarSlice";
 import authReducer from "./features/authSlice";
 import blogFilterReducer from "./features/blogFilterSlice";
 import blogCardReducer from "./features/blogCardSlice";
+import adminReducer from "./features/adminSlice";
 
 export const store = configureStore({
     reducer: {
@@ -17,5 +18,6 @@ export const store = configureStore({
         auth: authReducer,
         blogFilter: blogFilterReducer,
         blogCard: blogCardReducer,
+        admin: adminReducer,
     },
 });

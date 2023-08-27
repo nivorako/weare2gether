@@ -11,7 +11,7 @@ const initialState = {
     shopBskt: ShopBskt,
     boxShadow: "var(--primary)",
     menu: menuW,
-    usernameColor: "white"
+    usernameColor: "white",
 };
 
 export const toolbarSlice = createSlice({

@@ -64,7 +64,7 @@ const About = () => {
 };
 
 const AboutContainer = styled.article`
-    width: 100%; 
+    width: 100%;
 `;
 
 const AboutTitle = styled.h2`
@@ -79,7 +79,7 @@ const AboutContent = styled.div`
     margin: 8rem auto;
     display: flex;
     justify-content: space-between;
-    @media (max-width: 1200px){
+    @media (max-width: 1200px) {
         width: 90%;
         flex-direction: column;
         align-items: center;
@@ -90,7 +90,7 @@ const AboutMain = styled(Paper)`
     width: 48%;
     padding: 1rem;
     font-size: 32px;
-    @media (max-width: 1200px){
+    @media (max-width: 1200px) {
         width: 100%;
     }
 `;
@@ -101,7 +101,7 @@ const AboutDetails = styled.div`
     flex-wrap: wrap;
     justify-content: space-between;
     align-content: space-between;
-    @media (max-width: 1200px){
+    @media (max-width: 1200px) {
         width: 100%;
         margin-top: 2rem;
     }
@@ -110,10 +110,10 @@ const AboutDetails = styled.div`
 const AboutDetail = styled(Paper)`
     width: 48%;
     padding: 1rem;
-    @media (max-width: 1200px){
+    @media (max-width: 1200px) {
         margin-bottom: 2rem;
     }
-    @media (max-width: 764px){
+    @media (max-width: 764px) {
         width: 100%;
     }
 `;

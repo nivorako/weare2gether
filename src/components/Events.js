@@ -99,7 +99,7 @@ const EventsAd = styled.h2`
     font-family: Lora;
     font-size: 32px;
     color: white;
-    margin: 8rem 0 8rem 0 ;
+    margin: 8rem 0 8rem 0;
 `;
 
 const Btn = styled(Button)({

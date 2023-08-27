@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    currentUser: {
+    currentAdmin: {
         username: "",
         id: "",
     },
     loading: false,
 };
 
-const authSlice = createSlice({
-    name: "auth",
+const adminSlice = createSlice({
+    name: "admin",
     initialState,
     reducers: {
-        setCurrentUser: (state, action) => {
-            state.currentUser = action.payload;
+        setCurrentAdmin: (state, action) => {
+            state.currentAdmin = action.payload;
         },
         setLoading: (state, action) => {
             state.loading = action.payload;
@@ -21,6 +21,6 @@ const authSlice = createSlice({
     },
 });
 
-export const { setCurrentUser, setLoading } = authSlice.actions;
+export const { setCurrentAdmin, setLoading } = adminSlice.actions;
 
-export default authSlice.reducer;
+export default adminSlice.reducer;
