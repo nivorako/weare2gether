@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { Outlet, useLocation, Navigate } from "react-router-dom";
 
 const Admin = () => {
-    const currentAdminId = useSelector((state) => state.admin.currentAdmin.currentAdminid);
-    const loading = useSelector((state) => state.Admin.loading);
+    const currentAdminId = useSelector((state) => state.admin.currentAdmin.id);
+    const loading = useSelector((state) => state.admin.loading);
     const location = useLocation();
 
     if (loading) {

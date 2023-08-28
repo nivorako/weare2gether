@@ -69,13 +69,14 @@ const Header = () => {
     
     const navigate = useNavigate();
 
+    // function test(){
+    //     navigate("/Admin/Dashboard");
+    // };
+
+    // test();
+
     const handleNavigate = (page) => {
         console.log("userRole :", role);
-        // { 
-        //     page === "Blog" ? navigate("/Blog") 
-        //     : role === null ?  navigate("/Connexion")
-        //     : navigate("/");
-        // }
 
         if (page === "Blog") {
             navigate("/Blog");
@@ -110,7 +111,7 @@ const Header = () => {
             return null;
         }
     });
-    
+
     const toolbarBGColor = useSelector(
         (state) => state.toolbar.backgroundColor,
     );

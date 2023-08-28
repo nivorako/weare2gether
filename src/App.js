@@ -11,11 +11,11 @@ import Media from "./pages/Media";
 import Caroussel from "./pages/Caroussel";
 import NotFound from "./pages/NotFound";
 import AdminConnexion from "./pages/AdminConnexion";
+import Admin from "./pages/admin/Admin";
 
 import Private from "./pages/private/private";
 import GuestPost from "./pages/private/GuestPost";
-
-
+import Dashboard from "./pages/admin/Dashboard";
 
 import "./App.css";
 
@@ -35,6 +35,10 @@ function App() {
                     <Route path="GuestPost" element={<GuestPost />} />
                 </Route>
                 <Route path="/AdminConnexion" element={<AdminConnexion />} />
+                <Route path="/Admin" element={<Admin />} >
+                    <Route index element={<Dashboard />} />
+                    <Route path="Dashboard" element={<Dashboard />} />
+                </Route>
                 <Route path="/*" element={<NotFound />} />
             </Routes>
             <Footer />

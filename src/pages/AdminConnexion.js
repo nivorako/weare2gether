@@ -59,7 +59,7 @@ const AdminConnexion = () => {
                 setFormData(initialFormState);
                 alert("féclicitation vous êtes connecté !!");
                 dispatch(setCurrentAdmin({username: username, id: currentUser.id}));
-                navigate("/");
+                navigate("/Admin/Dashboard");
             }
         } catch (error) {
             console.error("error :", error);
