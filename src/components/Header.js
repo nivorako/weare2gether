@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Headroom from "react-headroom";
 
@@ -65,9 +65,38 @@ Parse.serverURL = HOST_URL;
 const Header = () => {
 
     const currentUser = Parse.User.current();
-    console.log("currentUser: ", currentUser);
-    const userRole = currentUser ? currentUser.get("role") : null;
-    console.log("userRole :", userRole);
+    
+    const navigate = useNavigate();
+
+    const handleNavigate = (page) => {
+        console.log("userRole :", role);
+        // { 
+        //     page === "Blog" ? navigate("/Blog") 
+        //     : role === null ?  navigate("/Connexion")
+        //     : navigate("/");
+        // }
+
+        if (page === "Blog") {
+            navigate("/Blog");
+        } else if (currentUser) {
+            const role = currentUser.get("role");
+            if (role === null) {
+                navigate("/Connexion");
+            } else {
+                navigate("/");
+            }
+        } else {
+            navigate("/Connexion");
+        }
+    };
+
+    const [role, setRole] = useState(null);
+    useEffect(() => {
+        if(currentUser){
+            const userRole = currentUser.get("role");
+            setRole(userRole);
+        }
+    }, [currentUser]);
     
     const activePage = useSelector((state) => state.page.activePage);
 
@@ -332,7 +361,7 @@ const Header = () => {
                                             </HeaderLink>
                                             <Divider />
 
-                                            <HeaderLink to={userRole === "admin" ? "/AdminConnexion" : "Connexion"}>
+                                            <HeaderLink to="/">
                                                 <HeaderMenuItem
                                                     onClick={toggleDrawer}
                                                 >
@@ -426,7 +455,9 @@ const Header = () => {
                                 </>
                             ) : (
                                 <HeaderNav>
-                                    <HeaderLink to="/Blog">
+                                    <Box 
+                                        onClick={() => handleNavigate("Blog")}
+                                    >
                                         <HeaderNavItem>
                                             <Button
                                                 variant="text"
@@ -435,8 +466,10 @@ const Header = () => {
                                                 BLOG
                                             </Button>
                                         </HeaderNavItem>
-                                    </HeaderLink>
-                                    <HeaderLink to="/Connexion">
+                                    </Box>
+                                    <Box 
+                                        onClick={() => handleNavigate("Connexion")}
+                                    >
                                         <HeaderNavItem>
                                             <Button
                                                 variant="text"
@@ -445,8 +478,14 @@ const Header = () => {
                                                 CONNEXION
                                             </Button>
                                         </HeaderNavItem>
-                                    </HeaderLink>
-                                    <HeaderLink>
+                                    </Box>
+                                    <Box
+                                        sx={{
+                                            ":hover":{
+                                                cursor: "pointer"
+                                            }
+                                        }}
+                                    >
                                         <HeaderNavItem onClick={handleMenuOpen}>
                                             <img src={userColor} alt="user" />
                                             {menuAnchor ? (
@@ -480,7 +519,7 @@ const Header = () => {
                                                 Déconnexion
                                             </MenuItem>
                                         </Menu>
-                                    </HeaderLink>
+                                    </Box>
                                     {/* <HeaderLink>
                                             <HeaderNavItem>
                                                 <img

@@ -33,25 +33,25 @@ const BlogFilter = () => {
             }}
         >
             <StyledBtn
-                active={blogFilter === null ? true : false}
+                active={blogFilter === null ? "active" : ""}
                 onClick={() => handleFilterClick(null)}
             >
                 Tous
             </StyledBtn>
             <StyledBtn
-                active={blogFilter === "conseils" ? true : false}
+                active={blogFilter === "conseils" ? "active" : ""}
                 onClick={() => handleFilterClick("conseils")}
             >
                 Conseils
             </StyledBtn>
             <StyledBtn
-                active={blogFilter === "musiques" ? true : false}
+                active={blogFilter === "musiques" ? "active" : ""}
                 onClick={() => handleFilterClick("musiques")}
             >
                 Musique
             </StyledBtn>
             <StyledBtn
-                active={blogFilter === "danses" ? true : false}
+                active={blogFilter === "danses" ? "active" : ""}
                 onClick={() => handleFilterClick("danses")}
             >
                 Danses

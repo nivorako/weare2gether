@@ -25,7 +25,7 @@ const Connexion = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
-    const [role, setRole] = useState(undefined);
+    const [role, setRole] = useState("");
 
      // Mettre à jour l'état de la page active lorsque le composant est monté
      useEffect(() => {
@@ -36,10 +36,21 @@ const Connexion = () => {
         navigate("/SignUp");
     };
 
-    const handleNavigateAdminConnexion = () => {
-        console.log("role :", role);
-        navigate("/AdminConnexion");
+    const handleNavigateAdminConnexion = () => {       
+        {
+            role === "" ? navigate("/AdminConnexion") : navigate("/")
+        };
     };
+
+    const currentUser = Parse.User.current();
+
+    useEffect(() => {
+        if(currentUser){
+            const userRole = currentUser.get("role");
+            setRole(userRole);
+            
+        }
+    }, [currentUser]);
 
     const initialFormState = {
         email: "",
@@ -57,9 +68,10 @@ const Connexion = () => {
         try {
             const loggedUser = await Parse.User.logIn(email, password);
             const currentUser = Parse.User.current();
-            const userRole = currentUser.get("role");
-            console.log("userRole connexion: ", userRole)
-            setRole(userRole);
+            // const userRole = currentUser.get("role");
+            // console.log("userRole connexion: ", userRole)
+            // setRole(userRole);
+            // console.log("role dans try:", role)
             dispatch(setLoading(true));
             if (loggedUser === currentUser) {
                 dispatch(setLoading(false));
@@ -84,7 +96,9 @@ const Connexion = () => {
                         component="h2"
                         variant="h5"
                         sx={{
-                            marginTop: "1rem"
+                            "@media(max-width: 600px)":{
+                                marginTop: "1rem"
+                            }
                         }}
                     >
                         Connectez - vous
@@ -94,12 +108,16 @@ const Connexion = () => {
                         variant="h5"
                         onClick={handleNavigateSignUp}
                         sx={{
-                            marginBottom: "2rem",
+                            
                             opacity: ".6",
                             "&:hover":{
                                 cursor: "pointer",
                                 opacity: "1",
                                 boxShadow: ".1px 1px white",
+                            },
+                            "@media(max-width: 600px)":{
+                                marginTop: "1rem",
+                                marginBottom: "2rem"
                             }
                         }}
                     >
@@ -242,6 +260,7 @@ const ConnexHead = styled.div`
     width: 100%;      
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin: 2rem 0 ;
     @media(max-width: 600px){
         flex-direction: column-reverse;
