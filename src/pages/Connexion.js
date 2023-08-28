@@ -79,8 +79,8 @@ const Connexion = () => {
                 dispatch(
                     setCurrentUser({ username: userName, id: currentUser.id }),
                 );
-                navigate("/");
                 alert("Félicitation, vous êtes connecté");
+                navigate("/");
             }
         } catch (error) {
             console.error("error :", error);

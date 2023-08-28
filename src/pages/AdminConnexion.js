@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { setActivePage } from "../features/pageSlice";
+import { setLoading, setCurrentAdmin } from '../features/adminSlice';
 
 import styled from '@emotion/styled';
 import {
@@ -27,6 +29,8 @@ const AdminConnexion = () => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     useEffect(() => {
         dispatch(setActivePage("adminConnexion"));
     })
@@ -46,13 +50,17 @@ const AdminConnexion = () => {
         const email = data.get("email");
         const password = data.get("password");
 
-        try {
-            
+        try {           
             const loggedUser = await Parse.User.logIn(username, password);
             const currentUser = Parse.User.current();
-            console.log("currentuser role: ", currentUser.get("role"))
-        
-            console.log('yessss !!');
+            dispatch(setLoading(true));
+            if( loggedUser === currentUser){
+                dispatch(setLoading(false));
+                setFormData(initialFormState);
+                alert("féclicitation vous êtes connecté !!");
+                dispatch(setCurrentAdmin({username: username, id: currentUser.id}));
+                navigate("/");
+            }
         } catch (error) {
             console.error("error :", error);
         }

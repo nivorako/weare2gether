@@ -6,6 +6,7 @@ import Headroom from "react-headroom";
 
 import { setDrawer } from "../features/drawerSlice";
 import { setCurrentUser } from "../features/authSlice";
+import { setCurrentAdmin } from "../features/adminSlice";
 
 import {
     changeColor,
@@ -100,10 +101,16 @@ const Header = () => {
     
     const activePage = useSelector((state) => state.page.activePage);
 
-    const currentUserName = useSelector(
-        (state) => state.auth.currentUser.username,
-    );
-
+    const currentUserName = useSelector(state => {
+        if (role === "user") {
+            return state.auth.currentUser.username;
+        } else if (role === "admin") {
+            return state.admin.currentAdmin.username;
+        } else {
+            return null;
+        }
+    });
+    
     const toolbarBGColor = useSelector(
         (state) => state.toolbar.backgroundColor,
     );
@@ -145,7 +152,8 @@ const Header = () => {
     const handleLogOut = async () => {
         try {
             await Parse.User.logOut();
-            dispatch(setCurrentUser({ username: "", id: "" }));
+            dispatch(setCurrentUser({ username: "", id: "" })); 
+            dispatch(setCurrentAdmin({ username: "", id: "" }));
             alert("vous etes déconnecté");
             return true;
         } catch (error) {
@@ -345,7 +353,7 @@ const Header = () => {
                                             </Box>
                                             <Divider />
 
-                                            <HeaderLink to="/Blog">
+                                            <Box onClick={() => handleNavigate("Blog")}>
                                                 <HeaderMenuItem
                                                     onClick={toggleDrawer}
                                                 >
@@ -358,10 +366,10 @@ const Header = () => {
                                                         BLOG
                                                     </Button>
                                                 </HeaderMenuItem>
-                                            </HeaderLink>
+                                            </Box>
                                             <Divider />
 
-                                            <HeaderLink to="/">
+                                            <Box onClick={() => handleNavigate("Connexion")}>
                                                 <HeaderMenuItem
                                                     onClick={toggleDrawer}
                                                 >
@@ -374,7 +382,7 @@ const Header = () => {
                                                         CONNEXION
                                                     </Button>
                                                 </HeaderMenuItem>
-                                            </HeaderLink>
+                                            </Box>
                                             <Divider />
 
                                             <HeaderLink>
