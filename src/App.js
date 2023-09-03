@@ -14,8 +14,9 @@ import AdminConnexion from "./pages/AdminConnexion";
 import Admin from "./pages/admin/Admin";
 
 import Private from "./pages/private/private";
-import GuestPost from "./pages/private/GuestPost";
+import GuestPost from "./pages/GuestPost";
 import Dashboard from "./pages/admin/Dashboard";
+import AdminMedia from "./pages/admin/AdminMedia";
 
 import "./App.css";
 
@@ -29,15 +30,17 @@ function App() {
                 <Route path="/SignUp" element={<SignUp />} />
                 <Route path="/Blog" element={<Blog />} />
                 <Route path="/Media" element={<Media />} />
+                <Route path="GuestPost" element={<GuestPost />} />
                 <Route path="/Caroussel/:id" element={<Caroussel />} />
                 <Route path="/Private" element={<Private />}>
                     <Route index element={<GuestPost />} />
-                    <Route path="GuestPost" element={<GuestPost />} />
+                    
                 </Route>
                 <Route path="/AdminConnexion" element={<AdminConnexion />} />
                 <Route path="/Admin" element={<Admin />} >
                     <Route index element={<Dashboard />} />
                     <Route path="Dashboard" element={<Dashboard />} />
+                    <Route path="AdminMedia" element={<AdminMedia />} />
                 </Route>
                 <Route path="/*" element={<NotFound />} />
             </Routes>

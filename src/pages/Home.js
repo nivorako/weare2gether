@@ -16,6 +16,7 @@ const Home = () => {
     useEffect(() => {
         dispatch(setActivePage("Home"));
     }, [dispatch]);
+    
     return (
         <>
             <HomeContainer id="home">

@@ -5,9 +5,9 @@ import styled from "@emotion/styled";
 
 import { TextField, Button, TextareaAutosize } from "@mui/material";
 
-import { setActivePage } from "../../features/pageSlice";
+import { setActivePage } from "../features/pageSlice";
 
-import Parse from "../../utils/parseConfig";
+import Parse from "../utils/parseConfig";
 
 const GuestPost = () => {
     const initialFormState = {

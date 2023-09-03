@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux/es/hooks/useSelector";
+
 import { Link } from "react-router-dom";
 
 import styled from "@emotion/styled";
@@ -33,7 +33,9 @@ const Guest = () => {
             });
     }, []);
 
-    const currentUser = useSelector((state) => state.auth.currentUser);
+    const currentUser = Parse.User.current();
+
+    console.log("currentUser :", currentUser);
 
     return (
         <GuestContainer id="guest">
@@ -69,8 +71,7 @@ const Guest = () => {
                     })}
                 </GuestItems>
                 <GuestSubmit>
-                    {currentUser ? (
-                        <Link to="/private/GuestPost">
+                <Link to="/GuestPost">
                             <GuestBtn>
                                 <Typography
                                     component="p"
@@ -94,32 +95,6 @@ const Guest = () => {
                                 </Typography>
                             </GuestBtn>
                         </Link>
-                    ) : (
-                        <Link to="/Connexion">
-                            <GuestBtn>
-                                <Typography
-                                    component="p"
-                                    sx={{
-                                        color: "white",
-                                        fontSize: "30px",
-                                        fontFamily: "Lora",
-                                    }}
-                                >
-                                    Laissez votre temoignage
-                                </Typography>
-                                <Typography
-                                    component="p"
-                                    variant="p"
-                                    sx={{
-                                        color: "white",
-                                        fontSize: "16px",
-                                    }}
-                                >
-                                    Ici
-                                </Typography>
-                            </GuestBtn>
-                        </Link>
-                    )}
                 </GuestSubmit>
                 <GuestSubmit>
                     <Typography

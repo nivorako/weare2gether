@@ -27,9 +27,9 @@ const theme = createTheme();
 
 const Blog = () => {
     const selectedCard = useSelector((state) => state.blogCard.selectedCard);
-    console.log("selectedCard :", selectedCard);
+    
     const selectedBlog = dataBlog.find((blog) => blog.id === selectedCard);
-    console.log("selectedBlog: ", selectedBlog);
+    
     const dispatch = useDispatch();
 
     // Mettre à jour l'état de la page active lorsque le composant est monté

@@ -69,12 +69,6 @@ const Header = () => {
     
     const navigate = useNavigate();
 
-    // function test(){
-    //     navigate("/Admin/Dashboard");
-    // };
-
-    // test();
-
     const handleNavigate = (page) => {
         console.log("userRole :", role);
 
@@ -102,15 +96,7 @@ const Header = () => {
     
     const activePage = useSelector((state) => state.page.activePage);
 
-    const currentUserName = useSelector(state => {
-        if (role === "user") {
-            return state.auth.currentUser.username;
-        } else if (role === "admin") {
-            return state.admin.currentAdmin.username;
-        } else {
-            return null;
-        }
-    });
+    const currentUserName = currentUser ? currentUser.get("username") : null;
 
     const toolbarBGColor = useSelector(
         (state) => state.toolbar.backgroundColor,
@@ -354,6 +340,32 @@ const Header = () => {
                                             </Box>
                                             <Divider />
 
+                                            {
+                                                 currentUser && role === "admin" 
+                                                            ?
+                                                (
+                                                    <>
+                                                        <Box onClick={() => navigate("/Admin/dashboard")}>
+                                                            <HeaderMenuItem
+                                                                onClick={toggleDrawer}
+                                                            >
+                                                                <Button
+                                                                    variant="text"
+                                                                    sx={{
+                                                                        color: "var(--black)",
+                                                                    }}
+                                                                >
+                                                                    Dashboard
+                                                                </Button>
+                                                            </HeaderMenuItem>
+                                                        </Box>
+                                                        <Divider />
+                                                    </>
+                                                )
+                                                            :
+                                                (null)
+                                            }
+
                                             <Box onClick={() => handleNavigate("Blog")}>
                                                 <HeaderMenuItem
                                                     onClick={toggleDrawer}
@@ -464,6 +476,25 @@ const Header = () => {
                                 </>
                             ) : (
                                 <HeaderNav>
+                                    {
+                                    currentUser && role === "admin" 
+                                            ?
+                                        (
+                                            <Box 
+                                            onClick={() => navigate("/Admin/Dashboard")}
+                                            >
+                                                <HeaderNavItem>
+                                                    <Button
+                                                        variant="text"
+                                                        sx={{ color: toolbarColor }}
+                                                    >
+                                                        DASHBOARD
+                                                    </Button>
+                                                </HeaderNavItem>
+                                            </Box>
+                                        )   :
+                                        (null)
+                                    }
                                     <Box 
                                         onClick={() => handleNavigate("Blog")}
                                     >
@@ -592,7 +623,11 @@ const Header = () => {
                             <Title>
                                 <h2>Connexion administrateur</h2>
                             </Title>
-                        )  :   (
+                        )   : activePage === "DashBoard" ? (
+                            <Title>
+                                <h2>Dash Board</h2>
+                            </Title>
+                        ) :   (
                             "Home"
                         )}
                     </HeaderTitle>
