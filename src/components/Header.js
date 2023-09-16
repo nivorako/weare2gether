@@ -141,7 +141,9 @@ const Header = () => {
             await Parse.User.logOut();
             dispatch(setCurrentUser({ username: "", id: "" })); 
             dispatch(setCurrentAdmin({ username: "", id: "" }));
+            localStorage.clear();
             alert("vous etes déconnecté");
+            navigate("/");
             return true;
         } catch (error) {
             if (error && error.message) {
@@ -232,6 +234,8 @@ const Header = () => {
         };
     }, []);
 
+    console.log("localStorage :", localStorage)
+      
     return (
         <>
             <CssBaseline />

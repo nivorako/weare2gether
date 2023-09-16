@@ -20,7 +20,8 @@ import AdminMedia from "./pages/admin/AdminMedia";
 
 import "./App.css";
 
-function App() {
+function App() { 
+
     return (
         <div className="App">
             <Header />

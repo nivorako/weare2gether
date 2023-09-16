@@ -7,8 +7,8 @@ import { Paper, Grid, TextField, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
 import { setActivePage } from "../features/pageSlice";
-import { setCurrentUser, setLoading } from "../features/authSlice";
-
+import { setCurrentUser, setLoading, setAuth } from "../features/authSlice";
+import axios from "axios";
 // import Parse from "../utils/parseConfig";
 
 import Parse from "parse/dist/parse.min.js";
@@ -24,10 +24,19 @@ const Connexion = () => {
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    
-    const [role, setRole] = useState("");
 
-     // Mettre à jour l'état de la page active lorsque le composant est monté
+    useEffect(() => {
+        const storedUserData = localStorage.getItem("currentUser");
+        if(storedUserData){
+            const userData = JSON.parse(storedUserData);
+            try {
+                
+            } catch (error) {
+                
+            }
+        }
+    }, [])
+    // Mettre à jour l'état de la page active lorsque le composant est monté
      useEffect(() => {
         dispatch(setActivePage("Connexion"));
     }, [dispatch]);
@@ -43,6 +52,8 @@ const Connexion = () => {
     };
 
     const currentUser = Parse.User.current();
+    const [role, setRole] = useState("");
+
 
     useEffect(() => {
         if(currentUser){
@@ -58,6 +69,30 @@ const Connexion = () => {
     };
 
     const [formData, setFormData] = useState(initialFormState);
+    const [sessionToken, setSessionToken] = useState("");
+    console.log("sessionToken :", sessionToken);
+   
+    async function getJWT() {
+        try {
+          const response = await axios.post("https://parseapi.back4app.com/", {}, {
+            headers: {
+              'X-Parse-Application-Id': 'GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV',
+              'X-Parse-REST-API-Key': '3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM',
+              'X-Parse-Session-Token': sessionToken // Remplacez par le token de l'utilisateur authentifié
+            }
+          });
+      
+          const jwt = response.data.result;
+          console.log('JWT:', jwt);
+      
+          // Maintenant que vous avez le JWT, vous pouvez l'utiliser pour les futures requêtes
+          // Vous n'avez pas besoin de passer le token de session pour chaque requête
+        } catch (error) {
+          console.error('Erreur lors de la récupération du JWT :', error);
+        }
+      }
+      
+      //getJWT();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -68,14 +103,12 @@ const Connexion = () => {
         try {
             const loggedUser = await Parse.User.logIn(email, password);
             const currentUser = Parse.User.current();
-            // const userRole = currentUser.get("role");
-            // console.log("userRole connexion: ", userRole)
-            // setRole(userRole);
-            // console.log("role dans try:", role)
             dispatch(setLoading(true));
             if (loggedUser === currentUser) {
                 dispatch(setLoading(false));
                 setFormData(initialFormState);
+                const sessionToken = loggedUser.getSessionToken();
+                dispatch(setAuth(sessionToken));
                 dispatch(
                     setCurrentUser({ username: userName, id: currentUser.id }),
                 );
@@ -87,7 +120,7 @@ const Connexion = () => {
             alert(error);
         }
     };
-
+    
     return (
         <ConnexContainer id="connexion">
             <ConnexBox>

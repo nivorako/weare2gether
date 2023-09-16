@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 
 const initialState = {
     currentAdmin: {
@@ -21,6 +23,13 @@ const adminSlice = createSlice({
     },
 });
 
+const adminPersistConfig = {
+    key: "admin",
+    storage
+}
+
+const persistAdminReducer = persistReducer(adminPersistConfig, adminSlice.reducer);
+
 export const { setCurrentAdmin, setLoading } = adminSlice.actions;
 
-export default adminSlice.reducer;
+export default persistAdminReducer;
