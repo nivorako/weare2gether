@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Headroom from "react-headroom";
 
 import { setDrawer } from "../features/drawerSlice";
-import { setCurrentUser } from "../features/authSlice";
+import { setCurrentUser, clearAuth } from "../features/authSlice";
 import { setCurrentAdmin } from "../features/adminSlice";
 
 import {
@@ -64,6 +64,11 @@ Parse.serverURL = HOST_URL;
  */
 
 const Header = () => {
+
+    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    console.log("isAuthenticated :", isAuthenticated);
+    const current = useSelector((state) => state.auth.currentUserRole);
+    console.log("current role:", current);
 
     const currentUser = Parse.User.current();
     
@@ -141,6 +146,7 @@ const Header = () => {
             await Parse.User.logOut();
             dispatch(setCurrentUser({ username: "", id: "" })); 
             dispatch(setCurrentAdmin({ username: "", id: "" }));
+            dispatch(clearAuth());
             localStorage.clear();
             alert("vous etes déconnecté");
             navigate("/");
@@ -234,8 +240,7 @@ const Header = () => {
         };
     }, []);
 
-    console.log("localStorage :", localStorage)
-      
+     
     return (
         <>
             <CssBaseline />

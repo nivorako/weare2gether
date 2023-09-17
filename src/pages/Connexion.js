@@ -25,17 +25,6 @@ const Connexion = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const storedUserData = localStorage.getItem("currentUser");
-        if(storedUserData){
-            const userData = JSON.parse(storedUserData);
-            try {
-                
-            } catch (error) {
-                
-            }
-        }
-    }, [])
     // Mettre à jour l'état de la page active lorsque le composant est monté
      useEffect(() => {
         dispatch(setActivePage("Connexion"));
@@ -45,16 +34,10 @@ const Connexion = () => {
         navigate("/SignUp");
     };
 
-    const handleNavigateAdminConnexion = () => {       
-        {
-            role === "" ? navigate("/AdminConnexion") : navigate("/")
-        };
-    };
 
     const currentUser = Parse.User.current();
     const [role, setRole] = useState("");
-
-
+    console.log("roel :", role);
     useEffect(() => {
         if(currentUser){
             const userRole = currentUser.get("role");
@@ -230,22 +213,6 @@ const Connexion = () => {
                             }}
                         >
                             Mot de passe oublié ??
-                        </Button>
-                    </ConnexElt>
-                    <ConnexElt>
-                        <Button
-                            onClick={handleNavigateAdminConnexion}
-                            sx={{
-                                marginLeft: "1rem",
-                                color: "white",
-                                opacity: ".6",
-                                "&:hover": {
-                                    opacity: "1",
-                                    boxShadow: ".1px 1px white",
-                                },
-                            }}
-                        >
-                            Administrateur
                         </Button>
                     </ConnexElt>
                 </ConnexBody>
