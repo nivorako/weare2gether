@@ -40,7 +40,13 @@ const Dashboard = () => {
                         Lien vers A propos
                     </Typography>
                 </Box>
-                <Box>
+                <Box 
+                    onClick={() => navigate("/Admin/AdminBlogs")}
+                    sx={{
+                        cursor: "pointer"
+                    }}
+
+                >
                     <Typography>
                         Lien vers Blog
                     </Typography>

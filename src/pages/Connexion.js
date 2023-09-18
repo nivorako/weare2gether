@@ -55,27 +55,6 @@ const Connexion = () => {
     const [sessionToken, setSessionToken] = useState("");
     console.log("sessionToken :", sessionToken);
    
-    async function getJWT() {
-        try {
-          const response = await axios.post("https://parseapi.back4app.com/", {}, {
-            headers: {
-              'X-Parse-Application-Id': 'GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV',
-              'X-Parse-REST-API-Key': '3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM',
-              'X-Parse-Session-Token': sessionToken // Remplacez par le token de l'utilisateur authentifié
-            }
-          });
-      
-          const jwt = response.data.result;
-          console.log('JWT:', jwt);
-      
-          // Maintenant que vous avez le JWT, vous pouvez l'utiliser pour les futures requêtes
-          // Vous n'avez pas besoin de passer le token de session pour chaque requête
-        } catch (error) {
-          console.error('Erreur lors de la récupération du JWT :', error);
-        }
-      }
-      
-      //getJWT();
 
     const handleSubmit = async (e) => {
         e.preventDefault();

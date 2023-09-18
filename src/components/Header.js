@@ -65,10 +65,9 @@ Parse.serverURL = HOST_URL;
 
 const Header = () => {
 
-    const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-    console.log("isAuthenticated :", isAuthenticated);
-    const current = useSelector((state) => state.auth.currentUserRole);
-    console.log("current role:", current);
+    // const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+    
+    // const current = useSelector((state) => state.auth.currentUserRole);
 
     const currentUser = Parse.User.current();
     
@@ -290,7 +289,7 @@ const Header = () => {
                                                     color: usernameColor,
                                                     marginTop: "2rem",
                                                 }}
-                                                composant="p"
+                                                component="p"
                                                 variant="body2"
                                             >
                                                 Bonjour {currentUserName}
@@ -636,7 +635,12 @@ const Header = () => {
                             <Title>
                                 <h2>Dash Board</h2>
                             </Title>
-                        ) :   (
+                        )  :  activePage ==="AdminBlogs" ? (
+                            <Title>
+                                <h2>Dash Board / AdminBlogs</h2>
+                            </Title>
+                        ) 
+                         : (
                             "Home"
                         )}
                     </HeaderTitle>

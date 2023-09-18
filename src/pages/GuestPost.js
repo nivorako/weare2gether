@@ -7,7 +7,16 @@ import { TextField, Button, TextareaAutosize } from "@mui/material";
 
 import { setActivePage } from "../features/pageSlice";
 
-import Parse from "../utils/parseConfig";
+// import Parse from "../utils/parseConfig";
+
+import Parse from "parse/dist/parse.min.js";
+
+const APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
+const HOST_URL = "https://parseapi.back4app.com/";
+const JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
+
+Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
+Parse.serverURL = HOST_URL;
 
 const GuestPost = () => {
     const initialFormState = {
@@ -15,9 +24,7 @@ const GuestPost = () => {
     };
 
     const currentUser = useSelector((state) => state.auth.currentUser);
-    console.log("current user id :", currentUser.id);
-    console.log("current user username :", currentUser.username);
-
+    console.log('currentos :', currentUser);
     const [formData, setFormData] = useState(initialFormState);
 
     const handleSubmit = async (e) => {
@@ -30,7 +37,7 @@ const GuestPost = () => {
         guestPost.set("senderId", currentUser.id);
         guestPost.set("guest", msg);
         guestPost.set("senderUsername", currentUser.username);
-
+        guestPost.set("status", "ok");
         try {
             const res = await guestPost.save();
             alert("votre témoignage est bien envoyé !!");
@@ -53,7 +60,7 @@ const GuestPost = () => {
                 <GuestPostHead>Ajouter votre temoignage ici</GuestPostHead>
                 <GuestPostBody onSubmit={handleSubmit}>
                     <StyledTextarea
-                        placeholder="toti"
+                        placeholder="Votre témoignage ici"
                         required
                         id="msg"
                         //label="email"

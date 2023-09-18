@@ -18,8 +18,12 @@ Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
 Parse.serverURL = HOST_URL;
 
 const Guest = () => {
-    const [guestMsg, setGuestMsg] = useState([]);
 
+    const currentUser = Parse.User.current();
+    console.log("current :", currentUser);
+
+    const [guestMsg, setGuestMsg] = useState([]);
+    
     useEffect(() => {
         const guestQuery = new Parse.Query("GuestPost");
 
@@ -33,19 +37,17 @@ const Guest = () => {
             });
     }, []);
 
-    const currentUser = Parse.User.current();
-
-    console.log("currentUser :", currentUser);
+    const selectedMsg = guestMsg.filter(msg => msg.get("status") === "ok");
 
     return (
         <GuestContainer id="guest">
             <GuestBox>
                 <GuestHead>
                     <GuestTitle>Vos témoignages :</GuestTitle>
-                    <GuestNotif>({guestMsg.length}) Messages</GuestNotif>
+                    <GuestNotif>({selectedMsg.length}) Messages</GuestNotif>
                 </GuestHead>
                 <GuestItems>
-                    {guestMsg.map((msg, index) => {
+                    {selectedMsg.map((msg, index) => {
                         return (
                             <GuestItem key={index}>
                                 <Avatar />
@@ -71,7 +73,7 @@ const Guest = () => {
                     })}
                 </GuestItems>
                 <GuestSubmit>
-                <Link to="/GuestPost">
+                <Link to={currentUser ? "/GuestPost" : "/Connexion"}>
                             <GuestBtn>
                                 <Typography
                                     component="p"

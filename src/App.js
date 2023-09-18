@@ -16,6 +16,7 @@ import Private from "./pages/private/private";
 import GuestPost from "./pages/GuestPost";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminMedia from "./pages/admin/AdminMedia";
+import AdminBlogs from "./pages/admin/AdminBlogs";
 
 import "./App.css";
 
@@ -40,6 +41,7 @@ function App() {
                     <Route index element={<Dashboard />} />
                     <Route path="Dashboard" element={<Dashboard />} />
                     <Route path="AdminMedia" element={<AdminMedia />} />
+                    <Route path="AdminBlogs" element={<AdminBlogs />} />
                 </Route>
                 <Route path="/*" element={<NotFound />} />
             </Routes>
