@@ -21,15 +21,49 @@ import BlogFilter from "../components/BlogFilter";
 import { setActivePage } from "../features/pageSlice";
 import { setSelectedCard } from "../features/blogCardSlice";
 
-import dataBlog from "../data/dataBlog.json";
+import Parse from "parse/dist/parse.min.js";
+
+const APPLICATION_ID = "GXgBEka1jlGx1EbzJcgbtOuv1FP9CnH5GO4ZpYMV";
+const HOST_URL = "https://parseapi.back4app.com/";
+const JAVASCRIPT_KEY = "3it9PTiIq5GZtqnBkkn8VFJAeJZeOjFditnE6DQM";
+
+Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
+Parse.serverURL = HOST_URL;
 
 const theme = createTheme();
 
 const Blog = () => {
+    const [currentBlog, setCurrentBlog] = useState([])
+    
+    useEffect(() => {
+        const blog = new Parse.Query("Blog");
+        blog
+            .find()
+            .then((res) => {
+                setCurrentBlog(res);
+            })
+            .catch((error) => {
+                console.error("error :", error);
+            })
+    }, []);
+
+    const formatDate = (date) => {
+        const formattedDate = new Date(date);
+        const mois = formattedDate.toLocaleString('default', { month: 'short' });
+        const jour = formattedDate.getDate();
+        const annee = formattedDate.getFullYear();
+        return `${mois} ${jour} ${annee}`;
+    }
+
+    const currentUserName = useSelector((state) => state.auth.token);
+   
+    
     const selectedCard = useSelector((state) => state.blogCard.selectedCard);
     
-    const selectedBlog = dataBlog.find((blog) => blog.id === selectedCard);
-    
+    const selectedBlog = currentBlog.find((blog) => blog.id === selectedCard);
+    console.log("selected card :", selectedCard)
+    console.log("selectedBlog :", selectedBlog);
+    console.log("current user name :", currentUserName);
     const dispatch = useDispatch();
 
     // Mettre à jour l'état de la page active lorsque le composant est monté
@@ -41,8 +75,13 @@ const Blog = () => {
 
     const filteredBlogs =
         blogFilter.filter !== null
-            ? dataBlog.filter((blog) => blog.category === blogFilter.filter)
-            : dataBlog;
+            ? currentBlog.filter((blog) => blog.get("category") === blogFilter.filter)
+            : currentBlog
+            ;
+
+    filteredBlogs.forEach(blog => {
+        console.log("blog id :", blog.id);
+    })
 
     return (
         <ThemeProvider theme={theme}>
@@ -57,7 +96,7 @@ const Blog = () => {
                             }}
                         >
                             <img
-                                src={selectedBlog.cover}
+                                src={selectedBlog.get("cover").url()}
                                 alt="test"
                                 style={{
                                     objectFit: "cover",
@@ -86,10 +125,10 @@ const Blog = () => {
                                         marginLeft: "0",
                                     }}
                                 >
-                                    {selectedBlog.title}
+                                    {selectedBlog.get("title")}
                                 </Typography>
                                 <Typography component="p" variant="body2">
-                                    {selectedBlog.date}
+                                    {formatDate(selectedBlog.get("createdAt"))}
                                 </Typography>
                             </Box>
                             <Typography
@@ -98,7 +137,7 @@ const Blog = () => {
                                     marginTop: "4rem",
                                 }}
                             >
-                                {selectedBlog.desc}
+                                {selectedBlog.get("desc")}
                             </Typography>
                         </Box>
                     </SelectedBlogBox>
@@ -137,12 +176,13 @@ const Blog = () => {
                                             }}
                                         >
                                             <CardHeader
-                                                title={blog.category}
-                                                subheader={blog.date}
+                                                title={blog.get("category")}
+                                                subheader={formatDate(blog.get("createdAt"))}
+                                                sx={{display:"flex"}}
                                             />
                                             <CardMedia
                                                 component="img"
-                                                image={blog.cover}
+                                                image={blog.get("cover").url()}
                                                 alt="image test"
                                                 style={{
                                                     height: "300px",
@@ -161,7 +201,7 @@ const Blog = () => {
                                                     color="text.secondary"
                                                     component="h2"
                                                 >
-                                                    Titre de ce Blog
+                                                    {blog.get("title")}
                                                 </Typography>
                                             </CardContent>
                                         </Card>

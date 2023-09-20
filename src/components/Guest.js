@@ -36,7 +36,7 @@ const Guest = () => {
                 console.log("error :", error);
             });
     }, []);
-
+    
     const selectedMsg = guestMsg.filter(msg => msg.get("status") === "ok");
 
     return (

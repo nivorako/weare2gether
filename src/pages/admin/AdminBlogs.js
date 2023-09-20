@@ -36,7 +36,7 @@ const AdminBlogs = () => {
         const category = formData.category;
         const desc = formData.desc;
         const title = formData.title;
-        // const img = e.target.querySelector("input[type=file]").files[0];
+        
         const imgFile = new Parse.File("image.png", e.target.querySelector("input[type=file]").files[0])
         blog.set("desc", desc);
         blog.set("category", category);

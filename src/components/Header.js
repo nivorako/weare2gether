@@ -6,7 +6,6 @@ import Headroom from "react-headroom";
 
 import { setDrawer } from "../features/drawerSlice";
 import { setCurrentUser, clearAuth } from "../features/authSlice";
-import { setCurrentAdmin } from "../features/adminSlice";
 
 import {
     changeColor,
@@ -144,7 +143,6 @@ const Header = () => {
         try {
             await Parse.User.logOut();
             dispatch(setCurrentUser({ username: "", id: "" })); 
-            dispatch(setCurrentAdmin({ username: "", id: "" }));
             dispatch(clearAuth());
             localStorage.clear();
             alert("vous etes déconnecté");

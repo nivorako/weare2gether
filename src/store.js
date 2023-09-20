@@ -9,7 +9,6 @@ import toolbarReducer from "./features/toolbarSlice";
 import persistAuthReducer from "./features/authSlice";
 import blogFilterReducer from "./features/blogFilterSlice";
 import blogCardReducer from "./features/blogCardSlice";
-import persistAdminReducer from "./features/adminSlice";
 
 const persistConfig = {
     key : "root",
@@ -24,7 +23,6 @@ const rotReducer = combineReducers({
     auth: persistAuthReducer,
     blogFilter: blogFilterReducer,
     blogCard: blogCardReducer,
-    admin: persistAdminReducer,
 });
 
 const persistRdcr = persistReducer(persistConfig, rotReducer);
