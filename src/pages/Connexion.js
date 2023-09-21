@@ -221,7 +221,7 @@ const ConnexBox = styled(Paper)`
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    background-color: var(--primary);
+    background-color: #7f1f00;
     elevation: 16;
     @media (max-width: 1024px) {
         width: 70%;

@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import Button from '@mui/material/Button';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
+import { setSelectedCard } from "../../features/blogCardSlice";
+
 import styled from '@emotion/styled';
 import { 
     Typography,
@@ -44,6 +46,7 @@ const AdminBlogs = () => {
         blog.set("title", title);
         try {
             const res = await blog.save();
+            dispatch(setSelectedCard(null));
             console.log("blog enregistré :", res);
         } catch (error) {
             console.error("erreur :", error);
@@ -157,7 +160,7 @@ const Input = styled.input`
 
 const AdminBlogContainer = styled.main`
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
 `;
 
 const Form = styled.form`

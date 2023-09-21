@@ -9,6 +9,7 @@ const blogCardSlice = createSlice({
     initialState,
     reducers: {
         setSelectedCard: (state, action) => {
+            console.log("Setting selectedCard to:", action.payload);
             state.selectedCard = action.payload;
         },
     },

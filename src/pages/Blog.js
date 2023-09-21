@@ -55,15 +55,13 @@ const Blog = () => {
         return `${mois} ${jour} ${annee}`;
     }
 
-    const currentUserName = useSelector((state) => state.auth.token);
+    // const currentUserName = useSelector((state) => state.auth.token);
    
     
     const selectedCard = useSelector((state) => state.blogCard.selectedCard);
-    
+    console.log("selected card", selectedCard);
     const selectedBlog = currentBlog.find((blog) => blog.id === selectedCard);
-    console.log("selected card :", selectedCard)
-    console.log("selectedBlog :", selectedBlog);
-    console.log("current user name :", currentUserName);
+   
     const dispatch = useDispatch();
 
     // Mettre à jour l'état de la page active lorsque le composant est monté
@@ -79,9 +77,14 @@ const Blog = () => {
             : currentBlog
             ;
 
-    filteredBlogs.forEach(blog => {
-        console.log("blog id :", blog.id);
-    })
+    // filteredBlogs.forEach(blog => {
+    //     console.log("blog id :", blog.id);
+    // })
+
+    const handleClick = (blogId) => {
+        console.log("Dispatching setSelectedCard with ID:", blogId);
+        dispatch(setSelectedCard(blogId))
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -160,11 +163,7 @@ const Blog = () => {
                                         key={blog.id}
                                     >
                                         <Card
-                                            onClick={() =>
-                                                dispatch(
-                                                    setSelectedCard(blog.id),
-                                                )
-                                            }
+                                            onClick={ () => handleClick(blog.id)}
                                             sx={{
                                                 cursor: "pointer",
                                                 transition: ".5s",

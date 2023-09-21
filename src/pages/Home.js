@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { setActivePage } from "../features/pageSlice";
 
@@ -11,6 +11,8 @@ import Guest from "../components/Guest";
 
 const Home = () => {
     const dispatch = useDispatch();
+    const selectedCard = useSelector((state) => state.blogCard.selectedCard);
+    console.log("selected card", selectedCard);
 
     // Mettre à jour l'état de la page active lorsque le composant est monté
     useEffect(() => {
