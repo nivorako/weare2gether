@@ -5,7 +5,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { setActivePage } from '../../features/pageSlice';
 
-import { Typography, Box } from "@mui/material";
+import { 
+    Typography, 
+    Box,
+    Button
+} from "@mui/material";
 
 import styled from '@emotion/styled';
 
@@ -22,9 +26,7 @@ const Dashboard = () => {
     return (
         <DashboardContainer>
             <DashboardBox>
-                <Typography>
-                    Dash Board
-                </Typography> 
+
                 <Box 
                     onClick={() => navigate("/Admin/AdminMedia")}
                     sx={{

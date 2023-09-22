@@ -17,6 +17,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    color: var(--black);
 }
 a{
     text-decoration: none;

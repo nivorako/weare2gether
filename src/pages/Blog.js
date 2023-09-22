@@ -54,10 +54,7 @@ const Blog = () => {
         const annee = formattedDate.getFullYear();
         return `${mois} ${jour} ${annee}`;
     }
-
-    // const currentUserName = useSelector((state) => state.auth.token);
-   
-    
+ 
     const selectedCard = useSelector((state) => state.blogCard.selectedCard);
     console.log("selected card", selectedCard);
     const selectedBlog = currentBlog.find((blog) => blog.id === selectedCard);
@@ -69,6 +66,14 @@ const Blog = () => {
         dispatch(setActivePage("Blog"));
     }, [dispatch]);
 
+    // Réinitialiser selectedCard lorsque le composant se démonte
+    useEffect(() => {
+        return () => {
+            dispatch(setSelectedCard(null));
+        };
+    }, []);
+    
+
     const blogFilter = useSelector((state) => state.blogFilter);
 
     const filteredBlogs =
@@ -77,11 +82,7 @@ const Blog = () => {
             : currentBlog
             ;
 
-    // filteredBlogs.forEach(blog => {
-    //     console.log("blog id :", blog.id);
-    // })
-
-    const handleClick = (blogId) => {
+    const handleBlogClick = (blogId) => {
         console.log("Dispatching setSelectedCard with ID:", blogId);
         dispatch(setSelectedCard(blogId))
     }
@@ -163,7 +164,7 @@ const Blog = () => {
                                         key={blog.id}
                                     >
                                         <Card
-                                            onClick={ () => handleClick(blog.id)}
+                                            onClick={ () => handleBlogClick(blog.id)}
                                             sx={{
                                                 cursor: "pointer",
                                                 transition: ".5s",
