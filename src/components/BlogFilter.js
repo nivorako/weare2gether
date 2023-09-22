@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import { Box, Button } from "@mui/material";
 
+import CustomBtn from "./CustomBtn";
 import { setFilter } from "../features/blogFilterSlice";
 import { setSelectedCard } from "../features/blogCardSlice";
 
@@ -32,30 +33,31 @@ const BlogFilter = () => {
                 marginTop: "2rem",
             }}
         >
-            <StyledBtn
-                active={blogFilter === null ? "active" : ""}
+            <CustomBtn
+                // active={blogFilter === null ? "active" : ""}
+                active={blogFilter === null}
                 onClick={() => handleFilterClick(null)}
             >
                 Tous
-            </StyledBtn>
-            <StyledBtn
-                active={blogFilter === "conseils" ? "active" : ""}
+            </CustomBtn>
+            <CustomBtn
+                active={blogFilter === "conseils" }
                 onClick={() => handleFilterClick("conseils")}
             >
                 Conseils
-            </StyledBtn>
-            <StyledBtn
-                active={blogFilter === "musiques" ? "active" : ""}
+            </CustomBtn>
+            <CustomBtn
+                active={blogFilter === "musiques" }
                 onClick={() => handleFilterClick("musiques")}
             >
                 Musique
-            </StyledBtn>
-            <StyledBtn
-                active={blogFilter === "danses" ? "active" : ""}
+            </CustomBtn>
+            <CustomBtn
+                active={blogFilter === "danses" }
                 onClick={() => handleFilterClick("danses")}
             >
                 Danses
-            </StyledBtn>
+            </CustomBtn>
         </Box>
     );
 };
