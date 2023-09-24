@@ -17,6 +17,7 @@ import GuestPost from "./pages/GuestPost";
 import Dashboard from "./pages/admin/Dashboard";
 import AdminMedia from "./pages/admin/AdminMedia";
 import AdminBlogs from "./pages/admin/AdminBlogs";
+import DeleteBlog from "./pages/admin/DeleteBlog";
 
 import "./App.css";
 
@@ -42,6 +43,7 @@ function App() {
                     <Route path="Dashboard" element={<Dashboard />} />
                     <Route path="AdminMedia" element={<AdminMedia />} />
                     <Route path="AdminBlogs" element={<AdminBlogs />} />
+                    <Route path="DeleteBlog" element={<DeleteBlog />} />
                 </Route>
                 <Route path="/*" element={<NotFound />} />
             </Routes>

@@ -459,24 +459,6 @@ const Header = () => {
                                                 </MenuItem>
                                             </Menu>
                                             <Divider />
-
-                                            {/* <HeaderLink>
-                                                    <HeaderMenuItem>
-                                                        <img
-                                                            src={ShoppingBskt}
-                                                            alt="panier"
-                                                        />
-                                                        <Typography
-                                                            sx={{
-                                                                marginLeft: "2rem",
-                                                                color: "var(--black)",
-                                                            }}
-                                                        >
-                                                            Votre panier
-                                                        </Typography>
-                                                    </HeaderMenuItem>
-                                                </HeaderLink>
-                                                <Divider /> */}
                                         </Box>
                                     </Drawer>
                                 </>
@@ -566,14 +548,6 @@ const Header = () => {
                                             </MenuItem>
                                         </Menu>
                                     </Box>
-                                    {/* <HeaderLink>
-                                            <HeaderNavItem>
-                                                <img
-                                                    src={shopBsktColor}
-                                                    alt="shopping basket"
-                                                />
-                                            </HeaderNavItem>
-                                        </HeaderLink> */}
                                     {currentUserName && (
                                         <Box
                                             sx={{

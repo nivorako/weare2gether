@@ -1,14 +1,14 @@
-import React,  { useEffect } from 'react';
+import React,  { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useNavigate } from 'react-router-dom';
+
+import CustomBtn from '../../components/CustomBtn';
 
 import { setActivePage } from '../../features/pageSlice';
 
 import { 
     Typography, 
-    Box,
-    Button
 } from "@mui/material";
 
 import styled from '@emotion/styled';
@@ -17,7 +17,14 @@ const Dashboard = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const menuItems = ['Poster un blog', 'Modifier / supprimer un blod'];
+    const handleClick = (item) => {
+        if(item === "Poster un blog"){
+            navigate("/admin/AdminBlogs")
+        }else if(item === "Modifier / supprimer un blod"){
+            navigate("/admin/DeleteBlog")
+        }
+    }
      // Mettre à jour l'état de la page active lorsque le composant est monté
      useEffect(() => {
         dispatch(setActivePage("DashBoard"));
@@ -27,7 +34,7 @@ const Dashboard = () => {
         <DashboardContainer>
             <DashboardBox>
 
-                <Box 
+                <CustomBtn 
                     onClick={() => navigate("/Admin/AdminMedia")}
                     sx={{
                         cursor: "pointer"
@@ -36,28 +43,29 @@ const Dashboard = () => {
                     <Typography>
                         Lien vers photo / video
                     </Typography>
-                </Box>
-                <Box>
+                </CustomBtn>
+                <CustomBtn>
                     <Typography>
                         Lien vers A propos
                     </Typography>
-                </Box>
-                <Box 
-                    onClick={() => navigate("/Admin/AdminBlogs")}
+                </CustomBtn>
+                <CustomBtn 
+                    
                     sx={{
                         cursor: "pointer"
                     }}
-
+                    menuItems={menuItems}
+                    onMenuItemClick={handleClick}
                 >
                     <Typography>
                         Lien vers Blog
                     </Typography>
-                </Box>
-                <Box>
+                </CustomBtn>
+                <CustomBtn>
                     <Typography>
                         Lien vers Events
                     </Typography>
-                </Box>
+                </CustomBtn>
             </DashboardBox>
             
         </DashboardContainer>
@@ -73,6 +81,11 @@ const DashboardBox = styled.div`
     width: 80%;
     height: 50vh;
     margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `;
+
+
 
 export default Dashboard

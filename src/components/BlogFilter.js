@@ -34,7 +34,6 @@ const BlogFilter = () => {
             }}
         >
             <CustomBtn
-                // active={blogFilter === null ? "active" : ""}
                 active={blogFilter === null}
                 onClick={() => handleFilterClick(null)}
             >
