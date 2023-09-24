@@ -81,7 +81,7 @@ const StyledBtn = styled(Button)(({ active }) => ({
     onClick: PropTypes.func, // onClick doit être une fonction
     children: PropTypes.node, // children peut être n'importe quel élément React
     menuItems: PropTypes.arrayOf(PropTypes.string), // menuItems est un tableau de chaînes
-    onMenuItemClick: PropTypes.arrayOf(PropTypes.string),
+    onMenuItemClick: PropTypes.func,
 }
 
 export default CustomBtn;
