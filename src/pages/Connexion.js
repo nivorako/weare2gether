@@ -6,6 +6,8 @@ import styled from "@emotion/styled";
 import { Paper, Grid, TextField, Button, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 
+import CustomBtn from "../components/CustomBtn";
+
 import { setActivePage } from "../features/pageSlice";
 import { setCurrentUser, setLoading, setAuth } from "../features/authSlice";
 import axios from "axios";
@@ -98,7 +100,12 @@ const Connexion = () => {
                     >
                         Connectez - vous
                     </Typography>
-                    <Typography
+                    <CustomBtn
+                        onClick={handleNavigateSignUp}
+                    >
+                        Créez votre compte
+                    </CustomBtn>
+                    {/* <Typography
                         component="h2"
                         variant="h5"
                         onClick={handleNavigateSignUp}
@@ -117,7 +124,7 @@ const Connexion = () => {
                         }}
                     >
                         Créez votre compte
-                    </Typography>
+                    </Typography> */}
                 </ConnexHead>
                 <ConnexBody onSubmit={handleSubmit}>
                     <Grid container>
@@ -139,7 +146,7 @@ const Connexion = () => {
                                 }
                                 inputprops={{
                                     "data-testid": "email-input", // Ajoutez un attribut data-testid
-                                }}
+                                }}                              
                             />
                         </Grid>
                         <Grid item xs={12} sm={12}>
@@ -165,34 +172,28 @@ const Connexion = () => {
                         </Grid>
                     </Grid>
                     <ConnexElt>
-                        <Button
+                        <CustomBtn 
+                            type="submit"
+                        >
+                            Envoyer
+                        </CustomBtn>
+
+                        <CustomBtn>
+                            Mot de passe oublié ??
+                        </CustomBtn>
+                        {/* <Button
                             type="sumbit"
                             sx={{
-                                color: "white",
-                                opacity: ".6",
+                                color: "var(--black)",
+                                marginTop: "2rem",
                                 "&:hover": {
-                                    opacity: "1",
+                                    
                                     boxShadow: ".1px 1px white",
                                 },
                             }}
                         >
                             Envoyer
-                        </Button>
-                    </ConnexElt>
-                    <ConnexElt>
-                        <Button
-                            sx={{
-                                color: "white",
-                                opacity: ".6",
-
-                                "&:hover": {
-                                    opacity: "1",
-                                    boxShadow: ".1px 1px white",
-                                },
-                            }}
-                        >
-                            Mot de passe oublié ??
-                        </Button>
+                        </Button> */}
                     </ConnexElt>
                 </ConnexBody>
             </ConnexBox>
@@ -215,13 +216,14 @@ const ConnexBox = styled(Paper)`
     bottom: 50px;
     width: 50%;
     height: 600px;
-    color: white;
+    color: var(--black);
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    background-color: #7f1f00;
+    // background-color: #7f1f00;
+
     elevation: 16;
     @media (max-width: 1024px) {
         width: 70%;
@@ -249,7 +251,7 @@ const ConnexHead = styled.div`
 
 const ConnexBody = styled.form`
     width: 100%;
-    height: 300px;
+   
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -257,7 +259,7 @@ const ConnexBody = styled.form`
 `;
 
 const Label = styled.p`
-    color: white;
+    
 `;
 
 const CustomTextField = styled(TextField)`
@@ -267,8 +269,11 @@ const CustomTextField = styled(TextField)`
             background-color: white;
             outline: none;
             &:focus {
-                border: none;
+                
                 background-color: white;
+                & ~ fieldset {
+                    border-color: var(--black); /* Couleur de bordure de focus */
+                }
             }
         }
         label {
@@ -281,11 +286,12 @@ const CustomTextField = styled(TextField)`
 `;
 
 const ConnexElt = styled.div`
-    width: 100%;
-    margin: 1rem;
-    color: white;
+    width: 50%;
+    height: 100px;
+    margin: 3rem auto;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 
 export default Connexion;

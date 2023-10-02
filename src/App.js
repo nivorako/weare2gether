@@ -8,6 +8,7 @@ import Connexion from "./pages/Connexion";
 import SignUp from "./pages/SignUp";
 import Blog from "./pages/Blog";
 import Media from "./pages/Media";
+import EventPage from "./pages/EventPage";
 import Caroussel from "./pages/Caroussel";
 import NotFound from "./pages/NotFound";
 import Admin from "./pages/admin/Admin";
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/SignUp" element={<SignUp />} />
                 <Route path="/Blog" element={<Blog />} />
                 <Route path="/Media" element={<Media />} />
+                <Route path="/EventPage" element={<EventPage />} />
                 <Route path="GuestPost" element={<GuestPost />} />
                 <Route path="/Caroussel/:id" element={<Caroussel />} />
                 <Route path="/Private" element={<Private />}>

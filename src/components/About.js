@@ -18,7 +18,7 @@ const About = () => {
                 </AboutMain>
                 <AboutDetails>
                     <AboutDetail>
-                        <h3>A propos</h3>
+                        <h3>notre team</h3>
                         <p>
                             Vous souhaitez apprendre à danser la Salsa, la
                             Bachata, la Kizomba et toutes les danses

@@ -36,7 +36,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 import styled from "@emotion/styled";
 
-import img from "../assets/imgTitle.png";
+import img from "../assets/lumiere.jpg";
 import Close from "../assets/closeBlack.svg";
 import Logo from "../assets/Logo.png";
 import User from "../assets/user4.svg";
@@ -250,7 +250,7 @@ const Header = () => {
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "start",
-                        opacity: "1",
+                        
                     }}
                 >
                     <Headroom>
@@ -264,6 +264,7 @@ const Header = () => {
                                 justifyContent: "center",
                                 boxShadow: `0 .5px .5px ${boxShadowColor}`,
                                 backgroundColor: toolbarBGColor,
+                               
                                 zIndex: "100",
                                 "@media(max-width: 764px)": {
                                     justifyContent: "space-between",
@@ -627,6 +628,7 @@ const HeaderContainer = styled.header`
     width: 100%;
     height: 600px;
     background-image: url(${img});
+    background-size: cover;
 `;
 
 const HeaderLink = styled(Link)`

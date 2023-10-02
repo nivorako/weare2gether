@@ -13,7 +13,7 @@ import styled from '@emotion/styled';
 
 import PropTypes from 'prop-types';
 
-const CustomBtn = ({ active, onClick, children, menuItems, onMenuItemClick }) => {
+const CustomBtn = ({ type, active, onClick, children, menuItems, onMenuItemClick }) => {
 
    
     const [anchorEl, setAnchorEl] = useState(null);
@@ -29,7 +29,7 @@ const CustomBtn = ({ active, onClick, children, menuItems, onMenuItemClick }) =>
 
     return (
         <>
-            <StyledBtn active={active ? "active" : ""} onClick={onClick}>
+            <StyledBtn active={active ? "active" : ""} onClick={onClick} type={type}>
                 {children}
                 {menuItems && 
                     (

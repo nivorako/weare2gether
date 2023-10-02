@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import { Button, Paper } from "@mui/material";
 import styled from "@emotion/styled";
@@ -9,6 +10,10 @@ import EventImg from "../assets/salsaGuinguette 1.png";
  * @returns {JSX element}
  */
 const Event = () => {
+    const navigate = useNavigate();
+    const handleNavigate = () => {
+        navigate("/EventPage");
+    }
     return (
         <EventContainer>
             <EventElt>
@@ -21,7 +26,11 @@ const Event = () => {
                     <h3>Hotel de Police</h3>
                     <p>1, place de la Gare, 95000 Cergy</p>
                 </EventAdress>
-                <EventBtn>Participer</EventBtn>
+                <EventBtn
+                    onClick={handleNavigate}
+                >
+                    Participer
+                </EventBtn>
             </EventElt>
         </EventContainer>
     );

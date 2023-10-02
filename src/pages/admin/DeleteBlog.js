@@ -34,8 +34,7 @@ Parse.serverURL = HOST_URL;
 const DeleteBlog = () => {
 
     const blogFilter = useSelector((state) => state.blogFilter);
-    const selectedCard = useSelector((state) => state.blogCard.selectedCard);
-
+    
     console.log("blogfliter :", blogFilter);
     const [currentBlog, setCurrentBlog] = useState([])
 
@@ -55,10 +54,6 @@ const DeleteBlog = () => {
     console.log("selected blog: ", selectedBlog);
     const [isConfirmationOpen, setConfirmationOpen] = useState(false);
     const [blogId, setBlogId] = useState("");
-   
-    const handleOnClickId = (blogId) => {
-        console.log("blog id:", blogId);
-    }
 
     const handleBtnClick = (id) => {
         setConfirmationOpen(true)
@@ -99,8 +94,8 @@ const DeleteBlog = () => {
     return (
         <BlogMainContainer>
             <BlogBox>
-                <Typography component="h2" variant="h3">
-                    Ici vous pouvez modifier les blogs
+                <Typography component="h2" variant="h3" sx={{marginBottom: "8rem"}}>
+                    Ici vous pouvez modifier les blogs :
                 </Typography>
                 <BlogFilter />
                
@@ -265,8 +260,16 @@ const DeleteBlog = () => {
                 <PopupBackground isOpen={isConfirmationOpen}/>
                 <ConfirmPopup isOpen={isConfirmationOpen}>
                     <Typography>Voulez-vous vraiment supprimer ce blog ?</Typography>
-                    <Button onClick={handleConfirmClick}>Confirmer</Button>
-                    <Button onClick={handleReturnClick}>Retour</Button>
+                    <Box
+                        sx={{
+                            width: "100%",
+                            display:"flex",
+                            justifyContent: "space-between"
+                        }}
+                    >
+                        <Button onClick={handleConfirmClick}>Confirmer</Button>
+                        <Button onClick={handleReturnClick}>Retour</Button>
+                    </Box>
                 </ConfirmPopup>
             </BlogBox>
         </BlogMainContainer>
@@ -320,12 +323,6 @@ const PopupBackground = styled.div`
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Fond obscurci semi-transparent */
     display: ${(props) => (props.isOpen ? 'block' : 'none')};
-`;
-
-const SelectedBlogBox = styled.div`
-    width: 80%;
-    margin: 4rem auto 0 auto;
-    color: var(--black);
 `;
 
 export default DeleteBlog

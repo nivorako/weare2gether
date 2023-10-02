@@ -6,6 +6,7 @@ import { Button, Box } from "@mui/material";
 import ImgTitle from "../assets/imgTitle.png";
 
 const Events = () => {
+    
     return (
         <EventsContainer id="events">
             <EventsBox>
