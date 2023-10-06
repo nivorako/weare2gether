@@ -4,23 +4,28 @@ import Event from "./Event";
 import styled from "@emotion/styled";
 import { Button, Box } from "@mui/material";
 import ImgTitle from "../assets/imgTitle.png";
-
+import disco from "../assets/disco.mp4"
 const Events = () => {
     
     return (
         <EventsContainer id="events">
             <EventsBox>
                 <EventsTitle id="eventsTitle">
-                    <img
-                        src={ImgTitle}
-                        alt="titre"
+                   
+                    <video
                         style={{
                             width: "100%",
                             height: "80vh",
                             objectFit: "cover",
                             borderRadius: "0",
                         }}
-                    />
+                        autoPlay
+                        loop
+                        muted
+                    >
+                        <source src={disco} type="video/mp4" />
+                        Votre navigateur ne prend pas en charge la lecture de vidéos.
+                    </video>
                     <Box
                         sx={{
                             position: "absolute",
@@ -105,11 +110,14 @@ const EventsAd = styled.h2`
 
 const Btn = styled(Button)({
     color: "white",
-    backgroundColor: "var(--secondary)",
+    backgroundColor: "var(--primary)",
     opacity: ".8",
+    transition: ".5s",
     "&:hover": {
-        backgroundColor: "var(--secondary)",
+        backgroundColor: "var(--primary)",
         opacity: "1",
+        transform: "scale(1.1)",
+        borderBottom: "white 3px solid",
     },
 });
 

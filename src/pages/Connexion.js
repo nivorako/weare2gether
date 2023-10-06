@@ -105,26 +105,6 @@ const Connexion = () => {
                     >
                         Créez votre compte
                     </CustomBtn>
-                    {/* <Typography
-                        component="h2"
-                        variant="h5"
-                        onClick={handleNavigateSignUp}
-                        sx={{
-                            
-                            opacity: ".6",
-                            "&:hover":{
-                                cursor: "pointer",
-                                opacity: "1",
-                                boxShadow: ".1px 1px white",
-                            },
-                            "@media(max-width: 600px)":{
-                                marginTop: "1rem",
-                                marginBottom: "2rem"
-                            }
-                        }}
-                    >
-                        Créez votre compte
-                    </Typography> */}
                 </ConnexHead>
                 <ConnexBody onSubmit={handleSubmit}>
                     <Grid container>
@@ -181,19 +161,6 @@ const Connexion = () => {
                         <CustomBtn>
                             Mot de passe oublié ??
                         </CustomBtn>
-                        {/* <Button
-                            type="sumbit"
-                            sx={{
-                                color: "var(--black)",
-                                marginTop: "2rem",
-                                "&:hover": {
-                                    
-                                    boxShadow: ".1px 1px white",
-                                },
-                            }}
-                        >
-                            Envoyer
-                        </Button> */}
                     </ConnexElt>
                 </ConnexBody>
             </ConnexBox>
@@ -277,7 +244,7 @@ const CustomTextField = styled(TextField)`
             }
         }
         label {
-            color: black; /* Couleur du label par défaut */
+            color: var(--black); /* Couleur du label par défaut */
             &.Mui-focused {
                 color: black; /* Couleur du label lorsque le TextField est en focus */
             }

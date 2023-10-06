@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
@@ -24,6 +24,10 @@ import "./App.css";
 
 function App() { 
 
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+    
     return (
         <div className="App">
             <Header />

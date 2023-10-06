@@ -116,7 +116,7 @@ const Caroussel = () => {
 
 const CarousselContainer = styled.main`
     width: 100%;
-    height: 75vh;
+    min-height: 75vh;
 `;
 
 const CarousselBox = styled.article`
@@ -128,7 +128,7 @@ const CarousselItems = styled.ul`
     position: relative;
     width: 70%;
     height: 100%;
-    margin: 0 auto;
+    margin: 2rem auto;
     display: flex;
     justify-content: center;
     align-items: center;

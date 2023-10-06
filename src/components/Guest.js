@@ -73,30 +73,30 @@ const Guest = () => {
                     })}
                 </GuestItems>
                 <GuestSubmit>
-                <Link to={currentUser ? "/GuestPost" : "/Connexion"}>
-                            <GuestBtn>
-                                <Typography
-                                    component="p"
-                                    sx={{
-                                        color: "white",
-                                        fontSize: "30px",
-                                        fontFamily: "Lora",
-                                    }}
-                                >
-                                    Laissez votre temoignage
-                                </Typography>
-                                <Typography
-                                    component="p"
-                                    variant="p"
-                                    sx={{
-                                        color: "white",
-                                        fontSize: "16px",
-                                    }}
-                                >
-                                    Ici
-                                </Typography>
-                            </GuestBtn>
-                        </Link>
+                    <Link to={currentUser ? "/GuestPost" : "/Connexion"}>
+                        <GuestBtn>
+                            <Typography
+                                component="p"
+                                sx={{
+                                    color: "white",
+                                    fontSize: "30px",
+                                    fontFamily: "Lora",
+                                }}
+                            >
+                                Laissez votre temoignage
+                            </Typography>
+                            <Typography
+                                component="p"
+                                variant="p"
+                                sx={{
+                                    color: "white",
+                                    fontSize: "16px",
+                                }}
+                            >
+                                Ici
+                            </Typography>
+                        </GuestBtn>
+                    </Link>
                 </GuestSubmit>
                 <GuestSubmit>
                     <Typography

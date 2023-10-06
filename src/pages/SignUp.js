@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import styled from "@emotion/styled";
 import { Paper, Typography, TextField, Grid, Box, Button } from "@mui/material";
 
+import CustomBtn from "../components/CustomBtn";
+
 import { setActivePage } from "../features/pageSlice";
 
 // import Parse from "../utils/parseConfig";
@@ -230,7 +232,9 @@ const SignUp = () => {
                             </Grid>
                         </Grid>
                     </SignUpPswdBox>
-                    <StyledButton type="submit">Envoyer</StyledButton>
+                    <CustomBtn type="submit">
+                        Envoyer
+                    </CustomBtn>
                     <Typography>
                         Créez un compte pour accéder à votre profil, réserver ou
                         s'abonner à un évènement
@@ -256,13 +260,13 @@ const SignUpBox = styled(Paper)`
     bottom: 50px;
     width: 50%;
     height: 600px;
-    color: white;
+    color: var(--black);
     padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--primary);
+    // background-color: var(--primary);
     elevation: 16;
     @media (max-width: 1024px) {
         width: 70%;
@@ -293,26 +297,17 @@ const CustomTextField = styled(TextField)`
             &:focus {
                 border: none;
                 background-color: white;
+                & ~ fieldset {
+                    border-color: var(--black); /* Couleur de bordure de focus */
+                }
             }
         }
         label {
-            color: black; /* Couleur du label par défaut */
+            color: var(--black); /* Couleur du label par défaut */
             &.Mui-focused {
                 color: black; /* Couleur du label lorsque le TextField est en focus */
             }
         }
-    }
-`;
-
-const StyledButton = styled(Button)`
-    color: white;
-    opacity: 0.8;
-    @media (max-width: 600px) {
-        margin: 1rem;
-    }
-    &:hover {
-        opacity: 1;
-        box-shadow: 0.5px 0.5px 0.5px 2px white;
     }
 `;
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Button, Paper } from "@mui/material";
 import styled from "@emotion/styled";
 import EventImg from "../assets/salsaGuinguette 1.png";
-
+import koezio from "../assets/koezio.jpg";
 /**
  * Représente un évènement
  * @returns {JSX element}
@@ -15,36 +15,40 @@ const Event = () => {
         navigate("/EventPage");
     }
     return (
-        <EventContainer>
+        <EventContainer
+            onClick={handleNavigate}
+        >
             <EventElt>
-                <img src={EventImg} alt="" width="100%" height="100%"></img>
+                <img src={koezio} alt="" width="100%" height="100%"></img>
             </EventElt>
             <EventElt>
                 <EventDate>Vendredi 12 juillet 2023</EventDate>
-                <EventTitle>Le titre de l event</EventTitle>
+                <EventTitle>KOEZIO</EventTitle>
+                <EventTitle>Latino / SBK party</EventTitle>
                 <EventAdress>
-                    <h3>Hotel de Police</h3>
-                    <p>1, place de la Gare, 95000 Cergy</p>
+                    
+                    <p>11 avenue de la plaine des sports 95800 CERGY</p>
                 </EventAdress>
-                <EventBtn
-                    onClick={handleNavigate}
-                >
-                    Participer
-                </EventBtn>
             </EventElt>
         </EventContainer>
     );
 };
 
 const EventContainer = styled(Paper)`
-    elevation: 16;
+
+    elevation: 32;
     witdh: 100%;
     display: flex;
     justify-content: space-between;
     background-color: white;
+    transition: .5s;
     @media (max-width: 764px) {
         flex-direction: column;
         align-items: center;
+    }
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.01);
     }
 `;
 
@@ -78,7 +82,7 @@ const EventBtn = styled(Button)`
     background-color: var(--black);
     color: white;
     &:hover {
-        background-color: var(--secondary);
+        background-color: var(--primary);
     }
 `;
 

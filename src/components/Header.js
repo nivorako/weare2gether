@@ -612,8 +612,11 @@ const Header = () => {
                             <Title>
                                 <h2>Dash Board / AdminBlogs</h2>
                             </Title>
-                        ) 
-                         : (
+                        )  :activePage ==="EventPage" ? (
+                            <Title>
+                                <h2>Evènement</h2>
+                            </Title>
+                        ) : (
                             "Home"
                         )}
                     </HeaderTitle>
