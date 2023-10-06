@@ -259,6 +259,9 @@ const ConnexElt = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (max-width: 446px) {
+        height: 150px;
+     }
 `;
 
 export default Connexion;

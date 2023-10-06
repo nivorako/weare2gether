@@ -20,10 +20,10 @@ const EventPage = () => {
             <Box
                 sx={{
                     
-                    margin: "5rem",
+                    margin: "1rem",
                 }}
             >
-                <img src={koezio} alt="ambiance koezio" width="100%"/>
+                <img src={koezio} alt="ambiance koezio" width="100%" height="100%"/>
             </Box>
         </EventContainer>
     )
@@ -31,7 +31,7 @@ const EventPage = () => {
 
 const EventContainer = styled.main`
     width: 100%;
-    min-height: 100vh;
+   
 `;
 
 export default EventPage
