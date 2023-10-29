@@ -8,7 +8,7 @@ const About = () => {
             <AboutTitle>A propos</AboutTitle>
             <AboutContent>
                 <AboutMain>
-                    <h3>Pourquoi apprendre à danser la salsa ?</h3>
+                    <H3>Pourquoi apprendre à danser la salsa ?</H3>
                     <p>
                         La salsa est la meilleure chose que vous puissiez faire pour vous-même et un 
                         investissement rentable : <br />
@@ -26,9 +26,8 @@ const About = () => {
                         équipement de pilotage, rien, rien que vous.
                     </p>
                 </AboutMain>
-                <AboutDetails>
-                    <AboutDetail>
-                        <h3>La salsa est amusante</h3>
+                <AboutMain >
+                        <H3>La salsa est amusante</H3>
                         <p>
                         Pendant les cours et les stages de salsa, les élèves sont plus détendues qu’en soirée. 
                         Les gens se rendent à leur cours en général après avoir quitté le travail. Ils sont là 
@@ -39,42 +38,22 @@ const About = () => {
                         transpirent. Sans vous rendre compte, vous vous verrez danser la salsa pendant des heures 
                         en soirée. La salsa n’est pas un sport qui demande de la motivation, tout comme la course.
                         </p>
-                    </AboutDetail>
-                    <AboutDetail>
-                        <h3>La salsa permet de rencontrer des filles et des garçons</h3>
-                        <p>
-                            C’est évident, non ?<br/>
-                            Vous n’avez pas besoin d’un prétexte pour inviter une fille à danser, c’est une chose 
-                            naturelle à faire dans une soirée salsa. De plus, lors des cours de salsa, il sera 
-                            naturel de rencontrer des filles et garçons, l’enseignant alternant généralement les 
-                            couples afin que vous fassiez connaissance avec beaucoup de monde. En fait, les mêmes 
-                            personnes qui participent aux cours de salsa poursuivront pour la majorité pour une 
-                            soirée, vous connaîtrez donc déjà certaines personnes. Après un certain temps, vous 
-                            connaîtrez beaucoup de monde dans les, de nombreux habitués viennent danser et de 
-                            nombreux danseurs viennent occasionnellement.
-                        </p>
-                    </AboutDetail>
-                    <AboutDetail>
-                        <h3>A propos</h3>
-                        <p>
-                            Vous souhaitez apprendre à danser la Salsa, la
-                            Bachata, la Kizomba et toutes les danses
-                            afro-caribéennes ou passer tout simplement une bonne
-                            soirée entre amis dans une ambiance latine ? Vous
-                            êtes à la bonne adresse !
-                        </p>
-                    </AboutDetail>
-                    <AboutDetail>
-                        <h3>A propos</h3>
-                        <p>
-                            Vous souhaitez apprendre à danser la Salsa, la
-                            Bachata, la Kizomba et toutes les danses
-                            afro-caribéennes ou passer tout simplement une bonne
-                            soirée entre amis dans une ambiance latine ? Vous
-                            êtes à la bonne adresse !
-                        </p>
-                    </AboutDetail>
-                </AboutDetails>
+                </AboutMain>
+                <AboutMain>
+                    <H3>La salsa permet de rencontrer des filles et des garçons</H3>
+                    <p>
+                        C’est évident, non ?<br/>
+                        Vous n’avez pas besoin d’un prétexte pour inviter une fille à danser, c’est une chose 
+                        naturelle à faire dans une soirée salsa. De plus, lors des cours de salsa, il sera 
+                        naturel de rencontrer des filles et garçons, l’enseignant alternant généralement les 
+                        couples afin que vous fassiez connaissance avec beaucoup de monde. En fait, les mêmes 
+                        personnes qui participent aux cours de salsa poursuivront pour la majorité pour une 
+                        soirée, vous connaîtrez donc déjà certaines personnes. Après un certain temps, vous 
+                        connaîtrez beaucoup de monde dans les, de nombreux habitués viennent danser et de 
+                        nombreux danseurs viennent occasionnellement.
+                    </p>
+                </AboutMain>
+               
             </AboutContent>
         </AboutContainer>
     );
@@ -95,6 +74,7 @@ const AboutContent = styled.div`
     width: 70%;
     margin: 8rem auto;
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     @media (max-width: 1200px) {
         width: 90%;
@@ -104,35 +84,19 @@ const AboutContent = styled.div`
 `;
 
 const AboutMain = styled(Paper)`
-    width: 48%;
-    padding: 1rem;
+    width: 100%;
+    padding: 2rem;
+    margin-bottom: 2rem;
     font-size: 32px;
-    @media (max-width: 1200px) {
-        width: 100%;
-    }
-`;
-
-const AboutDetails = styled.div`
-    width: 48%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-content: space-between;
+    flex-direction: column;
+    align-items: left;
     @media (max-width: 1200px) {
-        width: 100%;
-        margin-top: 2rem;
-    }
-`;
-
-const AboutDetail = styled(Paper)`
-    width: 48%;
-    padding: 1rem;
-    @media (max-width: 1200px) {
-        margin-bottom: 2rem;
-    }
-    @media (max-width: 764px) {
         width: 100%;
     }
 `;
 
+const H3 = styled.h3`
+    align-self: center;
+`;
 export default About;

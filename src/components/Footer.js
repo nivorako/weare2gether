@@ -25,7 +25,7 @@ const FooterBox = styled.div`
     align-items: center;
     width: 100%;
     min-height: 100px;
-    background-color: var(--black);
+    background-color: var(--primary);
 `;
 
 export default Footer;
