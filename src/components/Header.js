@@ -77,7 +77,9 @@ const Header = () => {
 
         if (page === "Blog") {
             navigate("/Blog");
-        } else if (currentUser) {
+        }else if(page === "Photo"){
+            navigate("/Media");
+        }else if (currentUser) {
             const role = currentUser.get("role");
             if (role === null) {
                 navigate("/Connexion");
@@ -373,6 +375,22 @@ const Header = () => {
                                                 (null)
                                             }
 
+                                            <Box onClick={() => handleNavigate("Photo")}>
+                                                <HeaderMenuItem
+                                                    onClick={toggleDrawer}
+                                                >
+                                                    <Button
+                                                        variant="text"
+                                                        sx={{
+                                                            color: "var(--black)",
+                                                        }}
+                                                    >
+                                                        PHOTO / VIDEO
+                                                    </Button>
+                                                </HeaderMenuItem>
+                                            </Box>
+                                            <Divider />
+
                                             <Box onClick={() => handleNavigate("Blog")}>
                                                 <HeaderMenuItem
                                                     onClick={toggleDrawer}
@@ -484,6 +502,18 @@ const Header = () => {
                                         )   :
                                         (null)
                                     }
+                                     <Box 
+                                        onClick={() => handleNavigate("Photo")}
+                                    >
+                                        <HeaderNavItem>
+                                            <Button
+                                                variant="text"
+                                                sx={{ color: toolbarColor }}
+                                            >
+                                                PHOTO / VIDEO
+                                            </Button>
+                                        </HeaderNavItem>
+                                    </Box>
                                     <Box 
                                         onClick={() => handleNavigate("Blog")}
                                     >

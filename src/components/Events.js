@@ -44,9 +44,7 @@ const Events = () => {
                             <Title>Weare2gether,</Title>
                             <Desc>C'est plus que de la musique</Desc>
                         </Box>
-                        <Link to="/Media" sx={{ textDecoration: "none" }}>
-                            <Btn>Photos / Videos</Btn>
-                        </Link>
+                       
                     </Box>
                 </EventsTitle>
                 <EventsAd>Les soirées à venir :</EventsAd>
