@@ -32,6 +32,11 @@ Parse.serverURL = HOST_URL;
 
 const theme = createTheme();
 
+/**
+ * 
+ * @returns {JSX.Element} - component displays all blogs
+ */
+
 const Blog = () => {
     const [currentBlog, setCurrentBlog] = useState([])
     
