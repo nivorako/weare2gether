@@ -385,7 +385,7 @@ const Header = () => {
                                                             color: "var(--black)",
                                                         }}
                                                     >
-                                                        PHOTO / VIDEO
+                                                        MEDIA
                                                     </Button>
                                                 </HeaderMenuItem>
                                             </Box>
@@ -510,7 +510,7 @@ const Header = () => {
                                                 variant="text"
                                                 sx={{ color: toolbarColor }}
                                             >
-                                                PHOTO / VIDEO
+                                                MEDIA
                                             </Button>
                                         </HeaderNavItem>
                                     </Box>
