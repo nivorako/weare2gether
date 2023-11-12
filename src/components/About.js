@@ -87,7 +87,7 @@ const AboutMain = styled(Paper)`
     width: 100%;
     padding: 2rem;
     margin-bottom: 2rem;
-    font-size: 32px;
+    font-size: 16px;
     display: flex;
     flex-direction: column;
     align-items: left;
