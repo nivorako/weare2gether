@@ -5,13 +5,14 @@
     --secondary: #00c4e8; */
     --black: #3b3b3b;
 }
+
 body {
 
-        margin: 0;
-        font-family: "Roboto", sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
    
 .App{
     
@@ -21,6 +22,7 @@ body {
     align-items: center;
     color: var(--black);
 }
+
 a{
     text-decoration: none;
 }

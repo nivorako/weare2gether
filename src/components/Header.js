@@ -127,16 +127,26 @@ const Header = () => {
 
     const dispatch = useDispatch();
 
-    const isMobile = useMediaQuery("(max-width:768px)", { noSsr: true });
+    const isMobile = useMediaQuery("(max-width:768px)");
 
+    /**
+     * open or close drawer
+     */
     const toggleDrawer = () => {
         dispatch(setDrawer());
     };
 
+    /**
+     * open or close menu
+     * @param {*} event 
+     */
     const handleMenuOpen = (event) => {
         setMenuAnchor(event.currentTarget);
     };
-
+ 
+    /**
+     * set menu anchor value
+     */
     const handleMenuClose = () => {
         setMenuAnchor(null);
     };
@@ -298,7 +308,7 @@ const Header = () => {
                                         ) : null}
                                     </HeaderMenu>
                                     <Drawer
-                                        // onClick={toggleDrawer}
+                                        
                                         open={drawer.drawer}
                                         anchor="right"
                                         PaperProps={{
@@ -431,14 +441,14 @@ const Header = () => {
                                                         src={User1}
                                                         alt="user"
                                                     />
-                                                    <Typography
+                                                    {/* <Typography
                                                         sx={{
                                                             marginLeft: "2rem",
                                                             color: "var(--black)",
                                                         }}
                                                     >
                                                         Votre profil
-                                                    </Typography>
+                                                    </Typography> */}
                                                     {menuAnchor ? (
                                                         <ExpandMoreIcon
                                                             sx={{

@@ -9,7 +9,7 @@ const About = () => {
             <AboutTitle>A propos</AboutTitle>
             <AboutContent>
                 <AboutMain>
-                    <H3>Pourquoi apprendre à danser la salsa ?</H3>
+                    <H3>Pourquoi apprendre à danser la salsas ?</H3>
                     <AboutMainContent>
                         <AboutMainImg>
                             <Img src={SalsaDance} alt="couple dansant la salsa"/>
@@ -33,22 +33,22 @@ const About = () => {
                     </AboutMainContent>
                 </AboutMain>
                 <AboutMain >
-                        <H3>La salsa est amusante</H3>
-                        <AboutMainContent>
-                            <AboutMainImg>
-                                <Img src={SalsaDance} alt="couple dansant la salsa"/>
-                            </AboutMainImg>
-                            <p>
-                            Pendant les cours et les stages de salsa, les élèves sont plus détendues qu’en soirée. 
-                            Les gens se rendent à leur cours en général après avoir quitté le travail. Ils sont là 
-                            pour se détendre et apprendre en s’amusant.<br/>
-                            La salsa est un sport-plaisir<br/>
-                            La salsa est un sport qui vous permettra de garder votre ligne et d’avoir une belle 
-                            silhouette. Regardez les gens qui dansent quelques heures, et vous verrez comment ils 
-                            transpirent. Sans vous rendre compte, vous vous verrez danser la salsa pendant des heures 
-                            en soirée. La salsa n’est pas un sport qui demande de la motivation, tout comme la course.
-                            </p>
-                        </AboutMainContent>
+                    <H3>La salsa est amusante</H3>
+                    <AboutMainContent>
+                        <AboutMainImg>
+                            <Img src={SalsaDance} alt="couple dansant la salsa"/>
+                        </AboutMainImg>
+                        <p>
+                        Pendant les cours et les stages de salsa, les élèves sont plus détendues qu’en soirée. 
+                        Les gens se rendent à leur cours en général après avoir quitté le travail. Ils sont là 
+                        pour se détendre et apprendre en s’amusant.<br/>
+                        La salsa est un sport-plaisir<br/>
+                        La salsa est un sport qui vous permettra de garder votre ligne et d’avoir une belle 
+                        silhouette. Regardez les gens qui dansent quelques heures, et vous verrez comment ils 
+                        transpirent. Sans vous rendre compte, vous vous verrez danser la salsa pendant des heures 
+                        en soirée. La salsa n’est pas un sport qui demande de la motivation, tout comme la course.
+                        </p>
+                    </AboutMainContent>
                 </AboutMain>
                 <AboutMain>
                     
