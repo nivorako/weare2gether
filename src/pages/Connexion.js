@@ -183,7 +183,7 @@ const ConnexBox = styled(Paper)`
     bottom: 50px;
     width: 50%;
     height: 600px;
-    color: var(--black);
+    color: var(--secondary);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -239,14 +239,14 @@ const CustomTextField = styled(TextField)`
                 
                 background-color: white;
                 & ~ fieldset {
-                    border-color: var(--black); /* Couleur de bordure de focus */
+                    border-color: var(--secondary); /* Couleur de bordure de focus */
                 }
             }
         }
         label {
-            color: var(--black); /* Couleur du label par défaut */
+            color: var(--secondary); /* Couleur du label par défaut */
             &.Mui-focused {
-                color: black; /* Couleur du label lorsque le TextField est en focus */
+                color: var(--secondary); /* Couleur du label lorsque le TextField est en focus */
             }
         }
     }

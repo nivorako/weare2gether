@@ -25,7 +25,9 @@ const Collapse = ({title, text, image, altText}) => {
                 <CollapseDivContent>
                     <Img src={image} alt={altText}/>
                     <CollapseDivText>
-                        {text}
+                        {text.map((t, index) => (
+                            <p key={index}>{t}</p>
+                        ))}
                     </CollapseDivText>
                 </CollapseDivContent>
             ) : null}
@@ -49,8 +51,10 @@ const CollapseDivTitle =  styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all .5s ease;
     &:hover {
         cursor: pointer;
+        transform: scale(1.01);
     }
     @media (max-width: 764px){
         
@@ -66,7 +70,7 @@ const CollapseDivContent = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     @media (min-width : 764px){
         flex-direction: row;
         align-items: center;
@@ -75,7 +79,7 @@ const CollapseDivContent = styled.div`
 const CollapseDivText = styled.p`
     padding: .5rem;
     @media (min-width : 764px){
-        width: 50%;
+        width: 40%;
     }
 `;
 const Img = styled.img`
@@ -84,7 +88,7 @@ const Img = styled.img`
     border-radius: 10px;
     object-fit: cover;
     @media (min-width : 764px){
-        width: 50%;
+        width: 40%;
         
     }
 `;

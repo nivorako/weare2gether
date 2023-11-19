@@ -39,7 +39,7 @@ const Media = () => {
                                             display: "flex",
                                             flexDirection: "column",
                                             justifyContent: "space-between",
-                                            color: "var(--black)",
+                                            color: "var(--secondary)",
                                             padding: ".5rem",
                                         }}
                                     >

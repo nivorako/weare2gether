@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
-    Grid,
-    Paper,
+    Grid,   
     Box,
-    Button,
     Card,
     CardMedia,
     CardContent,
@@ -173,6 +171,7 @@ const Blog = () => {
                                             sx={{
                                                 cursor: "pointer",
                                                 transition: ".5s",
+                                                color: "var(--secondary)",
                                                 "&:hover": {
                                                     transform: "scale(1.02)",
                                                     boxShadow:
@@ -182,7 +181,7 @@ const Blog = () => {
                                         >
                                             <CardHeader
                                                 title={blog.get("category")}
-                                                subheader={formatDate(blog.get("createdAt"))}
+                                                // subheader={formatDate(blog.get("createdAt"))}
                                                 sx={{display:"flex"}}
                                             />
                                             <CardMedia
@@ -197,13 +196,13 @@ const Blog = () => {
                                             <CardContent>
                                                 <Typography
                                                     variant="body2"
-                                                    color="text.secondary"
+                                                    color= "var(--secondary)"
                                                 >
                                                     {blog.date}
                                                 </Typography>
                                                 <Typography
                                                     variant="body2"
-                                                    color="text.secondary"
+                                                    color= "var(--secondary)"
                                                     component="h2"
                                                 >
                                                     {blog.get("title")}
@@ -232,7 +231,7 @@ const BlogContainer = styled.main`
 const SelectedBlogBox = styled.div`
     width: 80%;
     margin: 4rem auto 0 auto;
-    color: var(--black);
+    color: var(--secondary);
 `;
 
 export default Blog;

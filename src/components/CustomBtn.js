@@ -63,11 +63,11 @@ const CustomBtn = ({ type, active, onClick, children, menuItems, onMenuItemClick
 };
 
 const StyledBtn = styled(Button)(({ active }) => ({
-    border: active ? null : "black thin solid",
+    border: active ? null : "var(--secondary) thin solid",
     backgroundColor: active ? "var(--primary)" : "white",
     cursor: "pointer",
     textAlign: "center",
-    color: active ? "white" : "var(--black)",
+    color: active ? "white" : "var(--secondary)",
     "&:hover": {
       border: "none",
       backgroundColor: "var(--primary)",
