@@ -49,13 +49,16 @@ const CollapseDivTitle =  styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    &:hover {
+        cursor: pointer;
+    }
     @media (max-width: 764px){
         
     }
 `;
 
 const CollapseTitle = styled.h3`
-
+    font-family: Lora;
 `;
 
 const CollapseDivContent = styled.div`
@@ -64,13 +67,25 @@ const CollapseDivContent = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    @media (min-width : 764px){
+        flex-direction: row;
+        align-items: center;
+    }
 `;
 const CollapseDivText = styled.p`
     padding: .5rem;
+    @media (min-width : 764px){
+        width: 50%;
+    }
 `;
 const Img = styled.img`
     width: 100%;
+    height: 200px;
     border-radius: 10px;
     object-fit: cover;
+    @media (min-width : 764px){
+        width: 50%;
+        
+    }
 `;
 export default Collapse

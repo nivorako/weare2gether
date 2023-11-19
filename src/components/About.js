@@ -47,7 +47,8 @@ const About = () => {
     ]
 
     return (
-        <AboutContainer id="about">           
+        <AboutContainer id="about">  
+                 <AboutTitle>A propos</AboutTitle>    
             <AboutBox>
                 {aboutContent.map((content, index) => (
                     <Collapse 
@@ -81,5 +82,13 @@ const AboutBox = styled.div`
     }
 `;
 
-
+const AboutTitle = styled.h2`
+    width: 100%;
+    color: var(--secondary);
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+    font-size: 36px;
+    font-family: Lora;
+`;
 export default About;

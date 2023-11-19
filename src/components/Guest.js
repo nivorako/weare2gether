@@ -134,6 +134,7 @@ const GuestContainer = styled.article`
     width: 100%;
     height: 250vh;
     background-color: var(--secondary);
+    font-family: Lora;
 `;
 
 const GuestBox = styled.div`
