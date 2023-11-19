@@ -77,7 +77,7 @@ const EventsBox = styled.div`
     background-color: var(--secondary);
     z-index: 10;
     @media (max-width: 764px) {
-        width: 100%;
+        width: 90%;
     }
 `;
 
