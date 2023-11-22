@@ -17,7 +17,10 @@ const About = () => {
                 'Pendant les cours et les stages de salsa, les élèves sont plus détendues qu’en soirée.',
                 'Les gens se rendent à leur cours en général après avoir quitté le travail. Ils sont là pour se détendre et apprendre en s’amusant.',             
                 'La salsa est un sport-plaisir qui vous permettra de garder votre ligne et d’avoir une belle silhouette. Regardez les gens qui dansent quelques heures, et vous verrez comment ils transpirent. Sans vous rendre compte, vous vous verrez danser la salsa pendant des heures en soirée. La salsa n’est pas un sport qui demande de la motivation, tout comme la course.',           
-              ]
+                'Pendant les cours et les stages de salsa, les élèves sont plus détendues qu’en soirée.',
+                'Les gens se rendent à leur cours en général après avoir quitté le travail. Ils sont là pour se détendre et apprendre en s’amusant.',             
+                'La salsa est un sport-plaisir qui vous permettra de garder votre ligne et d’avoir une belle silhouette. Regardez les gens qui dansent quelques heures, et vous verrez comment ils transpirent. Sans vous rendre compte, vous vous verrez danser la salsa pendant des heures en soirée. La salsa n’est pas un sport qui demande de la motivation, tout comme la course.',           
+            ]
         },
         {
             title: "La salsa est amusante",

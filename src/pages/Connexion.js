@@ -3,14 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import styled from "@emotion/styled";
-import { Paper, Grid, TextField, Button, Typography } from "@mui/material";
-import { useSelector } from "react-redux";
+import { Paper, Grid, TextField, Typography } from "@mui/material";
 
 import CustomBtn from "../components/CustomBtn";
 
 import { setActivePage } from "../features/pageSlice";
 import { setCurrentUser, setLoading, setAuth } from "../features/authSlice";
-import axios from "axios";
+
 // import Parse from "../utils/parseConfig";
 
 import Parse from "parse/dist/parse.min.js";
@@ -39,7 +38,7 @@ const Connexion = () => {
 
     const currentUser = Parse.User.current();
     const [role, setRole] = useState("");
-    console.log("roel :", role);
+    
     useEffect(() => {
         if(currentUser){
             const userRole = currentUser.get("role");
@@ -232,9 +231,9 @@ const Label = styled.p`
 const CustomTextField = styled(TextField)`
     && {
         input {
-            border: none;
+            border-color: var(--secondary) !important;
             background-color: white;
-            outline: none;
+            
             &:focus {
                 
                 background-color: white;

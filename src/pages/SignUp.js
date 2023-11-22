@@ -266,7 +266,7 @@ const SignUpBox = styled(Paper)`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    // background-color: var(--primary);
+    color: var(--primary);
     elevation: 16;
     @media (max-width: 1024px) {
         width: 70%;
@@ -298,14 +298,14 @@ const CustomTextField = styled(TextField)`
                 border: none;
                 background-color: white;
                 & ~ fieldset {
-                    border-color: var(--black); /* Couleur de bordure de focus */
+                    border-color: var(--secondary); /* Couleur de bordure de focus */
                 }
             }
         }
         label {
-            color: var(--black); /* Couleur du label par défaut */
+            color: var(--secondary); /* Couleur du label par défaut */
             &.Mui-focused {
-                color: black; /* Couleur du label lorsque le TextField est en focus */
+                var(--secondary); /* Couleur du label lorsque le TextField est en focus */
             }
         }
     }

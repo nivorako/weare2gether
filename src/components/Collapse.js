@@ -74,22 +74,25 @@ const CollapseDivContent = styled.div`
     @media (min-width : 764px){
         flex-direction: row;
         align-items: center;
+        margin: 1rem 0;
     }
 `;
+
 const CollapseDivText = styled.p`
     padding: .5rem;
     @media (min-width : 764px){
-        width: 40%;
+        width: 45%;
     }
 `;
+
 const Img = styled.img`
     width: 100%;
     height: 200px;
     border-radius: 10px;
     object-fit: cover;
     @media (min-width : 764px){
-        width: 40%;
-        
+        width: 45%;
+        height: 100%;
     }
 `;
 export default Collapse
