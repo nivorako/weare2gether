@@ -11,6 +11,7 @@ import photos from "../data/dataPhoto.json";
 import { Scale } from "@mui/icons-material";
 
 const Caroussel = () => {
+
     const { id } = useParams();
 
     const selectedPhotos = photos.find((photo) => photo.id === id);

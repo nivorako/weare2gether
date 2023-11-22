@@ -36,6 +36,11 @@ const theme = createTheme();
  */
 
 const Blog = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const [currentBlog, setCurrentBlog] = useState([])
     
     useEffect(() => {

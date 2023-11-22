@@ -8,6 +8,11 @@ import { CardContent, Card, CardMedia } from "@mui/material";
 import photos from "../data/dataPhoto.json";
 
 const Media = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const dispatch = useDispatch();
 
     // Mettre à jour l'état de la page active lorsque le composant est monté

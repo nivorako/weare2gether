@@ -72,6 +72,7 @@ const Header = () => {
     
     const navigate = useNavigate();
 
+
     const handleNavigate = (page) => {
         console.log("userRole :", role);
 
@@ -92,6 +93,7 @@ const Header = () => {
     };
 
     const [role, setRole] = useState(null);
+    
     useEffect(() => {
         if(currentUser){
             const userRole = currentUser.get("role");
